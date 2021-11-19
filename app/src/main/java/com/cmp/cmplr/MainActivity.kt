@@ -2,6 +2,7 @@ package com.cmp.cmplr
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.cmp.cmplr.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
