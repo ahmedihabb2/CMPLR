@@ -7,7 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.cmp.cmplr.Controller.ForgotController
 import com.cmp.cmplr.databinding.ForgotPasswordBinding
 
-class ForgotActivity : AppCompatActivity() {
+
+/**
+ * class ForgotActivity , class responsible for the view of the forgot screen
+ *
+ */
+class ForgotActivity: AppCompatActivity() {
 
     private var forgotController = ForgotController()
     lateinit var binding: ForgotPasswordBinding

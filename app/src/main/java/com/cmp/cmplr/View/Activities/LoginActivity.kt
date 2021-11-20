@@ -11,7 +11,11 @@ import com.cmp.cmplr.Controller.LoginController
 import com.cmp.cmplr.databinding.LoginBinding
 
 
-class LoginActivity : AppCompatActivity() {
+/**
+ * class LoginActivity        class responsible for the login screen
+ *
+ */
+class LoginActivity : AppCompatActivity(){
 
 
     //fun View.hideKeyboard() {
