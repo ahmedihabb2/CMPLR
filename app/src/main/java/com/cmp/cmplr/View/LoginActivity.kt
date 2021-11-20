@@ -9,7 +9,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.cmp.cmplr.Controller.LoginController
 import com.cmp.cmplr.databinding.LoginBinding
 
-
+/**
+ * class LoginActivity        class responsible for the login screen
+ *
+ */
 class LoginActivity : AppCompatActivity(){
 
 
