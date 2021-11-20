@@ -24,6 +24,23 @@ class DatabaseMock {
         }
         return false
     }
+    fun insertUser(name:String, email:String, password:String):Boolean{
+        return true
+
+    }
+    fun emailExist(email:String):Boolean{
+
+        for (i in pairList.indices){
+
+            if(email== pairList[i].first) {
+                return true
+            }
+
+        }
+
+        return false;
+    }
 
 
 }
+

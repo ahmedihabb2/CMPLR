@@ -27,8 +27,9 @@ class LoginActivity : AppCompatActivity(){
 
         binding.toolbarLogin.loginBtn.setOnClickListener {
             closeKeyboard()
-            var email=binding.editTextEmailAddress.text.toString()
-            var password=binding.editTextPassword.text.toString()
+
+            var email=binding.emailText.text.toString()
+            var password=binding.passwordText.text.toString()
 
             //Toast.makeText(applicationContext,email+ password,Toast.LENGTH_SHORT).show()
             binding.errorText
@@ -51,16 +52,16 @@ class LoginActivity : AppCompatActivity(){
                 //Toast.makeText(applicationContext,"Checked",Toast.LENGTH_SHORT).show()
                 //binding.editTextPassword
 
-                binding.editTextPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
+                binding.passwordText.transformationMethod = HideReturnsTransformationMethod.getInstance()
             }
             else{
                 //Toast.makeText(applicationContext,"NOT checked",Toast.LENGTH_SHORT).show()
-                binding.editTextPassword.transformationMethod = PasswordTransformationMethod.getInstance()
+                binding.passwordText.transformationMethod = PasswordTransformationMethod.getInstance()
 
             }
         }
 
-        binding.forgotPassword.setOnClickListener{
+        binding.forgotButton.setOnClickListener{
 
             //TODO navigate to forgot screen
             Toast.makeText(applicationContext,"navigate to forgot screen",Toast.LENGTH_SHORT).show()
@@ -81,3 +82,4 @@ class LoginActivity : AppCompatActivity(){
         }
     }
 }
+

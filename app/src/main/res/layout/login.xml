@@ -9,12 +9,16 @@
     tools:layout_editor_absoluteX="8dp"
     tools:layout_editor_absoluteY="129dp">
 
-    <include layout="@layout/login_toolbar"
-
+    <include
         android:id="@+id/toolbar_login"
-        />
+
+        layout="@layout/login_toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
-        android:id="@+id/editTextEmailAddress"
+        android:id="@+id/email_text"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginStart="24dp"
@@ -29,15 +33,15 @@
         android:paddingRight="0dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
+        app:layout_constraintBottom_toTopOf="@+id/password_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_login"
         app:layout_constraintVertical_bias="0.982"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
-        android:id="@+id/editTextPassword"
+        android:id="@+id/password_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -51,12 +55,12 @@
         android:paddingLeft="10dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/showPass"
+        app:layout_constraintBottom_toTopOf="@+id/show_pass"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <CheckBox
-        android:id="@+id/showPass"
+        android:id="@+id/show_pass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -86,7 +90,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/forgot_password"
+        android:id="@+id/forgot_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/forgot"

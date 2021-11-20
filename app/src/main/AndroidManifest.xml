@@ -16,13 +16,23 @@
         </activity>
         <activity android:name=".View.LoginActivity">
 
-            <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
+
+        <activity android:name=".View.SignupActivity">
+
+
+        </activity>
+
+        <activity android:name=".View.ForgotActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>
