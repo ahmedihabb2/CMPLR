@@ -63,6 +63,13 @@ class IntroController(private val fragmentManager : FragmentManager , val bindin
         transaction.commit()
     }
 
+    /**
+     * A function to configure google client in order to  use
+     * Sign in with google
+     * @param fa  The Activity that contains the button
+     * @return Google Client
+     */
+
     fun configureGoogleClient(fa: Activity): GoogleSignInClient {
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
@@ -75,6 +82,13 @@ class IntroController(private val fragmentManager : FragmentManager , val bindin
         return GoogleSignIn.getClient(fa, gso)
     }
 
+    /**
+     * This function is responsible to add the user to firebase
+     * After google client successfully gets the user data and token
+     * @param idToken  user token
+     * @param auth     auth instance of firebase
+     * @param activity The Activity that contains the button
+     */
     fun firebaseAuthWithGoogle(idToken: String , auth : FirebaseAuth , activity: Activity) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential)

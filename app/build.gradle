@@ -70,8 +70,7 @@ dependencies {
     implementation "android.arch.navigation:navigation-ui-ktx:$nav_version"
 }
 
-    testImplementation "com.google.truth:truth:1.0.1"
-    androidTestImplementation "com.google.truth:truth:1.0.1"
+
 
 
 
