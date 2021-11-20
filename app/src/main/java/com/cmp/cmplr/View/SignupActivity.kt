@@ -9,6 +9,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.cmp.cmplr.Controller.SignupController
 import com.cmp.cmplr.databinding.SignupBinding
 
+
+/**
+ * class SignupActivity  class responsible for the signup screen
+ *
+ */
 class SignupActivity : AppCompatActivity() {
 
     private var signupController= SignupController()

@@ -1,0 +1,43 @@
+<html>
+<head>
+<title>SignupControllerTest.kt</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+SignupControllerTest.kt</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com.cmp.cmplr.Controller</span>
+<span class="s1">import com.google.common.truth.Truth.assertThat</span>
+
+<span class="s1">import org.junit.Test</span>
+
+<span class="s0">class </span><span class="s1">SignupControllerTest {</span>
+    <span class="s0">var </span><span class="s1">signupController=SignupController()</span>
+    <span class="s1">@Test</span>
+    <span class="s0">fun </span><span class="s1">getSignupData() {</span>
+
+        <span class="s0">var </span><span class="s1">result0:Int=signupController.getSignupData(</span><span class="s2">&quot;&quot;</span><span class="s0">,</span><span class="s2">&quot;&quot;</span><span class="s0">,</span><span class="s2">&quot;&quot;</span><span class="s1">)</span>
+        <span class="s0">var </span><span class="s1">result1:Int=signupController.getSignupData(</span><span class="s2">&quot;mo&quot;</span><span class="s0">,</span><span class="s2">&quot;sdf&quot;</span><span class="s0">,</span><span class="s2">&quot;&quot;</span><span class="s1">)</span>
+
+        <span class="s0">var </span><span class="s1">result2:Int=signupController.getSignupData(</span><span class="s2">&quot;mo&quot;</span><span class="s0">,</span><span class="s2">&quot;a@hotmail.com&quot;</span><span class="s0">,</span><span class="s2">&quot;&quot;</span><span class="s1">)</span>
+
+        <span class="s0">var </span><span class="s1">result3:Int=signupController.getSignupData(</span><span class="s2">&quot;mo&quot;</span><span class="s0">,</span><span class="s2">&quot;kak@hotmial.com&quot;</span><span class="s0">,</span><span class="s2">&quot;&quot;</span><span class="s1">)</span>
+
+        <span class="s0">var </span><span class="s1">result4:Int=signupController.getSignupData(</span><span class="s2">&quot;mo&quot;</span><span class="s0">,</span><span class="s2">&quot;kak@hotmail.com&quot;</span><span class="s0">,</span><span class="s2">&quot;32458&quot;</span><span class="s1">)</span>
+        <span class="s1">assertThat(result0.toString()).isEqualTo(</span><span class="s2">&quot;0&quot;</span><span class="s1">)</span>
+        <span class="s1">assertThat(result1.toString()).isEqualTo(</span><span class="s2">&quot;1&quot;</span><span class="s1">)</span>
+        <span class="s1">assertThat(result2.toString()).isEqualTo(</span><span class="s2">&quot;2&quot;</span><span class="s1">)</span>
+        <span class="s1">assertThat(result3.toString()).isEqualTo(</span><span class="s2">&quot;3&quot;</span><span class="s1">)</span>
+        <span class="s1">assertThat(result4.toString()).isEqualTo(</span><span class="s2">&quot;4&quot;</span><span class="s1">)</span>
+    <span class="s1">}</span>
+<span class="s1">}</span></pre>
+</body>
+</html>
