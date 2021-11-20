@@ -8,6 +8,12 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.cmp.cmplr.R
 
+/**
+ * SlashActivity class used to inflate Splash screen
+ * For two seconds then start the intro screens activity
+ *
+ */
+
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -13,6 +13,6 @@ class SignupBtnsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.signup_buttons, container , false)
+        return inflater.inflate(R.layout.signup_buttons, container, false)
     }
 }

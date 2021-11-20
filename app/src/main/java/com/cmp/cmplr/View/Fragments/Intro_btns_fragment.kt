@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.cmp.cmplr.Controller.IntroController
-import com.cmp.cmplr.Fragments.LoginBtnsFragment
-import com.cmp.cmplr.Fragments.SignupBtnsFragment
 import com.cmp.cmplr.R
 
 class IntroBtnsFragment : Fragment() {
@@ -17,22 +15,22 @@ class IntroBtnsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.intro_buttons1 , container , false)
+        return inflater.inflate(R.layout.intro_buttons1, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // Make instance of controller
-        val controller : IntroController  = IntroController(parentFragmentManager)
+        val controller: IntroController = IntroController(parentFragmentManager)
         // Get reference to buttons
-        val btn : Button = view.findViewById(R.id.login_btn)
-        val signup : Button = view.findViewById(R.id.signup_btn)
+        val btn: Button = view.findViewById(R.id.login_btn)
+        val signup: Button = view.findViewById(R.id.signup_btn)
         // Add listeners to buttons to handle navigations
         btn.setOnClickListener {
-           controller.navtoSigninButtons()
+            controller.navtoSigninButtons()
         }
         signup.setOnClickListener {
-           controller.navToSignupButtons()
+            controller.navToSignupButtons()
         }
     }
 }
