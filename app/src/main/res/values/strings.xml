@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">CMPLR</string>
+    <string name="signup_text">Sign up</string>
+    <string name="login_text">Log in</string>
+    <string name="intro1_text">Explore</string>
+    <string name="intro1_text2">mind-blowing stuff.</string>
+    <string name="intro2_text">Follow Cmplrs that spark your interests.</string>
+    <string name="intro3_text">Customize how you look, be who you want</string>
+    <string name="intro4_text">Post anything: Text,GIFs,music,whatever.</string>
+    <string name="intro5_text">Welcome to Cmplr. Now push the button.</string>
+    <string name="login_email">Log in with Email</string>
+    <string name="login_google">Log in with Google</string>
+    <string name="intro" >CMPLR</string>
+    <string name="signup_btn">Sign up with Email</string>
+    <string name="signup_google_btn">Sign up with Google</string>
+    <string name="mock_username">cmplr user</string>
+    <string name="note_hint">Say something nice</string>
+    <string name="random_comment">It is a random comment to test recycle layout</string>
 </resources>
