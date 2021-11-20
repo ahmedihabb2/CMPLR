@@ -9,11 +9,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.cmp.cmplr.Controller.IntroController
 import com.cmp.cmplr.R
 import com.cmp.cmplr.View.Activities.LoginActivity
+import com.cmp.cmplr.View.Activities.MainScreenActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
@@ -59,8 +62,16 @@ class LoginBtnsFragment : Fragment() {
                     // Google Sign In was successful, authenticate with Firebase
                     val account = task.getResult(ApiException::class.java)
                     Log.d(TAG, "firebaseAuthWithGoogle:" + account.id)
-                    controller.firebaseAuthWithGoogle(account.idToken!!, auth, requireActivity())
+                    val done =controller.firebaseAuthWithGoogle(account.idToken!!, auth, requireActivity())
+
+
+                    val intent = Intent(activity?.applicationContext, MainScreenActivity::class.java)
+                    startActivity(intent)
+                    Toast.makeText(activity?.applicationContext, "email ${account.email} username ${account.displayName}", Toast.LENGTH_SHORT).show()
+
                 } catch (e: ApiException) {
+                    Toast.makeText(activity?.applicationContext, "Error occured", Toast.LENGTH_SHORT).show()
+
                     // Google Sign In failed, update UI appropriately
                     Log.w(TAG, "Google sign in failed", e)
                 }
