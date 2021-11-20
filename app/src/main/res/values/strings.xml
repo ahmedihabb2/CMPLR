@@ -32,4 +32,7 @@
     <string name="forgot_text">Forgot your password? It happens. \n We\'ll send you a link to reset it.</string>
     <string name="submit">Submit</string>
     <string name="logo_description">the logo of tumblr</string>
+    <string name="age_text">You\'re almost done. Enter your age, then tap Next button.</string>
+    <string name="age_hint">How old are you?</string>
+    <string name="next_age_screen">Next</string>
 </resources>

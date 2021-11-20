@@ -16,7 +16,7 @@ class LoginControllerTest{
 
 
         assertThat(result1.toString()).isEqualTo("1")
-       assertThat(result2.toString()).isEqualTo("2")
+        assertThat(result2.toString()).isEqualTo("2")
         assertThat(result3.toString()).isEqualTo("0")
         //assertThat(result4.toString()).isEqualTo("3")
 
