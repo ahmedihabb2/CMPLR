@@ -1,6 +1,8 @@
 package com.cmp.cmplr.View
 
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.cmp.cmplr.Controller.ForgotController
 import com.cmp.cmplr.databinding.ForgotPasswordBinding
@@ -16,9 +18,9 @@ class ForgotActivity: AppCompatActivity() {
         setContentView(binding.root)
 
 
-        /*binding.forgotToolbar.forgotSubmitButton.setOnClickListener{
+        binding.forgotToolbar.forgotSubmitButton.setOnClickListener{
 
-
+            closeKeyboard()
             var email:String = binding.emailText.text.toString()
             when(forgotController.mailExists(email)){
 
@@ -34,8 +36,15 @@ class ForgotActivity: AppCompatActivity() {
                     binding.errorTextForgot.text="please enter an existing mail"
                 }
             }
-        }*/
+        }
     }
 
+    private fun closeKeyboard() {
+        val view = this.currentFocus
+        if (view != null) {
+            val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
+    }
 
 }

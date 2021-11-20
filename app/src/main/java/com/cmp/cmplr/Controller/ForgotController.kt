@@ -3,6 +3,15 @@ package com.cmp.cmplr.Controller
 import com.cmp.cmplr.Model.ForgotModel
 
 class ForgotController {
+
+    /***
+     *
+     *
+     *
+     *
+     */
+
+
     var forgotModel= ForgotModel()
 
 
