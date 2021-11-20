@@ -5,7 +5,8 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.cmp.cmplr.R
-import com.cmp.cmplr.databinding.FragmentAgeSignUpBinding
+import com.cmp.cmplr.databinding.AgeScreenBinding
+
 
 /**
  * This class is responsible for taking age and validating (Terms of service)
@@ -13,14 +14,14 @@ import com.cmp.cmplr.databinding.FragmentAgeSignUpBinding
  *
  */
 class AgeActivity : AppCompatActivity() {
-    lateinit var binding: FragmentAgeSignUpBinding
+    lateinit var binding: AgeScreenBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = FragmentAgeSignUpBinding.inflate(layoutInflater)
+        binding = AgeScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.signupBtn.setOnClickListener {
+        binding.ageToolbar.nextAgeScreen.setOnClickListener {
             try {
-                if (binding.ageField.text.toString().toInt() < 13) {
+                if (binding.ageText.text.toString().toInt() < 13) {
                     Toast.makeText(
                         this.applicationContext,
                         getString(R.string.errorMsgIfAgeIsLessThan13),
