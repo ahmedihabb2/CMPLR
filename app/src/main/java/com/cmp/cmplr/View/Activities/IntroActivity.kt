@@ -8,8 +8,6 @@ import com.cmp.cmplr.Controller.IntroController
 import com.cmp.cmplr.SharedModules.SliderAdapter
 import com.cmp.cmplr.View.Fragments.*
 import com.cmp.cmplr.databinding.IntroScreenBinding
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 
 /**
  * Intro Activity class used to inflate the xml file related to the intro screens

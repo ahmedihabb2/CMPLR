@@ -1,5 +1,6 @@
-package com.cmp.cmplr.View
+package com.cmp.cmplr.View.Activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
@@ -10,12 +11,12 @@ import com.cmp.cmplr.Controller.LoginController
 import com.cmp.cmplr.databinding.LoginBinding
 
 
-class LoginActivity : AppCompatActivity(){
+class LoginActivity : AppCompatActivity() {
 
 
     //fun View.hideKeyboard() {
-      //  val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-       // imm.hideSoftInputFromWindow(windowToken, 0)
+    //  val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    // imm.hideSoftInputFromWindow(windowToken, 0)
     //}
     private var loginController = LoginController()
     lateinit var binding: LoginBinding
@@ -28,48 +29,51 @@ class LoginActivity : AppCompatActivity(){
         binding.toolbarLogin.loginBtn.setOnClickListener {
             closeKeyboard()
 
-            var email=binding.emailText.text.toString()
-            var password=binding.passwordText.text.toString()
+            var email = binding.emailText.text.toString()
+            var password = binding.passwordText.text.toString()
 
             //Toast.makeText(applicationContext,email+ password,Toast.LENGTH_SHORT).show()
             binding.errorText
-            when(loginController.getUserData(email, password)) {
-                1->binding.errorText.text = "please enter a valid mail"
-                2->binding.errorText.text = "please enter a password"
+            when (loginController.getUserData(email, password)) {
+                1 -> binding.errorText.text = "please enter a valid mail"
+                2 -> binding.errorText.text = "please enter a password"
                 //TODO navigate to the next screen after login
-                3 ->{
-                    Toast.makeText(applicationContext,"Logged In",Toast.LENGTH_SHORT).show()
+                3 -> {
+                    val intent = Intent(this, MainScreenActivity::class.java)
+                    startActivity(intent)
                     binding.errorText.text = ""
                 }
-                0->binding.errorText.text = "invalid email or password, try again or press on forgot my password"
+                0 -> binding.errorText.text =
+                    "invalid email or password, try again or press on forgot my password"
 
 
             }
 
         }
         binding.showPass.setOnClickListener {
-            if(binding.showPass.isChecked){
+            if (binding.showPass.isChecked) {
                 //Toast.makeText(applicationContext,"Checked",Toast.LENGTH_SHORT).show()
                 //binding.editTextPassword
 
-                binding.passwordText.transformationMethod = HideReturnsTransformationMethod.getInstance()
-            }
-            else{
+                binding.passwordText.transformationMethod =
+                    HideReturnsTransformationMethod.getInstance()
+            } else {
                 //Toast.makeText(applicationContext,"NOT checked",Toast.LENGTH_SHORT).show()
-                binding.passwordText.transformationMethod = PasswordTransformationMethod.getInstance()
+                binding.passwordText.transformationMethod =
+                    PasswordTransformationMethod.getInstance()
 
             }
         }
 
-        binding.forgotButton.setOnClickListener{
+        binding.forgotButton.setOnClickListener {
 
-            //TODO navigate to forgot screen
-            Toast.makeText(applicationContext,"navigate to forgot screen",Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, ForgotActivity::class.java)
+            startActivity(intent)
         }
 
-       // fun View.hideKeyboard() {
-         //   val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-          //  imm.hideSoftInputFromWindow(windowToken, 0)
+        // fun View.hideKeyboard() {
+        //   val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        //  imm.hideSoftInputFromWindow(windowToken, 0)
         //}
 
     }

@@ -1,5 +1,6 @@
-package com.cmp.cmplr.View
+package com.cmp.cmplr.View.Activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
@@ -11,77 +12,76 @@ import com.cmp.cmplr.databinding.SignupBinding
 
 class SignupActivity : AppCompatActivity() {
 
-    private var signupController= SignupController()
+    private var signupController = SignupController()
     lateinit var binding: SignupBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=SignupBinding.inflate(layoutInflater)
+        binding = SignupBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
-
-        binding.signupToolbar.signupButton.setOnClickListener{
+        binding.signupToolbar.signupButton.setOnClickListener {
 
             closeKeyboard()
             //Toast.makeText(applicationContext,"done",Toast.LENGTH_SHORT).show()
 
             //var name1:String=binding.nameText.toString()
-            var name:String=binding.nameTextSignup.text.toString()
+            var name: String = binding.nameTextSignup.text.toString()
             //var email1:String=binding.emailText.toString()
-            var email:String=binding.emailTextSignup.text.toString()
+            var email: String = binding.emailTextSignup.text.toString()
             //var password:String=binding.passwordText.toString()
-            var password:String=binding.passwordTextSignup.text.toString()
+            var password: String = binding.passwordTextSignup.text.toString()
             //Toast.makeText(applicationContext,name+email+password,Toast.LENGTH_SHORT).show()
 
-            var cond=signupController.getSignupData(name, email, password)
+            var cond = signupController.getSignupData(name, email, password)
             //Toast.makeText(applicationContext,cond.toString(),Toast.LENGTH_SHORT).show()
             //Toast.makeText(applicationContext,email,Toast.LENGTH_SHORT).show()
 
-            when(cond){
+            when (cond) {
 
-                0->{
-                    binding.errorTextSignup.text="please enter a name"
+                0 -> {
+                    binding.errorTextSignup.text = "please enter a name"
                 }
-                1->{
-                    binding.errorTextSignup.text="please enter a valid mail"
+                1 -> {
+                    binding.errorTextSignup.text = "please enter a valid mail"
                 }
-                2->{
-                    binding.errorTextSignup.text="this mail is used for another account"
+                2 -> {
+                    binding.errorTextSignup.text = "this mail is used for another account"
                 }
-                3->{
-                    binding.errorTextSignup.text="please enter a password"
+                3 -> {
+                    binding.errorTextSignup.text = "please enter a password"
                 }
-                4->{
-                    binding.errorTextSignup.text=""
-                    Toast.makeText(applicationContext,"signedup",Toast.LENGTH_SHORT).show()
-                    //TODO navigate to the needed screen , remove toast
+                4 -> {
+                    binding.errorTextSignup.text = ""
+                    Toast.makeText(applicationContext, "signedup", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, MainScreenActivity::class.java)
+                    startActivity(intent)
 
                 }
             }
 
         }
 
-        binding.loginButtonSignup.setOnClickListener{
-            Toast.makeText(applicationContext,"login",Toast.LENGTH_SHORT).show()
+        binding.loginButtonSignup.setOnClickListener {
+            Toast.makeText(applicationContext, "login", Toast.LENGTH_SHORT).show()
             //todo navigate to login
 
         }
         binding.showPassSignup.setOnClickListener {
-            if(binding.showPassSignup.isChecked){
+            if (binding.showPassSignup.isChecked) {
                 //Toast.makeText(applicationContext,"Checked",Toast.LENGTH_SHORT).show()
                 //binding.editTextPassword
 
-                binding.passwordTextSignup.transformationMethod = HideReturnsTransformationMethod.getInstance()
-            }
-            else{
+                binding.passwordTextSignup.transformationMethod =
+                    HideReturnsTransformationMethod.getInstance()
+            } else {
                 //Toast.makeText(applicationContext,"NOT checked",Toast.LENGTH_SHORT).show()
-                binding.passwordTextSignup.transformationMethod = PasswordTransformationMethod.getInstance()
+                binding.passwordTextSignup.transformationMethod =
+                    PasswordTransformationMethod.getInstance()
 
             }
         }
-
-
 
 
         // fun View.hideKeyboard() {
@@ -98,7 +98,6 @@ class SignupActivity : AppCompatActivity() {
             imm.hideSoftInputFromWindow(view.windowToken, 0)
         }
     }
-    
-    
+
 
 }
