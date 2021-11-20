@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">CMPLR</string>
+
+
+
+
+
+
+    <string name="password_hint">password</string>
+    <string name="email_hint">email</string>
+    <string name="password_hints">pass</string>
+    <string name="showPassword">Show Password</string>
+    <string name="forgot">Forgot your password?</string>
+    <string name="login">Log in</string>
+
+    <string name="login_underline"><u>Log in</u></string>
+    <string name="signup_name">name</string>
+    <string name="signup_name_hint">name</string>
+    <string name="already_have">Already have an account?</string>
+    <string name="done">Done</string>
+    <string name="what_should">What should we call \n you?</string>
+    <string name="why_name">You\'ll beed a name to make \n your own posts, customize \n your blog, and message\n people</string>
+    <string name="forgot_text">Forgot your password? It happens. \n We\'ll send you a link to reset it.</string>
+    <string name="submit">Submit</string>
+    <string name="logo_description">the logo of tumblr</string>
 </resources>
