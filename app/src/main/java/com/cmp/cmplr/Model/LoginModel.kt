@@ -9,7 +9,7 @@ import com.cmp.cmplr.Mockup.DatabaseMock
  */
 class LoginModel {
 
-    var dataBase=DatabaseMock()
+    var dataBase = DatabaseMock()
 
 
     /**
@@ -19,9 +19,9 @@ class LoginModel {
      * @param password  password of the user
      * @return boolean, ture if the login is successful , false else
      */
-    fun isUser(email: String,password:String):Boolean {
+    fun isUser(email: String, password: String): Boolean {
 
-        return dataBase.isUser(email,password)
+        return dataBase.isUser(email, password)
     }
 
 

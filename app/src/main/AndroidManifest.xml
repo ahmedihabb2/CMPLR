@@ -11,8 +11,7 @@
         android:theme="@style/Theme.CMPLR">
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".View.Activities.SplashActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
@@ -22,20 +21,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".View.Activities.LoginActivity">
-        </activity>
-        <activity android:name=".View.Activities.SignupActivity">
-        </activity>
-        <activity android:name=".View.Activities.ForgotActivity">
-        </activity>
-        <activity android:name=".View.Activities.MainScreenActivity">
-        </activity>
-        <activity android:name=".View.Activities.AgeActivity">
-        </activity>
+        <activity android:name=".View.Activities.LoginActivity"></activity>
+        <activity android:name=".View.Activities.SignupActivity"></activity>
+        <activity android:name=".View.Activities.ForgotActivity"></activity>
+        <activity android:name=".View.Activities.MainScreenActivity"></activity>
+        <activity android:name=".View.Activities.AgeActivity"></activity>
         <activity
             android:name=".View.Activities.IntroActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
 
         <meta-data
             android:name="preloaded_fonts"

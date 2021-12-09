@@ -12,7 +12,7 @@ import com.cmp.cmplr.databinding.ForgotPasswordBinding
  * class ForgotActivity , class responsible for the view of the forgot screen
  *
  */
-class ForgotActivity: AppCompatActivity() {
+class ForgotActivity : AppCompatActivity() {
 
     private var forgotController = ForgotController()
     lateinit var binding: ForgotPasswordBinding

@@ -51,7 +51,7 @@
         android:paddingLeft="10dp"
         android:paddingRight="0dp"
         android:textColor="@color/white"
-        android:textColorHint="@color/white"
+        android:textColorHint="@color/tumblr_grey"
         app:layout_constraintBottom_toTopOf="@+id/text_above_age"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

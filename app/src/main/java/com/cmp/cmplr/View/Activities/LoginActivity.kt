@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.cmp.cmplr.Controller.LocalStorage
 import com.cmp.cmplr.Controller.LoginController
 import com.cmp.cmplr.databinding.LoginBinding
 
@@ -15,7 +15,7 @@ import com.cmp.cmplr.databinding.LoginBinding
  * class LoginActivity        class responsible for the login screen
  *
  */
-class LoginActivity : AppCompatActivity(){
+class LoginActivity : AppCompatActivity() {
 
 
     //fun View.hideKeyboard() {
@@ -23,6 +23,7 @@ class LoginActivity : AppCompatActivity(){
     // imm.hideSoftInputFromWindow(windowToken, 0)
     //}
     private var loginController = LoginController()
+    private var localStorage = LocalStorage()
     lateinit var binding: LoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +44,11 @@ class LoginActivity : AppCompatActivity(){
                 2 -> binding.errorText.text = "please enter a password"
                 //TODO navigate to the next screen after login
                 3 -> {
+                    // Save user token locally
+                    localStorage.insertTokenData(this, "token")
                     val intent = Intent(this, MainScreenActivity::class.java)
+                    // Make navigation stack empty
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                     binding.errorText.text = ""
                 }

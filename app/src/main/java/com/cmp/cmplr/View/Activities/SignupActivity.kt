@@ -7,6 +7,7 @@ import android.text.method.PasswordTransformationMethod
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.cmp.cmplr.Controller.LocalStorage
 import com.cmp.cmplr.Controller.SignupController
 import com.cmp.cmplr.databinding.SignupBinding
 
@@ -18,6 +19,7 @@ import com.cmp.cmplr.databinding.SignupBinding
 class SignupActivity : AppCompatActivity() {
 
     private var signupController = SignupController()
+    private var localStorage = LocalStorage()
     lateinit var binding: SignupBinding
 
 
@@ -46,21 +48,21 @@ class SignupActivity : AppCompatActivity() {
             when (cond) {
 
                 0 -> {
-                    binding.errorTextSignup.text = "please enter a name"
+                    binding.errorTextSignup.text = "Please enter a name"
                 }
                 1 -> {
-                    binding.errorTextSignup.text = "please enter a valid mail"
+                    binding.errorTextSignup.text = "Please enter a valid mail"
                 }
                 2 -> {
-                    binding.errorTextSignup.text = "this mail is used for another account"
-                }
-                3 -> {
                     binding.errorTextSignup.text = "please enter a password"
                 }
-                4 -> {
+                3 -> {
                     binding.errorTextSignup.text = ""
-                    Toast.makeText(applicationContext, "signedup", Toast.LENGTH_SHORT).show()
+                    // Save user token locally
+                    localStorage.insertTokenData(this, "token")
                     val intent = Intent(this, MainScreenActivity::class.java)
+                    // Make navigation stack empty
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
 
                 }

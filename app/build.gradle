@@ -6,7 +6,6 @@ plugins {
 }
 
 
-
 android {
     compileSdk 30
     buildFeatures {
@@ -27,7 +26,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     }
-    buildFeatures{
+    buildFeatures {
         viewBinding true
     }
     buildTypes {

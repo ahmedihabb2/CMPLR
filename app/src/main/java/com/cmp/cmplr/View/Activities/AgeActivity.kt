@@ -30,14 +30,8 @@ class AgeActivity : AppCompatActivity() {
                         .show()
 
                 } else {
-                    Toast.makeText(
-                        this.applicationContext,
-                        getString(R.string.successMsgIfAgeIs13),
-                        Toast.LENGTH_LONG
-                    )
-                        .show()
-
                     val intent = Intent(this, SignupActivity::class.java)
+                    intent.putExtra("age",binding.ageText.text.toString().toInt())
                     startActivity(intent)
                 }
             } catch (e: NumberFormatException) {

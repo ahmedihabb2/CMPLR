@@ -1,7 +1,6 @@
 package com.cmp.cmplr.View.Fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,7 +32,7 @@ class HomeScreenFragment : Fragment(),
         super.onViewCreated(view, savedInstanceState)
 
         binding.writePostBtn.setOnClickListener {
-            Toast.makeText(activity?.applicationContext, "teessst",Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity?.applicationContext, "teessst", Toast.LENGTH_SHORT).show()
             (activity as WritePostButtonEventHandler).onWritePostClicked(this)
         }
     }
@@ -49,8 +48,7 @@ class HomeScreenFragment : Fragment(),
         Toast.makeText(activity?.applicationContext, "Post Added", Toast.LENGTH_LONG).show()
     }
 
-    fun btnAction()
-    {
+    fun btnAction() {
         (activity as WritePostButtonEventHandler).onWritePostClicked(this)
     }
 }

@@ -2,10 +2,7 @@ package com.cmp.cmplr.Controller
 
 
 import android.app.Activity
-import android.content.ContentValues
-import android.provider.Settings.Global.getString
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -27,13 +24,15 @@ import com.google.firebase.auth.GoogleAuthProvider
  * @property binding binding object of into activity to access it's elements
  */
 
-class IntroController(private val fragmentManager : FragmentManager , val binding : IntroScreenBinding? = null) {
+class IntroController(
+    private val fragmentManager: FragmentManager,
+    val binding: IntroScreenBinding? = null
+) {
     /**
      *  Navigate from login ang signup buttons to login buttons
      *
      */
-    fun navtoSigninButtons()
-    {
+    fun navtoSigninButtons() {
         fragmentManager.beginTransaction()
             .setCustomAnimations(R.anim.slide_down, R.anim.slide_up)
             .replace(R.id.intro_buttons, LoginBtnsFragment()).addToBackStack(null).commit()
@@ -43,10 +42,9 @@ class IntroController(private val fragmentManager : FragmentManager , val bindin
      * Navigate from login ang signup buttons to signup buttons
      *
      */
-    fun navToSignupButtons()
-    {
+    fun navToSignupButtons() {
         fragmentManager.beginTransaction()
-            .setCustomAnimations(R.anim.slide_down,R.anim.slide_up)
+            .setCustomAnimations(R.anim.slide_down, R.anim.slide_up)
             .replace(R.id.intro_buttons, SignupBtnsFragment()).addToBackStack(null).commit()
     }
 
@@ -54,8 +52,7 @@ class IntroController(private val fragmentManager : FragmentManager , val bindin
      * inflates the intro buttons to the intro screen framelayout
      *
      */
-    fun inflateIntroButtons()
-    {
+    fun inflateIntroButtons() {
         val fragment: Fragment = IntroBtnsFragment()
         val fm: FragmentManager = fragmentManager
         val transaction: FragmentTransaction = fm.beginTransaction()
@@ -89,7 +86,7 @@ class IntroController(private val fragmentManager : FragmentManager , val bindin
      * @param auth     auth instance of firebase
      * @param activity The Activity that contains the button
      */
-    fun firebaseAuthWithGoogle(idToken: String , auth : FirebaseAuth , activity: Activity) {
+    fun firebaseAuthWithGoogle(idToken: String, auth: FirebaseAuth, activity: Activity) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential)
             .addOnCompleteListener(activity) { task ->

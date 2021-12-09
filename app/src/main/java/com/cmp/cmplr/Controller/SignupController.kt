@@ -18,11 +18,10 @@ class SignupController {
      * @param str   the mail of the user
      * @return boolean   true if the mail is a valid format, false else
      */
-    private fun isEmail(str: String): Boolean{
+    private fun isEmail(str: String): Boolean {
         return str.contains("@")
         //return android.util.Patterns.EMAIL_ADDRESS.matcher(str).matches()
     }
-
 
 
     /**
@@ -37,18 +36,17 @@ class SignupController {
      *              3-> the mail is used before
      *              4-> signup successful
      */
-    fun getSignupData(name:String,email:String,password:String):Int{
+    fun getSignupData(name: String, email: String, password: String): Int {
 
-      var return_value:Int=0
+        var return_value: Int = 0
 
-        when{
-            name=="" -> return_value=0
-            !isEmail(email)->return_value=1
-            signupModel.ismailUSed(email)-> return_value=2
-            password==""->return_value=3
+        when {
+            name == "" -> return_value = 0
+            !isEmail(email) -> return_value = 1
+            password == "" -> return_value = 2
             else -> {
-                signupModel.userSignup(name,email,password)
-                return_value=4
+                signupModel.userSignup(name, email, password)
+                return_value = 3
             }
         }
 
@@ -56,7 +54,6 @@ class SignupController {
 
 
     }
-
 
 
 }

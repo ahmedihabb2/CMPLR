@@ -10,7 +10,7 @@
     <string name="intro5_text">Welcome to Cmplr. Now push the button.</string>
     <string name="login_email">Log in with Email</string>
     <string name="login_google">Log in with Google</string>
-    <string name="intro" >CMPLR</string>
+    <string name="intro">CMPLR</string>
     <string name="signup_btn">Sign up with Email</string>
     <string name="signup_google_btn">Sign up with Google</string>
     <string name="mock_username">cmplr user</string>

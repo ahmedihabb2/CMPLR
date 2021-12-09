@@ -11,9 +11,7 @@ import com.cmp.cmplr.Model.ForgotModel
 class ForgotController {
 
 
-
-
-    var forgotModel= ForgotModel()
+    var forgotModel = ForgotModel()
 
 
     /**
@@ -23,7 +21,7 @@ class ForgotController {
      * @return  boolean    whether the mail exist or not
      *
      */
-    fun mailExists(email:String):Boolean{
+    fun mailExists(email: String): Boolean {
 
 
         return forgotModel.ismailUSed(email);
