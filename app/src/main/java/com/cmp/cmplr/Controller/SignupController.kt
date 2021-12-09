@@ -43,7 +43,7 @@ class SignupController {
         when {
             name == "" -> return_value = 0
             !isEmail(email) -> return_value = 1
-            password == "" -> return_value = 2
+            (password == "" || password.length < 6) -> return_value = 2
             else -> {
                 signupModel.userSignup(name, email, password)
                 return_value = 3

@@ -16,12 +16,6 @@ import com.cmp.cmplr.databinding.LoginBinding
  *
  */
 class LoginActivity : AppCompatActivity() {
-
-
-    //fun View.hideKeyboard() {
-    //  val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-    // imm.hideSoftInputFromWindow(windowToken, 0)
-    //}
     private var loginController = LoginController()
     private var localStorage = LocalStorage()
     lateinit var binding: LoginBinding
@@ -29,15 +23,11 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = LoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
         binding.toolbarLogin.loginBtn.setOnClickListener {
             closeKeyboard()
 
             var email = binding.emailText.text.toString()
             var password = binding.passwordText.text.toString()
-
-            //Toast.makeText(applicationContext,email+ password,Toast.LENGTH_SHORT).show()
             binding.errorText
             when (loginController.getUserData(email, password)) {
                 1 -> binding.errorText.text = "please enter a valid mail"
@@ -54,23 +44,16 @@ class LoginActivity : AppCompatActivity() {
                 }
                 0 -> binding.errorText.text =
                     "invalid email or password, try again or press on forgot my password"
-
-
             }
 
         }
         binding.showPass.setOnClickListener {
             if (binding.showPass.isChecked) {
-                //Toast.makeText(applicationContext,"Checked",Toast.LENGTH_SHORT).show()
-                //binding.editTextPassword
-
                 binding.passwordText.transformationMethod =
                     HideReturnsTransformationMethod.getInstance()
             } else {
-                //Toast.makeText(applicationContext,"NOT checked",Toast.LENGTH_SHORT).show()
                 binding.passwordText.transformationMethod =
                     PasswordTransformationMethod.getInstance()
-
             }
         }
 
@@ -79,12 +62,6 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this, ForgotActivity::class.java)
             startActivity(intent)
         }
-
-        // fun View.hideKeyboard() {
-        //   val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        //  imm.hideSoftInputFromWindow(windowToken, 0)
-        //}
-
     }
 
     private fun closeKeyboard() {

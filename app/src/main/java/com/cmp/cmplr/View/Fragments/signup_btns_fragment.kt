@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.cmp.cmplr.Controller.IntroController
+import com.cmp.cmplr.Controller.LocalStorage
 import com.cmp.cmplr.R
 import com.cmp.cmplr.View.Activities.AgeActivity
 import com.cmp.cmplr.View.Activities.MainScreenActivity
@@ -52,7 +53,7 @@ class SignupBtnsFragment : Fragment() {
 
     private val launcher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-
+            var localStorage = LocalStorage()
             if (result.resultCode == Activity.RESULT_OK) {
                 val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
                 try {
@@ -70,8 +71,10 @@ class SignupBtnsFragment : Fragment() {
                         "email ${account.email} username ${account.displayName}",
                         Toast.LENGTH_SHORT
                     ).show()
+                    localStorage.insertTokenData(requireActivity(), account.idToken)
                     val intent =
                         Intent(activity?.applicationContext, MainScreenActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
 
                 } catch (e: ApiException) {

@@ -32,6 +32,7 @@ class AgeActivity : AppCompatActivity() {
                 } else {
                     val intent = Intent(this, SignupActivity::class.java)
                     intent.putExtra("age",binding.ageText.text.toString().toInt())
+                    finish()
                     startActivity(intent)
                 }
             } catch (e: NumberFormatException) {
