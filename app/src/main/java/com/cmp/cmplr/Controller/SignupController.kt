@@ -45,7 +45,12 @@ class SignupController {
             !isEmail(email) -> return_value = 1
             (password == "" || password.length < 6) -> return_value = 2
             else -> {
-                signupModel.userSignup(name, email, password)
+                val flag : Boolean = true
+
+                if(flag)
+                {
+
+                }
                 return_value = 3
             }
         }

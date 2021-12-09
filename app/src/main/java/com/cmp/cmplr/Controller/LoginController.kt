@@ -1,5 +1,6 @@
 package com.cmp.cmplr.Controller
 
+import android.app.Activity
 import com.cmp.cmplr.Model.LoginModel
 
 /**
@@ -40,14 +41,14 @@ class LoginController {
      *   3-> right login
      *   4-> password or mail is invalid
      */
-    fun getUserData(email: String, password: String): Int {
+    fun getUserData(activity:Activity,email: String, password: String): Int {
 
 
         return when {
 
             !isEmail(email) -> 1
             password == "" -> 2
-            loginModel.isUser(email, password) -> 3
+            loginModel.isUser(activity,email, password) -> 3
             else -> 0
 
         }

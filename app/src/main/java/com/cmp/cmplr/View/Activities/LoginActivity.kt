@@ -29,13 +29,10 @@ class LoginActivity : AppCompatActivity() {
             var email = binding.emailText.text.toString()
             var password = binding.passwordText.text.toString()
             binding.errorText
-            when (loginController.getUserData(email, password)) {
+            when (loginController.getUserData(this,email, password)) {
                 1 -> binding.errorText.text = "please enter a valid mail"
                 2 -> binding.errorText.text = "please enter a password"
-                //TODO navigate to the next screen after login
                 3 -> {
-                    // Save user token locally
-                    localStorage.insertTokenData(this, "token")
                     val intent = Intent(this, MainScreenActivity::class.java)
                     // Make navigation stack empty
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

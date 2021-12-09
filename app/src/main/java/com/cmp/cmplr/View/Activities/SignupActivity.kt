@@ -19,7 +19,7 @@ import com.cmp.cmplr.databinding.SignupBinding
 class SignupActivity : AppCompatActivity() {
 
     private var signupController = SignupController()
-    private var localStorage = LocalStorage()
+
     lateinit var binding: SignupBinding
 
 
@@ -47,7 +47,7 @@ class SignupActivity : AppCompatActivity() {
                 3 -> {
                     binding.errorTextSignup.text = ""
                     // Save user token locally
-                    localStorage.insertTokenData(this, "token")
+
                     val intent = Intent(this, MainScreenActivity::class.java)
                     // Make navigation stack empty
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

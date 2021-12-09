@@ -1,5 +1,7 @@
 package com.cmp.cmplr.Model
 
+import android.app.Activity
+import com.cmp.cmplr.Controller.LocalStorage
 import com.cmp.cmplr.Mockup.DatabaseMock
 
 
@@ -10,7 +12,7 @@ import com.cmp.cmplr.Mockup.DatabaseMock
 class LoginModel {
 
     var dataBase = DatabaseMock()
-
+    private var localStorage = LocalStorage()
 
     /**
      *
@@ -19,9 +21,14 @@ class LoginModel {
      * @param password  password of the user
      * @return boolean, ture if the login is successful , false else
      */
-    fun isUser(email: String, password: String): Boolean {
+    fun isUser(activity:Activity,email: String, password: String): Boolean {
 
-        return dataBase.isUser(email, password)
+        val flag : Boolean = dataBase.isUser(email, password)
+        if(flag)
+        {
+            localStorage.insertTokenData(activity, "token")
+        }
+        return flag
     }
 
 

@@ -1,5 +1,7 @@
 package com.cmp.cmplr.Model
 
+import android.app.Activity
+import com.cmp.cmplr.Controller.LocalStorage
 import com.cmp.cmplr.Mockup.DatabaseMock
 
 
@@ -9,7 +11,7 @@ import com.cmp.cmplr.Mockup.DatabaseMock
  */
 class SignupModel {
 
-
+    private var localStorage = LocalStorage()
     var dataBase = DatabaseMock()
 
     /**
@@ -20,10 +22,14 @@ class SignupModel {
      * @param password
      * @return   true if the signup is successful, false else
      */
-    fun userSignup(name: String, email: String, password: String): Boolean {
+    fun userSignup(activity:Activity,name: String, email: String, password: String): Boolean {
 
-        //todo use the real backend api
-        return dataBase.insertUser(name, email, password)
+        // TODO:: Make backend request
+        val flag : Boolean = dataBase.insertUser(name, email, password)
+        if(flag) {
+            localStorage.insertTokenData(activity, "token")
+        }
+        return flag
     }
 
     /**
@@ -33,7 +39,7 @@ class SignupModel {
      * @return  true if the mail is used before, false else
      */
     fun ismailUSed(email: String): Boolean {
-        //todo use the real backend api
+        // TODO:: Make backend request 2
         return dataBase.emailExist(email)
     }
 
