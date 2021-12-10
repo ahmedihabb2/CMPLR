@@ -4,22 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
-import android.util.Log
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.cmp.cmplr.API.SignupData
-import com.cmp.cmplr.API.SignupResp
 import com.cmp.cmplr.Controller.LocalStorage
 import com.cmp.cmplr.Controller.SignupController
 import com.cmp.cmplr.databinding.SignupBinding
 import com.google.gson.Gson
 import com.google.gson.JsonObject
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import okhttp3.internal.wait
-import org.json.JSONObject
 
 
 /**

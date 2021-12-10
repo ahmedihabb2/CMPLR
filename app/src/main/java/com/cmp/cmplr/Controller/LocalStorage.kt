@@ -19,4 +19,8 @@ class LocalStorage (){
         val sharedPref = activity?.getSharedPreferences(fileName,Context.MODE_PRIVATE)
         return sharedPref.getString("token","")
     }
+    fun removeToken(activity:Activity) {
+        val sharedPref = activity?.getSharedPreferences(fileName,Context.MODE_PRIVATE)
+        sharedPref.edit().remove("token").apply()
+    }
 }

@@ -6,9 +6,14 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import com.cmp.cmplr.API.LoginData
+import com.cmp.cmplr.API.SignupData
 import com.cmp.cmplr.Controller.LocalStorage
 import com.cmp.cmplr.Controller.LoginController
 import com.cmp.cmplr.databinding.LoginBinding
+import com.google.gson.Gson
+import com.google.gson.JsonObject
 
 
 /**
@@ -19,29 +24,51 @@ class LoginActivity : AppCompatActivity() {
     private var loginController = LoginController()
     private var localStorage = LocalStorage()
     lateinit var binding: LoginBinding
+    private lateinit var signinata: LoginData
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = LoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.toolbarLogin.loginBtn.setOnClickListener {
             closeKeyboard()
-
-            var email = binding.emailText.text.toString()
-            var password = binding.passwordText.text.toString()
-            binding.errorText
-            when (loginController.getUserData(this,email, password)) {
-                1 -> binding.errorText.text = "please enter a valid mail"
-                2 -> binding.errorText.text = "please enter a password"
-                3 -> {
-                    val intent = Intent(this, MainScreenActivity::class.java)
-                    // Make navigation stack empty
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(intent)
-                    binding.errorText.text = ""
+            signinata  = LoginData(
+             binding.emailText.text.toString(),
+             binding.passwordText.text.toString()
+            )
+            var signinResp: JsonObject
+            val job = lifecycleScope.launchWhenCreated  {
+                signinResp = loginController.validateSignin(signinata)
+                var status_code : Int
+                if(signinResp.getAsJsonObject("meta") != null)
+                {
+                    status_code = signinResp.getAsJsonObject("meta")["status_code"].asInt
+                }else
+                {
+                    status_code = 201
                 }
-                0 -> binding.errorText.text =
-                    "invalid email or password, try again or press on forgot my password"
+                when(status_code){
+                    401 -> {
+                        var gson = Gson()
+                        var error : String = ""
+                        var list =gson.fromJson(signinResp["error"].toString(), Array<String>::class.java).asList()
+                        list.forEach{
+                            error += "∘ $it\n"
+                        }
+                        binding.errorText.text = error
+                    }
+                    else -> {
+                        localStorage.insertTokenData(this@LoginActivity , signinResp["token"].asString)
+                        val intent = Intent(this@LoginActivity, MainScreenActivity::class.java)
+                        // Make navigation stack empty
+                        intent.flags =
+                            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
+
+                    }
+                }
+
             }
+
 
         }
         binding.showPass.setOnClickListener {

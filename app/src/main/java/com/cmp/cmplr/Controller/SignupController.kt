@@ -1,14 +1,10 @@
 package com.cmp.cmplr.Controller
 
-import android.util.Log
-import com.cmp.cmplr.API.Meta
-import com.cmp.cmplr.API.Response
 import com.cmp.cmplr.API.SignupData
-import com.cmp.cmplr.API.SignupResp
 import com.cmp.cmplr.Model.SignupModel
 import com.google.gson.Gson
 import com.google.gson.JsonObject
-import org.json.JSONObject
+
 
 /**
  * class SignupController    class to control the logic of the signup
@@ -44,19 +40,27 @@ class SignupController {
      *              3-> the mail is used before
      *              4-> signup successful
      */
-    suspend fun validateData(signupData : SignupData): JsonObject {
+    suspend fun validateData(signupData: SignupData): JsonObject {
         val gson = Gson()
-        var return_value: Int = 0
-        lateinit var  jsonResp : JsonObject
+        lateinit var jsonResp: JsonObject
         when {
             signupData.blog_name == "" -> {
-                jsonResp = gson.fromJson("""{"meta" :{"status_code" : 422},"error":["Please enter a blog name"]}""" , JsonObject::class.java)
+                jsonResp = gson.fromJson(
+                    """{"meta" :{"status_code" : 422},"error":["Please enter a blog name"]}""",
+                    JsonObject::class.java
+                )
             }
             !isEmail(signupData.email) -> {
-                jsonResp = gson.fromJson("""{"meta" :{"status_code" : 422},"error":["Please enter a valid email"]}""" , JsonObject::class.java)
+                jsonResp = gson.fromJson(
+                    """{"meta" :{"status_code" : 422},"error":["Please enter a valid email"]}""",
+                    JsonObject::class.java
+                )
             }
             (signupData.password == "" || signupData.password.length < 6) -> {
-                jsonResp = gson.fromJson("""{"meta" :{"status_code" : 422},"error":["Password must be more than 6 characters"]}""" , JsonObject::class.java)
+                jsonResp = gson.fromJson(
+                    """{"meta" :{"status_code" : 422},"error":["Password must be more than 6 characters"]}""",
+                    JsonObject::class.java
+                )
 
             }
             else -> {
