@@ -1,7 +1,9 @@
 package com.cmp.cmplr.API
 
 data class SignupData(
-    val Blogname: String,
-    val Email: String,
-    val Password: String
+    var email: String,
+    var password: String,
+    var blog_name: String,
+    var age: Int
+
 )

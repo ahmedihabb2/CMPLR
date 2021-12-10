@@ -1,5 +1,8 @@
 package com.cmp.cmplr.API
 
+import com.google.android.gms.common.api.Response
+import com.google.gson.JsonObject
+import org.json.JSONObject
 import retrofit2.http.Body
 import retrofit2.http.Headers
 import retrofit2.http.POST
@@ -11,8 +14,9 @@ interface methods {
     suspend fun login(@Body loginData :LoginData)
 
     @Headers("Content-Type: application/json","Accept: application/json")
-    @POST("/signup")
-    suspend fun signup(@Body signupData :SignupData)
+    @POST("/api/register/insert")
+    suspend fun signup(@Body signupData :SignupData) : retrofit2.Response<JsonObject>
+
 
     @Headers("Content-Type: application/json","Accept: application/json")
     @POST("/forgot_password")

@@ -1,6 +1,14 @@
 package com.cmp.cmplr.Controller
 
+import android.util.Log
+import com.cmp.cmplr.API.Meta
+import com.cmp.cmplr.API.Response
+import com.cmp.cmplr.API.SignupData
+import com.cmp.cmplr.API.SignupResp
 import com.cmp.cmplr.Model.SignupModel
+import com.google.gson.Gson
+import com.google.gson.JsonObject
+import org.json.JSONObject
 
 /**
  * class SignupController    class to control the logic of the signup
@@ -36,26 +44,32 @@ class SignupController {
      *              3-> the mail is used before
      *              4-> signup successful
      */
-    fun getSignupData(name: String, email: String, password: String): Int {
-
+    suspend fun validateData(signupData : SignupData): JsonObject {
+        val gson = Gson()
         var return_value: Int = 0
-
+        lateinit var  jsonResp : JsonObject
         when {
-            name == "" -> return_value = 0
-            !isEmail(email) -> return_value = 1
-            (password == "" || password.length < 6) -> return_value = 2
+            signupData.blog_name == "" -> {
+                jsonResp = gson.fromJson("""{"meta" :{"status_code" : 422},"error":["Please enter a blog name"]}""" , JsonObject::class.java)
+            }
+            !isEmail(signupData.email) -> {
+                jsonResp = gson.fromJson("""{"meta" :{"status_code" : 422},"error":["Please enter a valid email"]}""" , JsonObject::class.java)
+            }
+            (signupData.password == "" || signupData.password.length < 6) -> {
+                jsonResp = gson.fromJson("""{"meta" :{"status_code" : 422},"error":["Password must be more than 6 characters"]}""" , JsonObject::class.java)
+
+            }
             else -> {
-                val flag : Boolean = true
 
-                if(flag)
-                {
+                jsonResp = signupModel.userSignup(signupData)
+                    ?: gson.fromJson(
+                        """{"meta" :{"status_code" : 422},"error":["Error occurred while processing the request"]}""",
+                        JsonObject::class.java
+                    )
 
-                }
-                return_value = 3
             }
         }
-
-        return return_value
+        return jsonResp
 
 
     }
