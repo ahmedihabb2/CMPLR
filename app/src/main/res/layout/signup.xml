@@ -16,6 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
@@ -45,7 +46,7 @@
         android:paddingLeft="10dp"
         android:paddingRight="0dp"
         android:textColor="@color/white"
-        android:textColorHint="@color/white"
+        android:textColorHint="@color/tumblr_grey"
         app:layout_constraintBottom_toTopOf="@+id/password_text_signup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -70,13 +71,13 @@
         android:paddingLeft="10dp"
         android:paddingRight="0dp"
         android:textColor="@color/white"
-        android:textColorHint="@color/white"
+        android:textColorHint="@color/tumblr_grey"
         app:layout_constraintBottom_toTopOf="@+id/password_text_signup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name_text_signup"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.45"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
@@ -93,7 +94,7 @@
         android:minHeight="48dp"
         android:paddingLeft="10dp"
         android:textColor="@color/white"
-        android:textColorHint="@color/white"
+        android:textColorHint="@color/tumblr_grey"
         app:layout_constraintBottom_toTopOf="@+id/show_pass_signup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -121,8 +122,9 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="112dp"
         android:text=""
+        android:textAlignment="center"
         android:textColor="@android:color/holo_red_light"
-        android:textSize="22sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

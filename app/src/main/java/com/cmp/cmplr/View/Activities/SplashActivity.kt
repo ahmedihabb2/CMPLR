@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import com.cmp.cmplr.Controller.LocalStorage
 import com.cmp.cmplr.R
 
 /**
@@ -15,6 +16,7 @@ import com.cmp.cmplr.R
  */
 
 class SplashActivity : AppCompatActivity() {
+    private val localStorage = LocalStorage()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
@@ -26,8 +28,18 @@ class SplashActivity : AppCompatActivity() {
         )
         // we used the postDelayed(Runnable, time) method
         // to send a message with a delayed time.
+        var token : String? =localStorage.getTokenData(this)
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, IntroActivity::class.java)
+            val intent : Intent
+            if (token!!.isEmpty())
+            {
+                intent = Intent(this, IntroActivity::class.java)
+
+            }
+            else
+            {
+                intent = Intent(this, MainScreenActivity::class.java)
+            }
             startActivity(intent)
             finish()
         }, 2000)

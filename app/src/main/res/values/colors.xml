@@ -9,8 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="intro_text">#FFFFFF</color>
     <color name="intro_pics_tint">#70383434</color>
-    <color name="login_color">#00B8FF</color>
-    <color name="tumblr_color">#19284C</color>
+    <color name="login_color">#7D00B8FF</color>
+    <color name="tumblr_color">#101C39</color>
     <color name="done_color">#90A2B8</color>
     <color name="tumblr_grey">#A6B6C6</color>
 </resources>

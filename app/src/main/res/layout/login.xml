@@ -32,7 +32,7 @@
         android:paddingLeft="10dp"
         android:paddingRight="0dp"
         android:textColor="@color/white"
-        android:textColorHint="@color/white"
+        android:textColorHint="@color/tumblr_grey"
         app:layout_constraintBottom_toTopOf="@+id/password_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +54,7 @@
         android:minHeight="48dp"
         android:paddingLeft="10dp"
         android:textColor="@color/white"
-        android:textColorHint="@color/white"
+        android:textColorHint="@color/tumblr_grey"
         app:layout_constraintBottom_toTopOf="@+id/show_pass"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
