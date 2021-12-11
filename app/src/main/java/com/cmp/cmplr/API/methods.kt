@@ -17,8 +17,8 @@ interface methods {
 
 
     @Headers("Content-Type: application/json","Accept: application/json")
-    @POST("/forgot_password")
-    suspend fun forgotPassword(@Query("Email") email :String)
+    @POST("/api/forgot_password")
+    suspend fun forgotPassword(@Body email :String) : retrofit2.Response<JsonObject>
 
     @Headers("Content-Type: application/json","Accept: application/json")
     @POST("/api/logout")

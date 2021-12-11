@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
+import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -35,9 +36,9 @@ class SignupActivity : AppCompatActivity() {
             closeKeyboard()
             //Get input fields data
             signupData = SignupData(
-                binding.emailTextSignup.text.toString() ,
+                binding.emailTextSignup.text.toString().trim() ,
                 binding.passwordTextSignup.text.toString(),
-                binding.nameTextSignup.text.toString(),
+                binding.nameTextSignup.text.toString().trim(),
                 extras!!.getInt("age")
             )
             // Send data to controller
@@ -57,12 +58,28 @@ class SignupActivity : AppCompatActivity() {
                     }
                     else -> {
                         var gson = Gson()
-                        var error : String = ""
-                        var list =gson.fromJson(signupResp["error"].toString(), Array<String>::class.java).asList()
-                        list.forEach{
-                            error += "∘ $it\n"
+                        var errors = signupResp.getAsJsonObject("error")
+                        if(errors["password"] != null)
+                        {
+                            var list =gson.fromJson(errors["password"].toString(), Array<String>::class.java).asList()
+                            binding.passwordTextSignup.error = list[0]
                         }
-                        binding.errorTextSignup.text = error
+                        if(errors["email"] != null)
+                        {
+                            var list =gson.fromJson(errors["email"].toString(), Array<String>::class.java).asList()
+                            binding.emailTextSignup.error = list[0]
+                        }
+                        if(errors["blog_name"] != null)
+                        {
+                            var list =gson.fromJson(errors["blog_name"].toString(), Array<String>::class.java).asList()
+                            binding.nameTextSignup.error = list[0]
+                        }
+                        if(errors["network"] != null)
+                        {
+                            var list =gson.fromJson(errors["network"].toString(), Array<String>::class.java).asList()
+                            binding.errorTextSignup.text = list[0]
+                        }
+
                     }
                 }
 

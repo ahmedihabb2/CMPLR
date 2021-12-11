@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
+import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -32,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
         binding.toolbarLogin.loginBtn.setOnClickListener {
             closeKeyboard()
             signinata  = LoginData(
-             binding.emailText.text.toString(),
+             binding.emailText.text.toString().trim(),
              binding.passwordText.text.toString()
             )
             var signinResp: JsonObject
@@ -49,12 +50,27 @@ class LoginActivity : AppCompatActivity() {
                 when(status_code){
                     401 -> {
                         var gson = Gson()
-                        var error : String = ""
-                        var list =gson.fromJson(signinResp["error"].toString(), Array<String>::class.java).asList()
-                        list.forEach{
-                            error += "∘ $it\n"
+                        var errors = signinResp.getAsJsonObject("error")
+                        if(errors["password"] != null)
+                        {
+                            var list =gson.fromJson(errors["password"].toString(), Array<String>::class.java).asList()
+                            binding.passwordText.error = list[0]
                         }
-                        binding.errorText.text = error
+                        if(errors["email"] != null)
+                        {
+                            var list =gson.fromJson(errors["email"].toString(), Array<String>::class.java).asList()
+                            binding.emailText.error = list[0]
+                        }
+                        if(errors["data"] != null)
+                        {
+                            var list =gson.fromJson(errors["data"].toString(), Array<String>::class.java).asList()
+                            binding.errorText.text = list[0]
+                        }
+                        if(errors["network"] != null)
+                        {
+                            var list =gson.fromJson(errors["network"].toString(), Array<String>::class.java).asList()
+                            binding.errorText.text = list[0]
+                        }
                     }
                     else -> {
                         localStorage.insertTokenData(this@LoginActivity , signinResp["token"].asString)

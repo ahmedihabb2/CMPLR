@@ -1,5 +1,6 @@
 package com.cmp.cmplr.Controller
 
+import android.util.Log
 import com.cmp.cmplr.API.SignupData
 import com.cmp.cmplr.Model.SignupModel
 import com.google.gson.Gson
@@ -46,19 +47,19 @@ class SignupController {
         when {
             signupData.blog_name == "" -> {
                 jsonResp = gson.fromJson(
-                    """{"meta" :{"status_code" : 422},"error":["Please enter a blog name"]}""",
+                    """{"meta" :{"status_code" : 422},"error":{"blog_name":["Please enter a blog name"]}}""",
                     JsonObject::class.java
                 )
             }
             !isEmail(signupData.email) -> {
                 jsonResp = gson.fromJson(
-                    """{"meta" :{"status_code" : 422},"error":["Please enter a valid email"]}""",
+                    """{"meta" :{"status_code" : 422},"error":{"email":["Please enter a valid email"]}}""",
                     JsonObject::class.java
                 )
             }
-            (signupData.password == "" || signupData.password.length < 6) -> {
+            (signupData.password == "" || signupData.password.length < 8) -> {
                 jsonResp = gson.fromJson(
-                    """{"meta" :{"status_code" : 422},"error":["Password must be more than 6 characters"]}""",
+                    """{"meta" :{"status_code" : 422},"error":{"password":["The password must be at least 8 characters"]}}""",
                     JsonObject::class.java
                 )
 
@@ -67,7 +68,7 @@ class SignupController {
 
                 jsonResp = signupModel.userSignup(signupData)
                     ?: gson.fromJson(
-                        """{"meta" :{"status_code" : 422},"error":["Error occurred while processing the request"]}""",
+                        """{"meta" :{"status_code" : 422},"error":{"network":["Error occurred while processing the request"]}}""",
                         JsonObject::class.java
                     )
 

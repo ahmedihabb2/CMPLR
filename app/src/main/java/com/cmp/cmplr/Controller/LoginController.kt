@@ -22,8 +22,11 @@ class LoginController {
      * @return boolean   whether the email has a valid mail format
      */
     private fun isEmail(str: String): Boolean {
-        //return android.util.Patterns.EMAIL_ADDRESS.matcher(str).matches()
-        return str.contains("@")
+        if(str.contains(" ") || !str.contains("@"))
+        {
+            return false
+        }
+        return true
     }
 
 
@@ -44,24 +47,30 @@ class LoginController {
         when {
             !isEmail(signinData.email) -> {
                 jsonResp = gson.fromJson(
-                    """{"meta" :{"status_code" : 401},"error":["Please enter a valid email"]}""",
+                    """{"meta" :{"status_code" : 401},"error":{"email":["Invalid email"]}}""",
                     JsonObject::class.java
                 )
             }
-            (signinData.password == "" || signinData.password.length < 6) -> {
+            (signinData.password == "" || signinData.password.length < 8) -> {
                 jsonResp = gson.fromJson(
-                    """{"meta" :{"status_code" : 401},"error":["Invalid password"]}""",
+                    """{"meta" :{"status_code" : 401},"error":{"password":["Invalid password"]}}""",
                     JsonObject::class.java
                 )
-
             }
             else -> {
 
-                jsonResp = loginModel.userLogin(signinData)
-                    ?: gson.fromJson(
-                        """{"meta" :{"status_code" : 401},"error":["Error occurred while processing the request"]}""",
-                        JsonObject::class.java
-                    )
+                var resp: Pair<JsonObject?,Int> = loginModel.userLogin(signinData)
+                   if(resp.second == 401)
+                   {
+                       jsonResp = gson.fromJson(
+                           """{"meta" :{"status_code" : 401},"error":{"data":["Either your login email or password is incorrect"]}}""",
+                           JsonObject::class.java
+                       )
+                   }else
+                   {
+                       jsonResp =resp.first!!
+
+                   }
 
             }
         }
