@@ -9,7 +9,7 @@ import com.cmp.cmplr.Mockup.DatabaseMock
  */
 class ForgotModel {
 
-    var dataBase= DatabaseMock()
+    var dataBase = DatabaseMock()
 
 
     /**
@@ -18,7 +18,7 @@ class ForgotModel {
      * @param email mail of the user
      * @return boolean   true if the mail is used before, else false
      */
-    fun ismailUSed(email:String):Boolean{
+    fun ismailUSed(email: String): Boolean {
         //todo use the real backend api
         return dataBase.emailExist(email)
     }

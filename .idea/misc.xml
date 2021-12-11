@@ -3,17 +3,30 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.12962962962962962" />
+        <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.12962962962962962" />
+        <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.12962962962962962" />
+        <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/drawable/ic_baseline_message_24.xml" value="0.12962962962962962" />
         <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/drawable/ic_baseline_write_24.xml" value="0.12708333333333333" />
-        <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/activity_main_screen.xml" value="0.10625" />
+        <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/drawable/ic_launcher_background.xml" value="0.12962962962962962" />
+        <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/drawable/selector.xml" value="0.12685185185185185" />
+        <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/activity_main_screen.xml" value="0.128" />
+        <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/activity_splash.xml" value="0.17481884057971014" />
         <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/activity_write_post.xml" value="0.161231884057971" />
         <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/age_screen.xml" value="0.21666666666666667" />
+        <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/comment_layout.xml" value="0.1" />
         <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/fragment_age_sign_up.xml" value="0.161231884057971" />
         <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/fragment_home_screen.xml" value="0.1" />
+        <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/fragment_intro1.xml" value="0.17481884057971014" />
         <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/fragment_messages_screen_fragments.xml" value="0.182518115942029" />
         <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/fragment_profile_screen.xml" value="0.161231884057971" />
         <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/fragment_search_screen.xml" value="0.161231884057971" />
+        <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/notes_screen.xml" value="0.16847826086956522" />
+        <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/signup.xml" value="0.21666666666666667" />
         <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/signup_toolbar.xml" value="0.182518115942029" />
         <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/menu/nav_menu.xml" value="0.21666666666666667" />
+        <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
+        <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
       </map>
     </option>
   </component>

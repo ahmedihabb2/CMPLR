@@ -21,23 +21,18 @@ class AgeActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.ageToolbar.nextAgeScreen.setOnClickListener {
             try {
-                if (binding.ageText.text.toString().toInt() < 13) {
+                if (binding.ageText.text.toString().trim().toInt() < 13 || binding.ageText.text.toString().trim().toInt() > 120) {
                     Toast.makeText(
                         this.applicationContext,
-                        getString(R.string.errorMsgIfAgeIsLessThan13),
+                        "Age must be between 13 and 120",
                         Toast.LENGTH_LONG
                     )
                         .show()
 
                 } else {
-                    Toast.makeText(
-                        this.applicationContext,
-                        getString(R.string.successMsgIfAgeIs13),
-                        Toast.LENGTH_LONG
-                    )
-                        .show()
-
                     val intent = Intent(this, SignupActivity::class.java)
+                    intent.putExtra("age",binding.ageText.text.toString().toInt())
+                    finish()
                     startActivity(intent)
                 }
             } catch (e: NumberFormatException) {
