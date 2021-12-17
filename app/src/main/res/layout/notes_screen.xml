@@ -6,45 +6,104 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
+    <LinearLayout
+        android:id="@+id/counts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#3F3E3E"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/likes_count"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingRight="20dp"
+            android:text="100 Likes"
+            android:textAlignment="textEnd"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/notes_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="100 Notes"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-
-        <EditText
-            android:id="@+id/comment_input"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#575757"
-            android:hint="@string/note_hint"
-            android:minHeight="50dp"
-            android:singleLine="false"
-            android:textColor="#F6F3F3"
-            android:textColorHint="#FFFDFD"></EditText>
+            android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/replay_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="2dp"
-            android:background="#575757"
-            android:text="Replay"
-            android:textAllCaps="false"
-            android:textColor="#EBE5E5" />
-    </RelativeLayout>
+            <Button
+                android:id="@+id/mention_btn"
+                android:layout_width="53dp"
+                android:layout_height="0dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:background="#3F3E3E"
+                android:stateListAnimator="@null"
+                android:text="@"
+                android:textAllCaps="false"
+                android:textColor="#EBE5E5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/comment_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="#3F3E3E"
+                android:hint="@string/note_hint"
+                android:minHeight="50dp"
+                android:singleLine="false"
+
+                android:textColor="#F6F3F3"
+                android:textColorHint="#FFFDFD"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/replay_btn"
+                app:layout_constraintStart_toEndOf="@+id/mention_btn"
+                app:layout_constraintTop_toTopOf="parent"></EditText>
+
+            <Button
+                android:id="@+id/replay_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_alignParentEnd="true"
+                android:background="#3F3E3E"
+                android:text="Replay"
+                android:textAllCaps="false"
+                android:textColor="#EBE5E5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/comments_list"
         android:layout_width="409dp"
-        android:layout_height="680dp"
-        android:background="#575757"
+        android:layout_height="0dp"
+        android:background="#3F3E3E"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+        app:layout_constraintTop_toBottomOf="@id/counts"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:listitem="@layout/comment_layout" />

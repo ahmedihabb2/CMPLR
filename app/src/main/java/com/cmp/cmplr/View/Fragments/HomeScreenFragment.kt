@@ -10,15 +10,14 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import com.cmp.cmplr.Controller.LocalStorage
 import com.cmp.cmplr.Controller.SignoutController
 import com.cmp.cmplr.Controller.WritePostController
-import com.cmp.cmplr.Model.managers.UserModelManager
 import com.cmp.cmplr.R
 import com.cmp.cmplr.View.Activities.IntroActivity
-import com.cmp.cmplr.View.Activities.WritePostButtonEventHandler
 import com.cmp.cmplr.View.Activities.WritePostRequester
-import com.cmp.cmplr.databinding.FragmentHomeScreenBinding
+
 
 class HomeScreenFragment : Fragment(),
     WritePostRequester {
@@ -39,6 +38,7 @@ class HomeScreenFragment : Fragment(),
 //            (activity as WritePostButtonEventHandler).onWritePostClicked(this)
 //        }
         val signoutBtn : Button = view.findViewById(R.id.signout_btn)
+        val notesBtn : Button = view.findViewById(R.id.notes_btn)
         signoutBtn.setOnClickListener {
             lifecycleScope.launchWhenCreated {
                 val signoutController : SignoutController = SignoutController()
@@ -59,6 +59,9 @@ class HomeScreenFragment : Fragment(),
 
                 }
             }
+        }
+        notesBtn.setOnClickListener {
+            view.findNavController().navigate(R.id.action_homeScreenFragment_to_notesFragment)
         }
     }
 
