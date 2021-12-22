@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.cmp.cmplr.Model.UserPost
 import com.cmp.cmplr.R
@@ -32,6 +33,7 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
         var usr_img: ImageView =itemView.findViewById(R.id.user_pic)
         var usr_name:TextView=itemView.findViewById(R.id.username_home)
 
+
         fun bind(post:UserPost){
             Log.d("kak","bind begin")
             usr_name.text=(post.name).toString()
@@ -40,6 +42,8 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
 
             //usr_img.setImageResource((post.picture))
         }
+        //item
+
 
     }
 
@@ -54,6 +58,11 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
         Log.d("kak","onbind begin")
         var post:UserPost=postList.get(position)
         holder.bind(post)
+        holder.usr_img.setOnClickListener{
+            var temp:String ="pressed on image of postition:"+position.toString()
+            Log.d("kak",temp)
+
+        }
         Log.d("kak","onbind begin")
     }
 

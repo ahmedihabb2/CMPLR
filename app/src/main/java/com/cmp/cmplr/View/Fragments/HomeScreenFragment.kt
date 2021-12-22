@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.cmp.cmplr.Adapter.InfiniteScrollRecycler
@@ -46,8 +47,11 @@ class HomeScreenFragment:Fragment() {
         }
         Log.d("kak2","after array made")
 
-        //val user_pic : ImageView =view.findViewById(R.id.user_pic)
-        //val user_name: TextView = view.findViewById(R.id.username_home)
+        /*val user_pic : ImageView =view.findViewById(R.id.user_pic)
+        val user_name: TextView = view.findViewById(R.id.username_home)
+        val share_btn:ImageView=view.findViewById(R.id.share_btn)
+        val reblog_btn:ImageView=view.findViewById(R.id.reblog_btn)
+        val love_btn:ImageView=view.findViewById(R.id.love_btn)*/
         Log.d("kak2","before adapter setting made")
 
         rv_showData=requireView().findViewById<RecyclerView>(R.id.theinfinte)
@@ -61,6 +65,14 @@ class HomeScreenFragment:Fragment() {
         Log.d("kak2","after adapter setting made")
         //Log.d("kak2",infiniteScrollRecycler.postList[0].name.toString())
         Log.d("kak2", (rv_showData.adapter as InfiniteScrollRecycler).postList[0].name.toString())
+
+/*
+        user_pic.setOnClickListener{
+            Toast.makeText( context, "user picture", Toast.LENGTH_SHORT).show()
+        }
+*/
+
+
     }
 
 

@@ -1,3 +1,4 @@
+/*
 package com.cmp.cmplr.View.Fragments
 
 import android.os.Bundle
@@ -49,3 +50,4 @@ class HomePostsFragment:Fragment() {
 
 
 }
+*/
