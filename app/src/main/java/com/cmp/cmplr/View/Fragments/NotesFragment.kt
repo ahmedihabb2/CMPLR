@@ -5,16 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.cmp.cmplr.R
-import com.cmp.cmplr.Shared.NotesAdapter
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.bottomappbar.BottomAppBar
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.cmp.cmplr.Adapter.NotesAdapter
 
 
 class NotesFragment : Fragment() {

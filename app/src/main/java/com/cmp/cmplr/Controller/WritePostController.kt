@@ -2,17 +2,38 @@ package com.cmp.cmplr.Controller
 
 import com.cmp.cmplr.Model.managers.UserModelManager
 
-object WritePostController {
-    enum class PostResult { SUCCESS, FALIURE_EMPTY_CONTENT }
+object WritePostController  {
 
-    interface WritePostView {
-        fun getPostText(): String
-        fun getUserID(): Int
+    enum class PostResult {
+        SUCCESS, FALIURE_EMPTY_CONTENT, INVALID_VAL ;
+
+        companion object {
+            fun fromInt(i : Int?) : PostResult {
+                return when(i) {
+                    1 -> SUCCESS
+                    2 -> FALIURE_EMPTY_CONTENT
+                    else -> INVALID_VAL
+                }
+            }
+
+            fun toInt(res : PostResult) : Int {
+                return when(res) {
+                    SUCCESS -> 1
+                    FALIURE_EMPTY_CONTENT -> 2
+                    else -> 0
+                }
+            }
+        }
     }
 
-    fun writePost(v: WritePostView): PostResult {
+    interface WritePostView {
+        fun getPostText() : String
+        fun getUserID()   : String
+    }
+
+    fun writePost(v : WritePostView) : PostResult {
         val txt = v.getPostText()
-        if (txt.isNullOrEmpty()) {
+        if(txt.isNullOrEmpty()){
             return PostResult.FALIURE_EMPTY_CONTENT
         }
 

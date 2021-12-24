@@ -1,4 +1,4 @@
-package com.cmp.cmplr.SharedModules
+package com.cmp.cmplr.Adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
