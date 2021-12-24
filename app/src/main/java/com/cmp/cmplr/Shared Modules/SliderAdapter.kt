@@ -13,7 +13,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
  *
  * @param fa
  */
-class SliderAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
+class SliderAdapter(fa : FragmentActivity) : FragmentStateAdapter(fa){
     private val fragmentList = ArrayList<Fragment>()
 
     /**

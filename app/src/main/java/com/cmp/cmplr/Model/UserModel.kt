@@ -8,14 +8,14 @@ package com.cmp.cmplr.Model
  *
  * @param ID
  */
-class UserModel(ID: Int) {
+class UserModel(ID: String) {
     private var posts = ArrayList<String>()
 
-    fun addPost(postTxt: String) {
+    fun addPost(postTxt: String){
         posts.add(postTxt)
     }
 
-    fun getPosts(): ArrayList<String> {
+    fun getPosts() : ArrayList<String> {
         return posts
     }
 }

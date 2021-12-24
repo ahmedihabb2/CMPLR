@@ -2,7 +2,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/test_notes"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".View.Fragments.HomeScreenFragment">
@@ -16,42 +15,29 @@
             android:id="@+id/writePostBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="339dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="70dp"
+            android:layout_marginBottom="48dp"
             android:clickable="true"
             android:focusable="true"
+            android:visibility="visible"
             app:backgroundTint="#2196F3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.912"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/ic_baseline_write_24"
             app:tint="@null"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:visibility="visible" />
 
-        <Button
-            android:id="@+id/signout_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:capitalize="none"
-            android:text="Signout"
-            android:textAllCaps="false"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <WebView
+            android:id="@+id/testView"
+            android:layout_width="409dp"
+            android:layout_height="302dp"
+            app:layout_constraintBottom_toTopOf="@+id/writePostBtn"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/notes_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Notes Screen"
-            android:textAllCaps="false"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signout_btn"
-            app:layout_constraintVertical_bias="0.17000002" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

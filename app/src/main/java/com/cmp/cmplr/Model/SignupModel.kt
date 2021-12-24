@@ -1,14 +1,6 @@
 package com.cmp.cmplr.Model
 
-import com.cmp.cmplr.API.Api_Instance
-import com.cmp.cmplr.API.SignupData
 import com.cmp.cmplr.Mockup.DatabaseMock
-import com.google.gson.Gson
-import com.google.gson.JsonObject
-import retrofit2.HttpException
-import retrofit2.Response
-import retrofit2.http.Body
-import java.util.*
 
 
 /**
@@ -17,7 +9,8 @@ import java.util.*
  */
 class SignupModel {
 
-    var dataBase = DatabaseMock()
+
+    var dataBase= DatabaseMock()
 
     /**
      *
@@ -27,19 +20,21 @@ class SignupModel {
      * @param password
      * @return   true if the signup is successful, false else
      */
-    suspend fun userSignup(@Body signupData: SignupData): JsonObject? {
-        var gson: Gson = Gson()
-        try {
-            val response: Response<JsonObject> = Api_Instance.api.signup(signupData)
+    fun userSignup(name:String,email: String,password:String):Boolean {
 
-            if (!response.isSuccessful) {
-                return gson.fromJson(response.errorBody()!!.charStream(), JsonObject::class.java)
-            }
-            return response.body()
-        } catch (e: HttpException) {
-            return null
-        }
+       //todo use the real backend api
+        return dataBase.insertUser(name,email,password)
     }
 
+    /**
+     *
+     *
+     * @param email
+     * @return  true if the mail is used before, false else
+     */
+    fun ismailUSed(email:String):Boolean{
+        //todo use the real backend api
+        return dataBase.emailExist(email)
+    }
 
 }

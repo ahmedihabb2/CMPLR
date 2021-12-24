@@ -1,59 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="43dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:cardCornerRadius="25dp"
         app:cardPreventCornerOverlap="false"
         app:layout_constraintBottom_toBottomOf="@+id/notes_user_name"
-        app:layout_constraintEnd_toStartOf="@+id/user_comment"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/user_comment">
+        app:layout_constraintTop_toTopOf="@+id/user_comment"
+        tools:layout_editor_absoluteX="16dp">
 
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@color/black" />
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_launcher_background" />
     </androidx.cardview.widget.CardView>
 
-    <EditText
+    <TextView
         android:id="@+id/notes_user_name"
         android:layout_width="314dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:inputType="none"
-        android:enabled="false"
-        android:background="@null"
         android:text="@string/mock_username"
         android:textColor="#FEFCFC"
-        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cardView" />
+        tools:layout_editor_absoluteX="82dp" />
 
-    <EditText
+    <TextView
         android:id="@+id/user_comment"
-        android:layout_width="314dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
         android:layout_marginBottom="4dp"
         android:background="@drawable/text_boarder"
-        android:inputType="none"
-        android:enabled="false"
         android:text="@string/random_comment"
         android:textColor="#FEFAFA"
-        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/notes_user_name"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.98"
+        tools:layout_editor_absoluteX="82dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

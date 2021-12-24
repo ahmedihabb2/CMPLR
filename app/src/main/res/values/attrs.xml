@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!--    The <declare-stylable> is for declaring a custom styleable that will be used on the XML layout
+<?xml version="1.0" encoding="utf-8"?>
+<!--    The <declare-stylable> is for declaring a custom styleable that will be used on the XML layout
  when using the custom widget.
 It is some kind of attribute or argument parameter for a custom widget-->
 <resources>

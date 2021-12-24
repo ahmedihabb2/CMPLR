@@ -1,11 +1,6 @@
 package com.cmp.cmplr.Controller
 
-import android.util.Log
-import com.cmp.cmplr.API.SignupData
 import com.cmp.cmplr.Model.SignupModel
-import com.google.gson.Gson
-import com.google.gson.JsonObject
-
 
 /**
  * class SignupController    class to control the logic of the signup
@@ -23,10 +18,11 @@ class SignupController {
      * @param str   the mail of the user
      * @return boolean   true if the mail is a valid format, false else
      */
-    private fun isEmail(str: String): Boolean {
+    private fun isEmail(str: String): Boolean{
         return str.contains("@")
         //return android.util.Patterns.EMAIL_ADDRESS.matcher(str).matches()
     }
+
 
 
     /**
@@ -41,43 +37,26 @@ class SignupController {
      *              3-> the mail is used before
      *              4-> signup successful
      */
-    suspend fun validateData(signupData: SignupData): JsonObject {
-        val gson = Gson()
-        lateinit var jsonResp: JsonObject
-        when {
-            signupData.blog_name == "" -> {
-                jsonResp = gson.fromJson(
-                    """{"meta" :{"status_code" : 422},"error":{"blog_name":["Please enter a blog name"]}}""",
-                    JsonObject::class.java
-                )
-            }
-            !isEmail(signupData.email) -> {
-                jsonResp = gson.fromJson(
-                    """{"meta" :{"status_code" : 422},"error":{"email":["Please enter a valid email"]}}""",
-                    JsonObject::class.java
-                )
-            }
-            (signupData.password == "" || signupData.password.length < 8) -> {
-                jsonResp = gson.fromJson(
-                    """{"meta" :{"status_code" : 422},"error":{"password":["The password must be at least 8 characters"]}}""",
-                    JsonObject::class.java
-                )
+    fun getSignupData(name:String,email:String,password:String):Int{
 
-            }
+      var return_value:Int=0
+
+        when{
+            name=="" -> return_value=0
+            !isEmail(email)->return_value=1
+            signupModel.ismailUSed(email)-> return_value=2
+            password==""->return_value=3
             else -> {
-
-                jsonResp = signupModel.userSignup(signupData)
-                    ?: gson.fromJson(
-                        """{"meta" :{"status_code" : 422},"error":{"network":["Error occurred while processing the request"]}}""",
-                        JsonObject::class.java
-                    )
-
+                signupModel.userSignup(name,email,password)
+                return_value=4
             }
         }
-        return jsonResp
+
+        return return_value
 
 
     }
+
 
 
 }
