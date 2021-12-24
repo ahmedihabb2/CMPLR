@@ -13,11 +13,11 @@
     android:paddingBottom="10dp">
 
     <include
-        android:id="@+id/dummy_view_instance"
+        android:id="@+id/html_view_instance"
 
         layout="@layout/dymmy_view"
-        android:layout_width="335dp"
-        android:layout_height="264dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="134dp" />
@@ -25,8 +25,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="38dp"
-        app:layout_constraintBottom_toTopOf="@+id/dummy_view_instance"
+        android:paddingTop="42dp"
+        app:layout_constraintBottom_toTopOf="@+id/html_view_instance"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -88,11 +88,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:paddingBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dummy_view_instance"
+        app:layout_constraintTop_toBottomOf="@+id/html_view_instance"
         app:layout_constraintVertical_bias="0.052">
 
         <TextView

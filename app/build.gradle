@@ -78,6 +78,10 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1'
 
 
+    //html viewer
+    implementation 'org.sufficientlysecure:html-textview:4.0'
+
+
 }
 
 
