@@ -9,7 +9,11 @@
         android:id="@+id/homeScreenFragment"
         android:name="com.cmp.cmplr.View.Fragments.HomeScreenFragment"
         android:label="fragment_home_screen"
-        tools:layout="@layout/fragment_home_screen" />
+        tools:layout="@layout/fragment_home_screen" >
+        <action
+            android:id="@+id/action_homeScreenFragment_to_notesFragment"
+            app:destination="@id/notesFragment" />
+    </fragment>
     <fragment
         android:id="@+id/messagesScreenFragment"
         android:name="com.cmp.cmplr.View.Fragments.MessagesScreenFragment"
@@ -19,10 +23,22 @@
         android:id="@+id/searchScreenFragment"
         android:name="com.cmp.cmplr.View.Fragments.SearchScreenFragment"
         android:label="fragment_search_screen"
-        tools:layout="@layout/fragment_search_screen" />
+        tools:layout="@layout/fragment_search_screen" >
+        <action
+            android:id="@+id/action_searchScreenFragment_to_searchInput"
+            app:destination="@id/searchInput" />
+    </fragment>
     <fragment
         android:id="@+id/profileScreenFragment"
         android:name="com.cmp.cmplr.View.Fragments.ProfileScreenFragment"
         android:label="fragment_profile_screen"
         tools:layout="@layout/fragment_profile_screen" />
+    <fragment
+        android:id="@+id/notesFragment"
+        android:name="com.cmp.cmplr.View.Fragments.NotesFragment"
+        android:label="NotesFragment" />
+    <fragment
+        android:id="@+id/searchInput"
+        android:name="com.cmp.cmplr.View.Fragments.SearchInput"
+        android:label="SearchInput" />
 </navigation>

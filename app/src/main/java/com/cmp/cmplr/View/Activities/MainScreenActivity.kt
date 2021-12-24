@@ -2,13 +2,16 @@ package com.cmp.cmplr.View.Activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.cmp.cmplr.Controller.WritePostController
 import com.cmp.cmplr.R
 import com.cmp.cmplr.databinding.ActivityMainScreenBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 interface WritePostRequester {
@@ -28,7 +31,15 @@ class MainScreenActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         binding = ActivityMainScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        val navView: BottomNavigationView = findViewById(R.id.bottom_navigation_view)
+        val navController = this.findNavController(R.id.nav_fragment)
+        navController.addOnDestinationChangedListener { _, nd: NavDestination, _ ->
+            if (nd.id == R.id.homeScreenFragment || nd.id == R.id.searchScreenFragment || nd.id == R.id.messagesScreenFragment || nd.id == R.id.profileScreenFragment) {
+                navView.visibility = View.VISIBLE
+            } else {
+                navView.visibility = View.GONE
+            }
+        }
         userID = intent.getIntExtra(getString(R.string.user_ID_Intent_search_key), 0)
         //This really should never happen
         if (userID < 0) {

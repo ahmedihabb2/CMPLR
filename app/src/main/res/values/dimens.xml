@@ -2,4 +2,8 @@
 <resources>
     <dimen name="intro_button_left_padding">32dp</dimen>
     <dimen name="intro_button_right_padding">32dp</dimen>
+
+
+
+    <dimen name="btn_icon_side_length">20dp</dimen>
 </resources>
