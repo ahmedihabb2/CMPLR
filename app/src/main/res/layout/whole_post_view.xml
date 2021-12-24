@@ -113,7 +113,7 @@
             android:id="@+id/share_btn"
             android:layout_width="@dimen/btn_icon_side_length"
             android:layout_height="@dimen/btn_icon_side_length"
-            android:layout_marginStart="224dp"
+            android:layout_marginStart="180dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/comments_btn"
             app:layout_constraintTop_toTopOf="parent"

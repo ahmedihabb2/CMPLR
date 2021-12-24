@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.cmp.cmplr.Model.UserPost
 import com.cmp.cmplr.R
@@ -32,7 +33,7 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
 
         var usr_img: ImageView =itemView.findViewById(R.id.user_pic)
         var usr_name:TextView=itemView.findViewById(R.id.username_home)
-
+        var notes_btn : TextView = itemView.findViewById(R.id.comments_btn)
 
         fun bind(post:UserPost){
             Log.d("kak","bind begin")
@@ -61,6 +62,10 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
         holder.usr_img.setOnClickListener{
             var temp:String ="pressed on image of postition:"+position.toString()
             Log.d("kak",temp)
+
+        }
+        holder.notes_btn.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeScreenFragment_to_notesFragment)
 
         }
         Log.d("kak","onbind begin")
