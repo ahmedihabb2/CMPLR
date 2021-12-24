@@ -1,6 +1,8 @@
 package com.cmp.cmplr.View.Fragments
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +13,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.cmp.cmplr.Adapter.InfiniteScrollRecycler
+import com.cmp.cmplr.Controller.LocalStorage
 import com.cmp.cmplr.DataClasses.Blog
 import com.cmp.cmplr.DataClasses.HomePostData
 import com.cmp.cmplr.DataClasses.Post
@@ -18,9 +21,19 @@ import com.cmp.cmplr.Model.UserPost
 import com.cmp.cmplr.R
 
 class HomeScreenFragment:Fragment() {
+    //lateinit var mainHandler: Handler
+
+
+
+    private var localStorage = LocalStorage()
+
+
+
+
     lateinit var rv_showData :RecyclerView
     //val infiniteScrollRecycler : InfiniteScrollRecycler = InfiniteScrollRecycler()
     var postsList: ArrayList<HomePostData> = ArrayList()
+    var listsize:Int=0;
 
     val infiniteScrollRecycler : InfiniteScrollRecycler by lazy {
       Log.d("kak2","lazy eval")
@@ -43,6 +56,7 @@ class HomeScreenFragment:Fragment() {
 
         super.onViewCreated(view, savedInstanceState)
         Log.d("kak2","after super made")
+        var token:String?=localStorage.getTokenData(requireActivity())
 
         for (i in 1 ..5){
             val blog:Blog=Blog("https://assets.tumblr.com//images//default_avatar//cone_closed_128.png",
@@ -64,22 +78,38 @@ class HomeScreenFragment:Fragment() {
         }
         Log.d("kak2","after array made")
 
-        /*val user_pic : ImageView =view.findViewById(R.id.user_pic)
-        val user_name: TextView = view.findViewById(R.id.username_home)
-        val share_btn:ImageView=view.findViewById(R.id.share_btn)
-        val reblog_btn:ImageView=view.findViewById(R.id.reblog_btn)
-        val love_btn:ImageView=view.findViewById(R.id.love_btn)*/
+
         Log.d("kak2","before adapter setting made")
 
         rv_showData=requireView().findViewById<RecyclerView>(R.id.theinfinte)
 
         Log.d("kak2","line1")
-
+        infiniteScrollRecycler.putToken(token) //passing the token to the adapter
         rv_showData.adapter=infiniteScrollRecycler
+
         Log.d("kak2","line2")
 
         infiniteScrollRecycler.setList(postsList)
+        infiniteScrollRecycler.notifydataSet()
+        listsize=infiniteScrollRecycler.itemCount
         Log.d("kak2","after adapter setting made")
+        val mainHandler = Handler(Looper.getMainLooper())
+
+        mainHandler.post(object : Runnable {
+            override fun run() {
+                //minusOneSecond()
+                //Toast.makeText( context, "HH", Toast.LENGTH_SHORT).show()
+                var temp:String="list size="+listsize.toString()+", recycler list = "+infiniteScrollRecycler.itemCount.toString()
+                Log.d("kak2,","Interrupt nowwwwwwwwwww  "+ temp)
+                if(listsize!=infiniteScrollRecycler.itemCount)
+                {
+                    listsize=infiniteScrollRecycler.itemCount
+                    infiniteScrollRecycler.notifydataSet()
+                }
+                mainHandler.postDelayed(this, 10000)
+            }
+        })
+
         //Log.d("kak2",infiniteScrollRecycler.postList[0].name.toString())
        // Log.d("kak2", (rv_showData.adapter as InfiniteScrollRecycler).postList[0].name.toString())
 
