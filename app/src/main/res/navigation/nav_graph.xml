@@ -23,7 +23,11 @@
         android:id="@+id/searchScreenFragment"
         android:name="com.cmp.cmplr.View.Fragments.SearchScreenFragment"
         android:label="fragment_search_screen"
-        tools:layout="@layout/fragment_search_screen" />
+        tools:layout="@layout/fragment_search_screen" >
+        <action
+            android:id="@+id/action_searchScreenFragment_to_searchInput"
+            app:destination="@id/searchInput" />
+    </fragment>
     <fragment
         android:id="@+id/profileScreenFragment"
         android:name="com.cmp.cmplr.View.Fragments.ProfileScreenFragment"
@@ -33,4 +37,8 @@
         android:id="@+id/notesFragment"
         android:name="com.cmp.cmplr.View.Fragments.NotesFragment"
         android:label="NotesFragment" />
+    <fragment
+        android:id="@+id/searchInput"
+        android:name="com.cmp.cmplr.View.Fragments.SearchInput"
+        android:label="SearchInput" />
 </navigation>

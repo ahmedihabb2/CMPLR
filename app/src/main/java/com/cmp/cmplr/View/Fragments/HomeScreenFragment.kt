@@ -32,11 +32,6 @@ class HomeScreenFragment : Fragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-//        binding.writePostBtn.setOnClickListener {
-//            Toast.makeText(activity?.applicationContext, "teessst", Toast.LENGTH_SHORT).show()
-//            (activity as WritePostButtonEventHandler).onWritePostClicked(this)
-//        }
         val signoutBtn : Button = view.findViewById(R.id.signout_btn)
         val notesBtn : Button = view.findViewById(R.id.notes_btn)
         signoutBtn.setOnClickListener {

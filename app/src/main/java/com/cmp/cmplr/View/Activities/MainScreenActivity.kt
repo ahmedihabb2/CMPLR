@@ -34,10 +34,10 @@ class MainScreenActivity : AppCompatActivity(),
         val navView: BottomNavigationView = findViewById(R.id.bottom_navigation_view)
         val navController = this.findNavController(R.id.nav_fragment)
         navController.addOnDestinationChangedListener { _, nd: NavDestination, _ ->
-            if (nd.id == R.id.notesFragment) {
-                navView.visibility = View.GONE
-            } else {
+            if (nd.id == R.id.homeScreenFragment || nd.id == R.id.searchScreenFragment || nd.id == R.id.messagesScreenFragment || nd.id == R.id.profileScreenFragment) {
                 navView.visibility = View.VISIBLE
+            } else {
+                navView.visibility = View.GONE
             }
         }
         userID = intent.getIntExtra(getString(R.string.user_ID_Intent_search_key), 0)
