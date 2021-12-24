@@ -12,7 +12,8 @@
         <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/drawable/selector.xml" value="0.12685185185185185" />
         <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/drawable/text_boarder.xml" value="0.1398148148148148" />
         <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/drawable/tumblr_logo.xml" value="0.1287037037037037" />
-        <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/activity_main_screen.xml" value="0.2" />
+        <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/activity_main.xml" value="0.21666666666666667" />
+        <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/activity_main_screen.xml" value="0.1" />
         <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/activity_splash.xml" value="0.17481884057971014" />
         <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/activity_write_post.xml" value="0.161231884057971" />
         <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/age_screen.xml" value="0.21666666666666667" />
@@ -22,16 +23,16 @@
         <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/fragment_home_screen.xml" value="0.2" />
         <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/fragment_intro1.xml" value="0.17481884057971014" />
         <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/fragment_messages_screen_fragments.xml" value="0.182518115942029" />
-        <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/fragment_profile_screen.xml" value="0.161231884057971" />
+        <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/fragment_profile_screen.xml" value="0.264" />
         <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/fragment_search_screen.xml" value="0.264" />
-        <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/infinite_posts.xml" value="0.12681159420289856" />
+        <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/infinite_posts.xml" value="0.25" />
         <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/intro_screen.xml" value="0.17889492753623187" />
         <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/login_buttons.xml" value="0.17889492753623187" />
         <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/notes_screen.xml" value="0.264" />
         <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/search_layout.xml" value="0.264" />
         <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/signup.xml" value="0.21666666666666667" />
         <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/signup_toolbar.xml" value="0.182518115942029" />
-        <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/whole_post_view.xml" value="0.4" />
+        <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/layout/whole_post_view.xml" value="0.2" />
         <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/menu/nav_menu.xml" value="0.21666666666666667" />
         <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/Users/LENOVO/Desktop/CMPLR/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />

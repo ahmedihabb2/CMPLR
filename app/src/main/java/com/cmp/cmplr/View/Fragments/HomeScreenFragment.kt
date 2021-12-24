@@ -1,10 +1,12 @@
 package com.cmp.cmplr.View.Fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -13,6 +15,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cmp.cmplr.Adapter.InfiniteScrollRecycler
 import com.cmp.cmplr.Model.UserPost
 import com.cmp.cmplr.R
+import com.cmp.cmplr.View.Activities.LoginActivity
+import com.cmp.cmplr.View.Activities.WritePostActivity
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class HomeScreenFragment:Fragment() {
     lateinit var rv_showData :RecyclerView
@@ -37,7 +42,11 @@ class HomeScreenFragment:Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         Log.d("kak2","before super made")
-
+        val write_btn : FloatingActionButton = view.findViewById(R.id.writePostBtn2)
+        write_btn.setOnClickListener {
+            val intent = Intent(activity?.applicationContext, WritePostActivity::class.java)
+            startActivity(intent)
+        }
         super.onViewCreated(view, savedInstanceState)
         Log.d("kak2","after super made")
 

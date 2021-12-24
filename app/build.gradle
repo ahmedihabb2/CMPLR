@@ -79,7 +79,10 @@ dependencies {
 
     //Image Circular View (Open Source Library)
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    //
+    implementation 'jp.wasabeef:richeditor-android:2.0.0'
 
+    implementation 'com.azeesoft.lib.colorpicker:colorpicker:1.0.8@aar'
 }
 
 
