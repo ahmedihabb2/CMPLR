@@ -13,6 +13,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.azeesoft.lib.colorpicker.ColorPickerDialog
+import com.cmp.cmplr.Controller.LocalStorage
 import com.cmp.cmplr.Controller.WritePostController
 import com.cmp.cmplr.R
 import com.cmp.cmplr.databinding.ActivityWritePostBinding
@@ -23,6 +24,8 @@ class WritePostActivity : AppCompatActivity(),
                           WritePostController.WritePostView {
 
     private val control = WritePostController
+    private val token = LocalStorage().getTokenData(this)!!
+    private val blogName = LocalStorage().getBlogName(this)!!
     private lateinit var binding: ActivityWritePostBinding
     private lateinit var imageChooserActivityLauncher : ActivityResultLauncher<Intent>
 
@@ -42,8 +45,9 @@ class WritePostActivity : AppCompatActivity(),
         setButtonsEventHandlers()
     }
 
+    override fun getBlogName() : String = blogName
     override fun getPostText() : String = binding.editor.html
-    override fun getUserID()   : String = "nouser"
+    override fun getUserID()   : String = token
 
     private fun initEditor() {
         binding.editor.setEditorFontColor(Color.WHITE)
@@ -54,7 +58,6 @@ class WritePostActivity : AppCompatActivity(),
         binding.postBtn.setOnClickListener {
             val res = control.writePost(this)
             val resAsInt = WritePostController.PostResult.toInt(res)
-
             finish()
         }
 

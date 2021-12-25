@@ -3,7 +3,6 @@ package com.cmp.cmplr.Controller
 import com.cmp.cmplr.Model.managers.UserModelManager
 
 object WritePostController  {
-
     enum class PostResult {
         SUCCESS, FALIURE_EMPTY_CONTENT, INVALID_VAL ;
 
@@ -29,6 +28,7 @@ object WritePostController  {
     interface WritePostView {
         fun getPostText() : String
         fun getUserID()   : String
+        fun getBlogName() : String
     }
 
     fun writePost(v : WritePostView) : PostResult {
@@ -37,7 +37,8 @@ object WritePostController  {
             return PostResult.FALIURE_EMPTY_CONTENT
         }
 
-        UserModelManager.getUserModel(v.getUserID()).addPost(txt)
+        UserModelManager.getUserModel(v.getUserID())
+            .addPost(v.getBlogName(),txt)
         return PostResult.SUCCESS
     }
 }

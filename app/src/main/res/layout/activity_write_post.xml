@@ -104,6 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 app:srcCompat="@drawable/ic_baseline_color_lens_24" />
+
             <ImageButton
                 android:id="@+id/insertImgBtn"
                 android:layout_width="wrap_content"
