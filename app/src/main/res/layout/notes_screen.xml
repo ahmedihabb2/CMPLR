@@ -6,18 +6,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/notes_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+        app:subtitleTextColor="#FFFCFC"
+        app:title="200 Notes"
+        app:titleTextColor="#FFFFFF" />
+
     <LinearLayout
         android:id="@+id/counts"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#3F3E3E"
+        android:layout_height="60dp"
+        android:background="#282828"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/notes_bar">
 
         <TextView
             android:id="@+id/likes_count"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingRight="20dp"
             android:text="100 Likes"
@@ -36,6 +54,7 @@
             android:textSize="16sp"
             android:textStyle="bold" />
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -98,14 +117,15 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/comments_list"
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#3F3E3E"
+        android:background="#303030"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/counts"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/counts"
         tools:listitem="@layout/comment_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

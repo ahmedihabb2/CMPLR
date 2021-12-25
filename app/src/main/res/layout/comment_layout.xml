@@ -40,14 +40,14 @@
 
     <EditText
         android:id="@+id/user_comment"
-        android:layout_width="314dp"
+        android:layout_width="308dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="4dp"
         android:background="@drawable/text_boarder"
-        android:inputType="none"
         android:enabled="false"
+        android:inputType="none"
         android:text="@string/random_comment"
         android:textColor="#FEFAFA"
         android:textSize="14sp"

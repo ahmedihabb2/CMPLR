@@ -11,14 +11,13 @@
         android:id="@+id/editor"
         android:layout_width="353dp"
         android:layout_height="587dp"
+        android:layout_marginBottom="8dp"
         android:background="#4A4646"
         app:layout_anchor="@+id/constraintLayout"
         app:layout_anchorGravity="top|center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.898">
+        app:layout_constraintStart_toStartOf="parent">
 
 
     </jp.wasabeef.richeditor.RichEditor>
@@ -38,13 +37,13 @@
         app:layout_constraintVertical_bias="0.007" />
 
     <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
         android:layout_width="377dp"
         android:layout_height="39dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/editor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.111">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -104,6 +103,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 app:srcCompat="@drawable/ic_baseline_color_lens_24" />
+
             <ImageButton
                 android:id="@+id/insertImgBtn"
                 android:layout_width="wrap_content"

@@ -5,6 +5,10 @@ import com.google.gson.JsonObject
 import org.json.JSONObject
 import retrofit2.http.*
 
+/**
+ * Interface that contains All API methods
+ *
+ */
 
 interface methods {
     @Headers("Content-Type: application/json","Accept: application/json")

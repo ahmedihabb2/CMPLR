@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.cmp.cmplr.R
 import com.cmp.cmplr.Adapter.NotesAdapter
+import androidx.appcompat.widget.Toolbar
+import androidx.navigation.findNavController
 
 
 class NotesFragment : Fragment() {
@@ -27,6 +29,10 @@ class NotesFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val tool_bar : Toolbar = view.findViewById(R.id.notes_bar)
+        tool_bar.setOnClickListener {
+            it.findNavController().popBackStack()
+        }
         val comments_list : ArrayList<String> = ArrayList()
         super.onViewCreated(view, savedInstanceState)
         val mention_btn : Button = view.findViewById(R.id.mention_btn)

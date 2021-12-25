@@ -45,6 +45,7 @@ class SignupActivity : AppCompatActivity() {
             var signupResp: JsonObject
             val job = lifecycleScope.launchWhenCreated  {
                 signupResp = signupController.validateData(signupData)
+                Log.i("Test" , signupResp.toString())
                 when(signupResp.getAsJsonObject("meta")["status_code"].asInt){
                     201 -> {
                         binding.errorTextSignup.text = ""
