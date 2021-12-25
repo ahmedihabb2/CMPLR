@@ -1,7 +1,10 @@
 package com.cmp.cmplr.Model
 
+import com.cmp.cmplr.API.Api_Instance
 import com.cmp.cmplr.Controller.LocalStorage
 import com.cmp.cmplr.DataClasses.HomePostData
+import com.google.gson.JsonObject
+import retrofit2.Response
 
 class HomeModel (){
 
@@ -11,10 +14,12 @@ class HomeModel (){
     fun putToken(tokenPassed:String?){
         token=tokenPassed
     }
-    fun listReturn():ArrayList<HomePostData>
+    suspend fun listReturn():Pair<ArrayList<HomePostData>,Boolean>
     {
         //get the data
-        return postList
+        var requestsuccess:Boolean=false
+        val response: Response<JsonObject> = Api_Instance.api.homepost(token)
+        return Pair(postList,requestsuccess)
     }
 
 
