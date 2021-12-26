@@ -17,6 +17,7 @@
         app:layout_constraintTop_toTopOf="@+id/user_comment">
 
         <ImageView
+            android:id="@+id/comment_user_img"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@color/black" />

@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
         app:subtitleTextColor="#FFFCFC"
-        app:title="200 Notes"
+        app:title="- Notes"
         app:titleTextColor="#FFFFFF" />
 
     <LinearLayout
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingRight="20dp"
-            android:text="100 Likes"
+            android:text="- Likes"
             android:textAlignment="textEnd"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
@@ -49,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="100 Notes"
+            android:text="- Reblogs"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -126,6 +126,18 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/counts"
-        tools:listitem="@layout/comment_layout" />
+        tools:listitem="@layout/comment_layout" >
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <ProgressBar
+        android:id="@+id/comments_load"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="@+id/comments_list"
+        app:layout_constraintStart_toStartOf="@+id/comments_list"
+        app:layout_constraintTop_toBottomOf="@+id/counts" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

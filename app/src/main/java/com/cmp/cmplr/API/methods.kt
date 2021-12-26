@@ -1,6 +1,7 @@
 package com.cmp.cmplr.API
 
 import com.google.android.gms.common.api.Response
+import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import org.json.JSONObject
 import retrofit2.http.*
@@ -27,4 +28,9 @@ interface methods {
     @Headers("Content-Type: application/json","Accept: application/json")
     @POST("/api/logout")
     suspend fun logout(@Header("Authorization") token: String) : retrofit2.Response<JsonObject>
+
+    //Used for mocking Notes page
+    @Headers("Content-Type: application/json","Accept: application/json")
+    @POST("/v3/7b25a4ab-fc6a-4e55-a405-e99c8a78f730/")
+    suspend fun get_notes(@Body post_id : String) : retrofit2.Response<JsonArray>
 }
