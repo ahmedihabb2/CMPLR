@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -44,6 +45,8 @@ class SignupActivity : AppCompatActivity() {
             // Send data to controller
             var signupResp: JsonObject
             val job = lifecycleScope.launchWhenCreated  {
+                binding.signupToolbar.signupButton.visibility = View.GONE
+                binding.signupToolbar.progressBarSignup.visibility = View.VISIBLE
                 signupResp = signupController.validateData(signupData)
                 Log.i("Test" , signupResp.toString())
                 when(signupResp.getAsJsonObject("meta")["status_code"].asInt){
@@ -83,11 +86,11 @@ class SignupActivity : AppCompatActivity() {
 
                     }
                 }
+                binding.signupToolbar.signupButton.visibility = View.VISIBLE
+                binding.signupToolbar.progressBarSignup.visibility = View.GONE
 
             }
-
-
-
+            
         }
 
         binding.loginButtonSignup.setOnClickListener {

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -38,6 +39,8 @@ class LoginActivity : AppCompatActivity() {
             )
             var signinResp: JsonObject
             val job = lifecycleScope.launchWhenCreated  {
+                binding.toolbarLogin.loginBtn.visibility = View.GONE
+                binding.toolbarLogin.progressBarLogin.visibility = View.VISIBLE
                 signinResp = loginController.validateSignin(signinata)
                 var status_code : Int
                 if(signinResp.getAsJsonObject("meta") != null)
@@ -82,7 +85,8 @@ class LoginActivity : AppCompatActivity() {
 
                     }
                 }
-
+                binding.toolbarLogin.loginBtn.visibility = View.VISIBLE
+                binding.toolbarLogin.progressBarLogin.visibility = View.GONE
             }
 
 
