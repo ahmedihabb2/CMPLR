@@ -33,6 +33,9 @@ import kotlinx.coroutines.withContext
 import org.sufficientlysecure.htmltextview.HtmlTextView
 
 
+
+
+
 class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.InfiniteViewHolder>() {
 
     val tag = "kak"
@@ -40,8 +43,6 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
     var homeModel:HomeModel= HomeModel()
     var wantMorePosts:Boolean=false
     var postList:ArrayList<HomePostData> =ArrayList()
-
-
 
 
     fun putToken(token_passed:String?){
@@ -104,7 +105,7 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
         var post:HomePostData=postList.get(position)
         holder.bind(post)
 
-        if (position>=(postList.size-2))
+        if (position>=(postList.size-3))
         {
             wantMorePosts=true
         }

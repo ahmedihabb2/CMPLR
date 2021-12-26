@@ -25,6 +25,7 @@ import com.cmp.cmplr.Model.UserPost
 import com.cmp.cmplr.R
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlin.concurrent.thread
 
 class HomeScreenFragment:Fragment() {
     //lateinit var mainHandler: Handler
@@ -82,6 +83,7 @@ class HomeScreenFragment:Fragment() {
 
         var progressBar:ProgressBar=requireView().findViewById(R.id.progressBar_home)
 
+        //var recyclerView=requireView().findViewById(R.id.theinfinte)
         var backendPair: ListBooleanPair
 
         runBlocking {
@@ -103,16 +105,16 @@ class HomeScreenFragment:Fragment() {
             override fun run() {
 
                 Log.d("kak2,","Interrupt nowwwwwwwwwww")
+                    rv_showData.visibility=View.INVISIBLE
+                    progressBar.visibility=View.VISIBLE
                 if(infiniteScrollRecycler.wantMorePosts==true) {
 
-                    //listsize=infiniteScrollRecycler.itemCount
                     var backendPair: ListBooleanPair
 
                     runBlocking {
-
-                        progressBar.visibility=View.VISIBLE
+                        Log.d("blocking","here")
                         backendPair=homeController.GetPostsBackend(token)
-                        progressBar.visibility=View.GONE
+                        Log.d("blocking","after here")
 
                     }
                     if(backendPair.getIsSucess()){
@@ -123,6 +125,8 @@ class HomeScreenFragment:Fragment() {
                     infiniteScrollRecycler.wantMorePosts=false
                     infiniteScrollRecycler.notifydataSet()
                 }
+                    progressBar.visibility=View.GONE
+                    rv_showData.visibility=View.VISIBLE
                 mainHandler.postDelayed(this, 10000)
             }
         })
