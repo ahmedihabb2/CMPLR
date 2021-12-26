@@ -34,15 +34,16 @@ import org.sufficientlysecure.htmltextview.HtmlTextView
 
 
 class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.InfiniteViewHolder>() {
-//    init {
-//        Log.d("kak", "initblock" )
-//
-// }
+
     val tag = "kak"
     var token:String?=""
     var homeModel:HomeModel= HomeModel()
-
+    var wantMorePosts:Boolean=false
     var postList:ArrayList<HomePostData> =ArrayList()
+
+
+
+
     fun putToken(token_passed:String?){
         token=token_passed
         homeModel.putToken(token)
@@ -51,7 +52,7 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
     fun notifydataSet(){
         notifyDataSetChanged()
     }
-    fun setList(posttList:ArrayList<HomePostData> ){
+    fun updateList(posttList:ArrayList<HomePostData> ){
         this.postList+=posttList
 
         Log.d(tag, "setlist end" )
@@ -70,12 +71,6 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
 
             var html:String=homepost.post.content
             html_post.setHtml(html)
-//            html_post.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//                Html.fromHtml(html, Html.FROM_HTML_MODE_COMPACT)
-//            } else {
-//                Html.fromHtml(html)
-//            }
-            //usr_name.text=(post.name).toString()
             usr_name.text=(homepost.blog.blog_name).toString()
             comments.text=(homepost.post.notes_count).toString()
             var inputStream: InputStream? = null
@@ -108,51 +103,10 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
         Log.d("kak","onbind begin")
         var post:HomePostData=postList.get(position)
         holder.bind(post)
-        //var test:Boolean
-        //var poss:ArrayList<HomePostData> =ArrayList()<ArrayList<HomePostData>,Boolean>
-        //<ArrayList<HomePostData>,Boolean>
-        //Log.d("kak",test.toString())
+
         if (position>=(postList.size-2))
         {
-            //var rec:ArrayList<HomePostData>
-            //var test :Boolean
-            var backendPair:ListBooleanPair
-
-            runBlocking {
-
-                //holder.progressBar.visibility=View.VISIBLE
-                backendPair=homeModel.listReturn()
-                //holder.progressBar.visibility=View.GONE
-                //
-            }
-            if(backendPair.getIsSucess()){
-
-            setList(backendPair.getList())
-            }
-
-//            Log.d("kak","return value is AAAAAAAAAA= "+temp.getIsSucess().toString())
-//            Log.d("back","boolean in apadter="+temp.getIsSucess().toString())
-            //var postsList_new: ArrayList<HomePostData> = temp.getList()
-//            for (i in 1 ..5){
-//                val blog: Blog = Blog("https://assets.tumblr.com//images//default_avatar//cone_closed_128.png",
-//                    "r",1, "theUsrName", true,"everyone");
-//                //val content: String="this post for <b>test update and edit</b> for HADIDY KAK khaled"
-//                val content: String="<h1>Queen say only yesterday you deserved to be.</h1><p>Molestiae pariatur ut rerum. Est expedita molestias qui. Quas voluptatibus dignissimos nobis est assumenda minima tempora.</p><p>Praesentium quia laudantium qui ut voluptates. Quidem consectetur molestiae occaecati saepe ipsam dolor ducimus. Eum natus consequatur labore a officiis odio reprehenderit. Labore nostrum est cumque labore.</p><p>Autem ut sunt esse aut nihil. Id facilis assumenda explicabo eius ut et. Molestiae delectus et quo et. Nulla fugiat in iste consequatur.</p>"
-//                val date: String="Friday, 24-Dec-21 15:35:30 UTC"
-//                val is_liked: Boolean=false
-//                val post_id: Int=54
-//                val source_content: String="google.com"
-//                val state: String="publish"
-//                val type: String="photos"
-//                //val tags = MutableList<String>()
-//                val tags = listOf("summer", "winter", "Evans")
-//                val notes_count:Int=99
-//                val post_data: Post = Post(content,date,is_liked,post_id,source_content,state,tags,type,notes_count)
-//
-//                var post:HomePostData= HomePostData(blog,post_data)
-//                postsList_new.add(post)
-//            }
-
+            wantMorePosts=true
         }
         //this place for on click listeners
         holder.usr_img.setOnClickListener{
