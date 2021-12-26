@@ -11,9 +11,14 @@ import javax.net.ssl.*
 
 
 object Api_Instance {
-    val api : methods by lazy {
+    var url:String="http://a667-41-44-141-19.ngrok.io/"    //abdelhamid
+    //var url:String="http://077e-156-223-130-25.ngrok.io/"    //anwer
+    //var url:String="https://www.cmplr.tech/ "                //server
+    val api : methods by lazy { //   http://077e-156-223-130-25.ngrok.io/        https://www.cmplr.tech/
+
+        //abdelhaimd http://a667-41-44-141-19.ngrok.io/
         Retrofit.Builder()
-            .baseUrl("https://www.cmplr.tech/")
+            .baseUrl(url)
             .addConverterFactory(GsonConverterFactory.create())
             .client(getUnsafeOkHttpClient())
             .build()

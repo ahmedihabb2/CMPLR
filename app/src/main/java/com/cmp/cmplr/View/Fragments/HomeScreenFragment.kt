@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.cmp.cmplr.Adapter.InfiniteScrollRecycler
 import com.cmp.cmplr.Controller.LocalStorage
@@ -19,6 +20,7 @@ import com.cmp.cmplr.DataClasses.HomePostData
 import com.cmp.cmplr.DataClasses.Post
 import com.cmp.cmplr.Model.UserPost
 import com.cmp.cmplr.R
+import kotlinx.coroutines.launch
 
 class HomeScreenFragment:Fragment() {
     //lateinit var mainHandler: Handler
@@ -53,7 +55,12 @@ class HomeScreenFragment:Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         Log.d("kak2","before super made")
-
+//        lifecycleScope.launch{
+//            Log.d("kak2","ya bro el lifescope222222222")
+//        }
+//        lifecycleScope.launchWhenCreated{
+//            Log.d("kak2","ya bro el lifescope")
+//        }
         super.onViewCreated(view, savedInstanceState)
         Log.d("kak2","after super made")
         var token:String?=localStorage.getTokenData(requireActivity())

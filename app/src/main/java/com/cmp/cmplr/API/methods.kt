@@ -27,7 +27,7 @@ interface methods {
 
 
     @Headers("Content-Type: application/json","Accept: application/json")
-    @GET("/api/usr/dashboard")
+    @GET("/api/user/dashboard")
     suspend fun homepost(@Header("Authorization") token: String?) : retrofit2.Response<JsonObject>
 
 }

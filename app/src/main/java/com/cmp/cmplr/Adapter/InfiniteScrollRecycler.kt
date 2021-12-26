@@ -20,11 +20,16 @@ import java.net.URL
 import android.os.StrictMode
 import android.os.StrictMode.ThreadPolicy
 import android.text.Html
+import android.widget.ProgressBar
 import androidx.activity.result.contract.ActivityResultContracts
 import com.cmp.cmplr.DataClasses.Blog
 import com.cmp.cmplr.DataClasses.HomePostData
+import com.cmp.cmplr.DataClasses.ListBooleanPair
 import com.cmp.cmplr.DataClasses.Post
 import com.cmp.cmplr.Model.HomeModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import org.sufficientlysecure.htmltextview.HtmlTextView
 
 
@@ -54,7 +59,7 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
     }
 
     class InfiniteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
+        //var progressBar:ProgressBar=itemView.findViewById(R.id.progressBar_home)
         var usr_img: ImageView =itemView.findViewById(R.id.user_pic)
         var usr_name:TextView=itemView.findViewById(R.id.username_home)
         var comments:TextView=itemView.findViewById(R.id.comments_btn)
@@ -99,34 +104,55 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
         return InfiniteViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: InfiniteViewHolder, position: Int) {
+    override  fun onBindViewHolder(holder: InfiniteViewHolder, position: Int) {
         Log.d("kak","onbind begin")
         var post:HomePostData=postList.get(position)
         holder.bind(post)
-
+        //var test:Boolean
+        //var poss:ArrayList<HomePostData> =ArrayList()<ArrayList<HomePostData>,Boolean>
+        //<ArrayList<HomePostData>,Boolean>
+        //Log.d("kak",test.toString())
         if (position>=(postList.size-2))
-        {   var postsList_new: ArrayList<HomePostData> = ArrayList()
-            for (i in 1 ..5){
-                val blog: Blog = Blog("https://assets.tumblr.com//images//default_avatar//cone_closed_128.png",
-                    "r",1, "theUsrName", true,"everyone");
-                //val content: String="this post for <b>test update and edit</b> for HADIDY KAK khaled"
-                val content: String="<h1>Queen say only yesterday you deserved to be.</h1><p>Molestiae pariatur ut rerum. Est expedita molestias qui. Quas voluptatibus dignissimos nobis est assumenda minima tempora.</p><p>Praesentium quia laudantium qui ut voluptates. Quidem consectetur molestiae occaecati saepe ipsam dolor ducimus. Eum natus consequatur labore a officiis odio reprehenderit. Labore nostrum est cumque labore.</p><p>Autem ut sunt esse aut nihil. Id facilis assumenda explicabo eius ut et. Molestiae delectus et quo et. Nulla fugiat in iste consequatur.</p>"
-                val date: String="Friday, 24-Dec-21 15:35:30 UTC"
-                val is_liked: Boolean=false
-                val post_id: Int=54
-                val source_content: String="google.com"
-                val state: String="publish"
-                val type: String="photos"
-                //val tags = MutableList<String>()
-                val tags = listOf("summer", "winter", "Evans")
-                val notes_count:Int=99
-                val post_data: Post = Post(content,date,is_liked,post_id,source_content,state,tags,type,notes_count)
+        {
+            //var rec:ArrayList<HomePostData>
+            //var test :Boolean
+            var backendPair:ListBooleanPair
 
-                var post:HomePostData= HomePostData(blog,post_data)
-                postsList_new.add(post)
+            runBlocking {
+
+                //holder.progressBar.visibility=View.VISIBLE
+                backendPair=homeModel.listReturn()
+                //holder.progressBar.visibility=View.GONE
+                //
+            }
+            if(backendPair.getIsSucess()){
+
+            setList(backendPair.getList())
             }
 
-            setList(postsList_new)
+//            Log.d("kak","return value is AAAAAAAAAA= "+temp.getIsSucess().toString())
+//            Log.d("back","boolean in apadter="+temp.getIsSucess().toString())
+            //var postsList_new: ArrayList<HomePostData> = temp.getList()
+//            for (i in 1 ..5){
+//                val blog: Blog = Blog("https://assets.tumblr.com//images//default_avatar//cone_closed_128.png",
+//                    "r",1, "theUsrName", true,"everyone");
+//                //val content: String="this post for <b>test update and edit</b> for HADIDY KAK khaled"
+//                val content: String="<h1>Queen say only yesterday you deserved to be.</h1><p>Molestiae pariatur ut rerum. Est expedita molestias qui. Quas voluptatibus dignissimos nobis est assumenda minima tempora.</p><p>Praesentium quia laudantium qui ut voluptates. Quidem consectetur molestiae occaecati saepe ipsam dolor ducimus. Eum natus consequatur labore a officiis odio reprehenderit. Labore nostrum est cumque labore.</p><p>Autem ut sunt esse aut nihil. Id facilis assumenda explicabo eius ut et. Molestiae delectus et quo et. Nulla fugiat in iste consequatur.</p>"
+//                val date: String="Friday, 24-Dec-21 15:35:30 UTC"
+//                val is_liked: Boolean=false
+//                val post_id: Int=54
+//                val source_content: String="google.com"
+//                val state: String="publish"
+//                val type: String="photos"
+//                //val tags = MutableList<String>()
+//                val tags = listOf("summer", "winter", "Evans")
+//                val notes_count:Int=99
+//                val post_data: Post = Post(content,date,is_liked,post_id,source_content,state,tags,type,notes_count)
+//
+//                var post:HomePostData= HomePostData(blog,post_data)
+//                postsList_new.add(post)
+//            }
+
         }
         //this place for on click listeners
         holder.usr_img.setOnClickListener{
