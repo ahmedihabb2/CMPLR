@@ -24,8 +24,8 @@ class WritePostActivity : AppCompatActivity(),
                           WritePostController.WritePostView {
 
     private val control = WritePostController
-    private val token = LocalStorage().getTokenData(this)!!
-    private val blogName = LocalStorage().getBlogName(this)!!
+    private lateinit var token : String
+    private lateinit var blogName : String
     private lateinit var binding: ActivityWritePostBinding
     private lateinit var imageChooserActivityLauncher : ActivityResultLauncher<Intent>
 
@@ -33,6 +33,10 @@ class WritePostActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         binding = ActivityWritePostBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val store = LocalStorage()
+        token = store.getTokenData(this)!!
+        blogName = store.getBlogName(this)!!
 
         imageChooserActivityLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == Activity.RESULT_OK) {
