@@ -13,4 +13,6 @@
     <color name="tumblr_color">#101C39</color>
     <color name="done_color">#90A2B8</color>
     <color name="tumblr_grey">#A6B6C6</color>
+    <color name="tumblr_grey_background">#3F3E3E</color>
+
 </resources>

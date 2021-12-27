@@ -6,14 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.cmp.cmplr.R
-import com.cmp.cmplr.Shared.ExploreAdapter
-import com.cmp.cmplr.Shared.NotesAdapter
+import com.cmp.cmplr.Adapter.ExploreAdapter
 import com.google.android.material.appbar.CollapsingToolbarLayout
 
 

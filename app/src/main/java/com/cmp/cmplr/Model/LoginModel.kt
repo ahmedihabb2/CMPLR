@@ -1,6 +1,7 @@
 package com.cmp.cmplr.Model
 
 import android.app.Activity
+import android.util.Log
 import com.cmp.cmplr.API.Api_Instance
 import com.cmp.cmplr.API.LoginData
 import com.cmp.cmplr.API.SignupData
@@ -21,6 +22,7 @@ class LoginModel {
 
     var dataBase = DatabaseMock()
     private var localStorage = LocalStorage()
+
 
     /**
      *

@@ -8,14 +8,14 @@
     >
 
     <TextView
-        android:id="@+id/dummy_text_id"
+        android:id="@+id/html_text_post"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/dummy_big_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,16 +16,11 @@ import java.util.*
  *
  */
 class SignupModel {
-
-    var dataBase = DatabaseMock()
-
     /**
+     * This function is responsible for making API request to sign user up
      *
-     *
-     * @param name
-     * @param email
-     * @param password
-     * @return   true if the signup is successful, false else
+     * @param signupData A Class object that contains user data (email , blogname , password , age)
+     * @return Json object contains API response
      */
     suspend fun userSignup(@Body signupData: SignupData): JsonObject? {
         var gson: Gson = Gson()

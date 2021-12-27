@@ -1,4 +1,4 @@
-package com.cmp.cmplr.Shared
+package com.cmp.cmplr.Adapter
 
 import android.view.LayoutInflater
 import android.view.View

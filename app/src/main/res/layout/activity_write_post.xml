@@ -1,36 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DBDEDF">
+    android:background="#222222 ">
+
+    <jp.wasabeef.richeditor.RichEditor
+        android:id="@+id/editor"
+        android:layout_width="353dp"
+        android:layout_height="587dp"
+        android:layout_marginBottom="8dp"
+        android:background="#4A4646"
+        app:layout_anchor="@+id/constraintLayout"
+        app:layout_anchorGravity="top|center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+    </jp.wasabeef.richeditor.RichEditor>
 
     <Button
         android:id="@+id/postBtn"
-        android:layout_width="67dp"
-        android:layout_height="39dp"
-        android:background="#234EE4"
-        android:text="@string/confirmPost"
+        android:layout_width="75dp"
+        android:layout_height="48dp"
+        android:background="@drawable/rounded_button"
+        android:text="@string/Post"
+        android:textColor="#FFFCFC"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.953"
+        app:layout_constraintHorizontal_bias="0.968"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintVertical_bias="0.007" />
 
-    <EditText
-        android:id="@+id/editTextTextMultiLine"
-        android:layout_width="299dp"
-        android:layout_height="575dp"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="@string/writePostHint"
-        android:inputType="textMultiLine"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="377dp"
+        android:layout_height="39dp"
+        app:layout_constraintBottom_toTopOf="@+id/editor"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.801" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/boldBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_baseline_format_bold_24" />
+
+            <ImageButton
+                android:id="@+id/italicBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_baseline_format_italic_24" />
+
+            <ImageButton
+                android:id="@+id/underlineBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_baseline_format_underlined_24" />
+
+            <ImageButton
+                android:id="@+id/strikethroughBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_baseline_format_strikethrough_24" />
+
+            <ImageButton
+                android:id="@+id/subscriptBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_baseline_subscript_24" />
+
+            <ImageButton
+                android:id="@+id/superscriptBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_baseline_superscript_24" />
+
+
+            <ImageButton
+                android:id="@+id/undoBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_baseline_undo_24" />
+
+            <ImageButton
+                android:id="@+id/redoBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_baseline_redo_24" />
+
+            <ImageButton
+                android:id="@+id/colorpickerBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_baseline_color_lens_24" />
+
+            <ImageButton
+                android:id="@+id/insertImgBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_baseline_image_24" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

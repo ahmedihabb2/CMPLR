@@ -30,16 +30,12 @@ class SignupController {
 
 
     /**
+     * This function is responsible for validating user input locally
+     * If the data is correct it sends it to the server and get the response
+     * and send the response back to the view
      *
-     *
-     * @param name  the name of the new user
-     * @param email     the mail of the new user
-     * @param password     the password of the new user
-     * @return integer which indicates what the view should do
-     *              1-> name is empty
-     *              2-> the mail has invalid format
-     *              3-> the mail is used before
-     *              4-> signup successful
+     * @param signupData A class that contains the signup data (email , blogname , password , age)
+     * @return Json that contains server response
      */
     suspend fun validateData(signupData: SignupData): JsonObject {
         val gson = Gson()
