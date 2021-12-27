@@ -25,6 +25,7 @@ import android.text.Html
 import android.widget.ProgressBar
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat.startActivity
+import com.cmp.cmplr.Controller.HomeController
 import com.cmp.cmplr.DataClasses.Blog
 import com.cmp.cmplr.DataClasses.HomePostData
 import com.cmp.cmplr.DataClasses.ListBooleanPair
@@ -37,6 +38,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import org.sufficientlysecure.htmltextview.HtmlTextView
+//import androidx.test.internal.runner.junit4.statement.UiThreadStatement.runOnUiThread
+
+
+
 
 
 
@@ -49,6 +54,7 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
     var homeModel:HomeModel= HomeModel()
     var wantMorePosts:Boolean=false
     var postList:ArrayList<HomePostData> =ArrayList()
+    var homeController= HomeController()
     lateinit var myActivity:Activity
 
     fun putActivity(activity: Activity){
@@ -115,7 +121,6 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
 
         }
 
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InfiniteViewHolder {
@@ -130,10 +135,24 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
         var post:HomePostData=postList.get(position)
         holder.bind(post)
 
-        if (position>=(postList.size-3))
-        {
-            wantMorePosts=true
-        }
+//        if (position>=(postList.size-3))
+//        {
+//            wantMorePosts=true
+//            var backendPair: ListBooleanPair
+//
+//            runBlocking {
+//
+//                //progressBar.visibility=View.VISIBLE
+//                backendPair=homeController.GetPostsBackend(token)
+//                //progressBar.visibility=View.GONE
+//            if(backendPair.getIsSucess()){
+//
+//                updateList(backendPair.getList())
+//                //notifydataSet()
+//            }
+//
+//            }
+//        }
         //this place for on click listeners
         holder.usr_img.setOnClickListener{
             var temp:String ="pressed on image of postition:"+position.toString()+" ,array size="+postList.size.toString()

@@ -110,7 +110,7 @@ class HomeModel (){
             tagsString=tagsString.replace("[","")
             tagsString=tagsString.replace("]","")
             var tags=tagsString.split(",")
-            Log.d("back_content",tags[1].toString())
+          //  Log.d("back_content",tags[1].toString())
             val notes_count:Int=single_post["notes_count"].toString().toInt()
 
             val post_data: Post = Post(content,date,is_liked,post_id,source_content,state,tags,type,notes_count)
