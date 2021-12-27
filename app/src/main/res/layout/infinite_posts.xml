@@ -2,33 +2,33 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/infinite_posts"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/infinite_posts"
     android:background="@color/tumblr_color"
+    tools:layout_editor_absoluteX="16dp"
+    tools:layout_editor_absoluteY="124dp"
+
     >
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/theinfinte"
+    <ScrollView
+        android:id="@+id/scroll_view_infinite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="50dp"
-        android:background="@color/tumblr_color"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:paddingBottom="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/whole_post_view" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ProgressBar
-        android:id="@+id/progressBar_home"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/theinfinte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/tumblr_color"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/whole_post_view"
+            android:paddingBottom="30dp"
+            />
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 package com.cmp.cmplr.View.Fragments
 
 import android.app.Activity
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -8,10 +9,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
@@ -24,6 +23,7 @@ import com.cmp.cmplr.DataClasses.ListBooleanPair
 import com.cmp.cmplr.DataClasses.Post
 import com.cmp.cmplr.Model.UserPost
 import com.cmp.cmplr.R
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlin.concurrent.thread
@@ -59,6 +59,7 @@ class HomeScreenFragment:Fragment() {
         return inflater.inflate(R.layout.infinite_posts, container, false)
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         Log.d("kak2","before super made")
 
@@ -84,16 +85,17 @@ class HomeScreenFragment:Fragment() {
 
         Log.d("kak2","after adapter setting made")
 
-        var progressBar:ProgressBar=requireView().findViewById(R.id.progressBar_home)
+        //var progressBar:ProgressBar=requireView().findViewById(R.id.progressBar_home)
+
 
         //var recyclerView=requireView().findViewById(R.id.theinfinte)
         var backendPair: ListBooleanPair
 
         runBlocking {
 
-            progressBar.visibility=View.VISIBLE
+            //progressBar.visibility=View.VISIBLE
             backendPair=homeController.GetPostsBackend(token)
-            progressBar.visibility=View.GONE
+            //progressBar.visibility=View.GONE
 
         }
         if(backendPair.getIsSucess()){
@@ -101,41 +103,43 @@ class HomeScreenFragment:Fragment() {
             infiniteScrollRecycler.updateList(backendPair.getList())
             infiniteScrollRecycler.notifydataSet()
         }
+        var isIn=false
+        var scrollView:ScrollView=requireView().findViewById(R.id.scroll_view_infinite)
+        scrollView.setOnScrollChangeListener { _, _, _, _, _ ->
+            if (!scrollView.canScrollVertically(1) && !isIn) {
+                //Toast.makeText(activity?.applicationContext, "end ya bro", Toast.LENGTH_SHORT).show()
+                    isIn=true
 
-        val mainHandler = Handler(Looper.getMainLooper())
+                    Log.d("scroll","at the end there is troll")
 
-        mainHandler.post(object : Runnable {
-            override fun run() {
-
-                Log.d("kak2,","Interrupt nowwwwwwwwwww")
-                    rv_showData.visibility=View.INVISIBLE
-                    progressBar.visibility=View.VISIBLE
-                if(infiniteScrollRecycler.wantMorePosts==true) {
-
-                    var backendPair: ListBooleanPair
-
-                    runBlocking {
+                var backendPair: ListBooleanPair
+                    //scrollView.visibility=View.GONE
+                    //scrollView.visibility=View.INVISIBLE
+                    runBlocking{
                         Log.d("blocking","here")
                         backendPair=homeController.GetPostsBackend(token)
                         Log.d("blocking","after here")
 
-                    }
-                    if(backendPair.getIsSucess()){
+                        if(backendPair.getIsSucess()){
 
-                        infiniteScrollRecycler.updateList(backendPair.getList())
+                            infiniteScrollRecycler.updateList(backendPair.getList())
+                            infiniteScrollRecycler.notifydataSet()
+                        }
+                        infiniteScrollRecycler.wantMorePosts=false
                         infiniteScrollRecycler.notifydataSet()
+                        scrollView.visibility=View.VISIBLE
+                        isIn=false
                     }
-                    infiniteScrollRecycler.wantMorePosts=false
-                    infiniteScrollRecycler.notifydataSet()
-                }
-                    progressBar.visibility=View.GONE
-                    rv_showData.visibility=View.VISIBLE
-                mainHandler.postDelayed(this, 10000)
+//                    if(backendPair.getIsSucess()){
+//
+//                        infiniteScrollRecycler.updateList(backendPair.getList())
+//                        infiniteScrollRecycler.notifydataSet()
+//                    }
+//                    infiniteScrollRecycler.wantMorePosts=false
+//                    infiniteScrollRecycler.notifydataSet()
+//                    scrollView.visibility=View.VISIBLE
             }
-        })
-
-
-
+        }
 
     }
 
