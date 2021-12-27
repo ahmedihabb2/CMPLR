@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Build
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -25,6 +26,7 @@ import android.text.Html
 import android.widget.ProgressBar
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat.startActivity
+import androidx.navigation.findNavController
 import com.cmp.cmplr.DataClasses.Blog
 import com.cmp.cmplr.DataClasses.HomePostData
 import com.cmp.cmplr.DataClasses.ListBooleanPair
@@ -79,6 +81,7 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
         var html_post:HtmlTextView=itemView.findViewById(R.id.html_view_instance )
         var first_hashtag:TextView=itemView.findViewById(R.id.first_hashtag)
         var second_hashtag:TextView=itemView.findViewById(R.id.second_hashtag)
+        var notes_btn : TextView = itemView.findViewById(R.id.comments_btn)
         fun bind(homepost:HomePostData){
             val policy = ThreadPolicy.Builder().permitAll().build()
             StrictMode.setThreadPolicy(policy)
@@ -86,7 +89,7 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
             var html:String=homepost.post.content
             html_post.setHtml(html)
             usr_name.text=(homepost.blog.blog_name).toString()
-            comments.text=(homepost.post.notes_count).toString()
+            comments.text=(homepost.post.notes_count).toString() + " notes"
             first_hashtag.text=""
             second_hashtag.text=""
             if(homepost.post.tags.size==1){
@@ -141,6 +144,12 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
             val i = Intent(myActivity.applicationContext,IntroActivity::class.java)
             //i.putExtra()
             startActivity(myActivity.applicationContext,i,null)
+        }
+        var data = Bundle()
+        data.putInt("post_id" , post.post.post_id)
+        holder.notes_btn.setOnClickListener {
+            Log.i("Notes" , "Pressed")
+            it.findNavController().navigate(R.id.action_homeScreenFragment_to_notesFragment , data)
         }
         Log.d("kak","onbind begin")
     }

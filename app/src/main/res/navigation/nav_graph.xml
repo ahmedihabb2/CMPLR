@@ -36,7 +36,11 @@
     <fragment
         android:id="@+id/notesFragment"
         android:name="com.cmp.cmplr.View.Fragments.NotesFragment"
-        android:label="NotesFragment" />
+        android:label="NotesFragment" >
+        <action
+            android:id="@+id/action_notesFragment_self"
+            app:destination="@id/notesFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchInput"
         android:name="com.cmp.cmplr.View.Fragments.SearchInput"

@@ -8,7 +8,7 @@ import com.google.gson.JsonObject
 
 class NotesController {
     private val notesModel: NotesModel = NotesModel()
-    suspend fun getNotes(post_id: String): Triple<ArrayList<JsonObject>,ArrayList<String>,ArrayList<Int>> {
+    suspend fun getNotes(post_id:Int): Triple<ArrayList<JsonObject>,ArrayList<String>,ArrayList<Int>> {
         val reply_list: ArrayList<JsonObject> = ArrayList()
         val images_list: ArrayList<String> = ArrayList()
         val notes_values : ArrayList<Int> = ArrayList()
@@ -24,11 +24,15 @@ class NotesController {
             for (item in notes_list) {
                 images_list.add(item.asJsonObject["avatar"].asString)
                 if (item.asJsonObject["type"].asString == "reply") {
-                    Log.i("Notes", "Yes")
                     reply_list.add(item as JsonObject)
                 }
             }
         }
         return Triple(reply_list , images_list , notes_values)
+    }
+    suspend fun addReplyCont(token : String , post_id : Int , content : String) : Int
+    {
+        return  notesModel.addReply(token, post_id,content)
+
     }
 }
