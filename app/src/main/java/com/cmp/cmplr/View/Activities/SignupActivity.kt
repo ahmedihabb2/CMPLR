@@ -90,7 +90,7 @@ class SignupActivity : AppCompatActivity() {
                 binding.signupToolbar.progressBarSignup.visibility = View.GONE
 
             }
-            
+
         }
 
         binding.loginButtonSignup.setOnClickListener {
