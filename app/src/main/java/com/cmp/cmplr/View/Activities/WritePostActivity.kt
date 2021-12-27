@@ -3,9 +3,13 @@ package com.cmp.cmplr.View.Activities
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.net.Uri
+import android.opengl.ETC1.encodeImage
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
 import android.util.Log.INFO
 import android.widget.Toast
@@ -17,6 +21,8 @@ import com.cmp.cmplr.Controller.LocalStorage
 import com.cmp.cmplr.Controller.WritePostController
 import com.cmp.cmplr.R
 import com.cmp.cmplr.databinding.ActivityWritePostBinding
+import java.io.ByteArrayOutputStream
+import java.net.URI
 import java.util.logging.Level.INFO
 
 
@@ -28,6 +34,7 @@ class WritePostActivity : AppCompatActivity(),
     private lateinit var blogName : String
     private lateinit var binding: ActivityWritePostBinding
     private lateinit var imageChooserActivityLauncher : ActivityResultLauncher<Intent>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +48,12 @@ class WritePostActivity : AppCompatActivity(),
         imageChooserActivityLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == Activity.RESULT_OK) {
                 val imgUri = it.data?.data
-                binding.editor.insertImage(imgUri.toString(),"image",150,200)
+                if(imgUri != null) {
+                    val img = imgToBase64(imgUri)
+
+                    binding.editor.insertImage("data:image/jpeg;base64,$img",
+                                              "image", 150, 200)
+                }
             }
         }
 
@@ -106,4 +118,13 @@ class WritePostActivity : AppCompatActivity(),
 
     }
 
+    fun imgToBase64(Uri : Uri) : String {
+        val stream = contentResolver.openInputStream(Uri)
+        val imgAsbitmap = BitmapFactory.decodeStream(stream)
+
+        var outstream = ByteArrayOutputStream()
+        imgAsbitmap.compress(Bitmap.CompressFormat.JPEG,100,outstream)
+
+        return Base64.encodeToString(outstream.toByteArray(),Base64.NO_WRAP)
+    }
 }
