@@ -1,5 +1,7 @@
 package com.cmp.cmplr.Adapter
 
+import android.app.Activity
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Build
@@ -22,11 +24,15 @@ import android.os.StrictMode.ThreadPolicy
 import android.text.Html
 import android.widget.ProgressBar
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat.startActivity
 import com.cmp.cmplr.DataClasses.Blog
 import com.cmp.cmplr.DataClasses.HomePostData
 import com.cmp.cmplr.DataClasses.ListBooleanPair
 import com.cmp.cmplr.DataClasses.Post
 import com.cmp.cmplr.Model.HomeModel
+import com.cmp.cmplr.View.Activities.IntroActivity
+import com.cmp.cmplr.View.Activities.LoginActivity
+import com.cmp.cmplr.View.Activities.WritePostActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
@@ -43,6 +49,11 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
     var homeModel:HomeModel= HomeModel()
     var wantMorePosts:Boolean=false
     var postList:ArrayList<HomePostData> =ArrayList()
+    lateinit var myActivity:Activity
+
+    fun putActivity(activity: Activity){
+        myActivity=activity
+    }
 
 
     fun putToken(token_passed:String?){
@@ -66,6 +77,8 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
         var usr_name:TextView=itemView.findViewById(R.id.username_home)
         var comments:TextView=itemView.findViewById(R.id.comments_btn)
         var html_post:HtmlTextView=itemView.findViewById(R.id.html_view_instance )
+        var first_hashtag:TextView=itemView.findViewById(R.id.first_hashtag)
+        var second_hashtag:TextView=itemView.findViewById(R.id.second_hashtag)
         fun bind(homepost:HomePostData){
             val policy = ThreadPolicy.Builder().permitAll().build()
             StrictMode.setThreadPolicy(policy)
@@ -74,6 +87,18 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
             html_post.setHtml(html)
             usr_name.text=(homepost.blog.blog_name).toString()
             comments.text=(homepost.post.notes_count).toString()
+            first_hashtag.text=""
+            second_hashtag.text=""
+            if(homepost.post.tags.size==1){
+                first_hashtag.text=homepost.post.tags[0]
+            }else if (homepost.post.tags.size>1){
+                first_hashtag.text="#"+homepost.post.tags[0].replace("\"","")
+                second_hashtag.text="#"+homepost.post.tags[1].replace("\"","")
+
+            }
+
+
+
             var inputStream: InputStream? = null
             var bitmap: Bitmap? = null
             //var URL:String="https://assets.tumblr.com//images//default_avatar//cone_closed_128.png"
@@ -113,7 +138,9 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
         holder.usr_img.setOnClickListener{
             var temp:String ="pressed on image of postition:"+position.toString()+" ,array size="+postList.size.toString()
             Log.d("kak",temp)
-
+            val i = Intent(myActivity.applicationContext,IntroActivity::class.java)
+            //i.putExtra()
+            startActivity(myActivity.applicationContext,i,null)
         }
         Log.d("kak","onbind begin")
     }

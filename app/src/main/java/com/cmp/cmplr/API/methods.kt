@@ -30,4 +30,9 @@ interface methods {
     @GET("/api/user/dashboard")
     suspend fun homepost(@Header("Authorization") token: String?) : retrofit2.Response<JsonObject>
 
+    @Headers("Content-Type: application/json","Accept: application/json")
+    @GET("/api/user/dashboard")
+    suspend fun homepost_beta() : retrofit2.Response<JsonObject>
+
+
 }

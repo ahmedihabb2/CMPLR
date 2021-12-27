@@ -71,7 +71,8 @@ class HomeModel (){
 
         var gson : Gson = Gson()
         try {
-            response= Api_Instance.api.homepost("Bearer $token")
+            //response= Api_Instance.api.homepost("Bearer $token")
+            response= Api_Instance.api.homepost_beta()
 
             if (!response.isSuccessful) {
                 Log.d("back","not success")

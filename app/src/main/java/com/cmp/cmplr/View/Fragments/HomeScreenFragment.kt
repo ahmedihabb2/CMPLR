@@ -1,5 +1,6 @@
 package com.cmp.cmplr.View.Fragments
 
+import android.app.Activity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -73,7 +74,9 @@ class HomeScreenFragment:Fragment() {
         rv_showData=requireView().findViewById<RecyclerView>(R.id.theinfinte)
 
         Log.d("kak2","line1")
+
         infiniteScrollRecycler.putToken(token) //passing the token to the adapter
+        infiniteScrollRecycler.putActivity(activity as Activity)
         rv_showData.adapter=infiniteScrollRecycler
 
         Log.d("kak2","line2")
