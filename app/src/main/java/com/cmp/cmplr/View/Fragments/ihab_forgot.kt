@@ -1,15 +1,7 @@
 package com.cmp.cmplr.View.Fragments
 
-class ihab_forgot {
-}
 
-/*
-*
-*
-*
-*
 
-package com.cmp.cmplr.View.Fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -31,7 +23,7 @@ import com.cmp.cmplr.View.Activities.WritePostButtonEventHandler
 import com.cmp.cmplr.View.Activities.WritePostRequester
 import com.cmp.cmplr.databinding.FragmentHomeScreenBinding
 
-class HomeScreenFragment : Fragment(),
+class ihab_forgot : Fragment(),
     WritePostRequester {
 
     override fun onCreateView(
@@ -80,4 +72,3 @@ class HomeScreenFragment : Fragment(),
 
 }
 
-* */

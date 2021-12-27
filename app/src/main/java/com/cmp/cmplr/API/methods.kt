@@ -23,4 +23,16 @@ interface methods {
     @Headers("Content-Type: application/json","Accept: application/json")
     @POST("/api/logout")
     suspend fun logout(@Header("Authorization") token: String) : retrofit2.Response<JsonObject>
+
+
+
+    @Headers("Content-Type: application/json","Accept: application/json")
+    @GET("/api/user/dashboard")
+    suspend fun homepost(@Header("Authorization") token: String?) : retrofit2.Response<JsonObject>
+
+    @Headers("Content-Type: application/json","Accept: application/json")
+    @GET("/api/user/dashboard")
+    suspend fun homepost_beta() : retrofit2.Response<JsonObject>
+
+
 }
