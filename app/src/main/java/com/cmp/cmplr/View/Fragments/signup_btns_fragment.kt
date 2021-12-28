@@ -71,7 +71,7 @@ class SignupBtnsFragment : Fragment() {
                         "email ${account.email} username ${account.displayName}",
                         Toast.LENGTH_SHORT
                     ).show()
-                    localStorage.insertTokenData(requireActivity(), account.idToken)
+                    localStorage.insertTokenData(requireActivity(), account.idToken, " ")
                     val intent =
                         Intent(activity?.applicationContext, MainScreenActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

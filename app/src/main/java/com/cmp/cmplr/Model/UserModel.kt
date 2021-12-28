@@ -1,5 +1,14 @@
 package com.cmp.cmplr.Model
 
+import android.app.Activity
+import com.cmp.cmplr.API.Api_Instance
+import com.cmp.cmplr.API.PostData
+import com.cmp.cmplr.Controller.LocalStorage
+import com.cmp.cmplr.Controller.WritePostController
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+
 /**
  * Mocking user posts using array
  *
@@ -8,14 +17,13 @@ package com.cmp.cmplr.Model
  *
  * @param ID
  */
-class UserModel(ID: String) {
-    private var posts = ArrayList<String>()
+class UserModel(private val token: String) {
 
-    fun addPost(postTxt: String){
-        posts.add(postTxt)
+    fun addPost(blogName: String, postTxt: String){
+        val auth = "Bearer $token"
+        CoroutineScope(Dispatchers.IO).launch {
+            Api_Instance.api.writePost(auth, PostData(blogName, postTxt))
+        }
     }
 
-    fun getPosts() : ArrayList<String> {
-        return posts
-    }
 }
