@@ -92,7 +92,7 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
             var html:String=homepost.post.content
             html_post.setHtml(html)
             usr_name.text=(homepost.blog.blog_name).toString()
-            comments.text=(homepost.post.notes_count).toString()
+            comments.text=(homepost.post.notes_count).toString()+" notes"
             first_hashtag.text=""
             second_hashtag.text=""
             if(homepost.post.tags.size==1){
