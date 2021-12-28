@@ -22,6 +22,8 @@ import java.net.URL
 import android.os.StrictMode
 import android.os.StrictMode.ThreadPolicy
 import android.text.Html
+import android.util.Base64
+import android.webkit.WebView
 import android.widget.ProgressBar
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat.startActivity
@@ -83,7 +85,7 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
         var usr_img: ImageView =itemView.findViewById(R.id.user_pic)
         var usr_name:TextView=itemView.findViewById(R.id.username_home)
         var comments:TextView=itemView.findViewById(R.id.comments_btn)
-        var html_post:HtmlTextView=itemView.findViewById(R.id.html_view_instance )
+        var html_post:WebView=itemView.findViewById(R.id.html_view_instance )
         var first_hashtag:TextView=itemView.findViewById(R.id.first_hashtag)
         var second_hashtag:TextView=itemView.findViewById(R.id.second_hashtag)
 
@@ -95,7 +97,9 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
             //var temphtml:String="<h2>Alternative text</h2><p>The alt attribute should reflect the image content, so users who cannot see the image gets an understanding of what the image contains:</p><img src=\"https://www.w3schools.com/html/img_chania.jpg\" alt=\"Flowers in Chania\" width=\"460\" height=\"345\">"
             var html:String=homepost.post.content
             //html_post.setHtml(html)
-            html_post.setHtml(html)
+            //html_post.setHtml(html)
+            val encodedHtml = Base64.encodeToString(html.toByteArray(), Base64.NO_PADDING)
+            html_post.loadData(encodedHtml, "text/html", "base64")
             usr_name.text=(homepost.blog.blog_name).toString()
             comments.text=(homepost.post.notes_count).toString()+" notes"
             first_hashtag.text=""
