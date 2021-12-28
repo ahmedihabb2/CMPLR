@@ -38,8 +38,13 @@ interface methods {
     @GET("/api/user/dashboard")
     suspend fun homepost_beta() : retrofit2.Response<JsonObject>
 
-    //Used for mocking Notes page
+
     @Headers("Content-Type: application/json","Accept: application/json")
-    @POST("/v3/7b25a4ab-fc6a-4e55-a405-e99c8a78f730/")
-    suspend fun get_notes(@Body post_id : String) : retrofit2.Response<JsonArray>
+    @GET("/api/post/notes")
+    suspend fun get_notes(@Query( "post_id" )post_id: Int) : retrofit2.Response<JsonObject>
+
+    @Headers("Content-Type: application/json","Accept: application/json")
+    @POST("/api/user/post/reply")
+    suspend fun  reply(@Header("Authorization") token: String?,@Query("post_id")post_id: Int , @Query("reply_text")reply_text : String) : retrofit2.Response<JsonObject>
+
 }

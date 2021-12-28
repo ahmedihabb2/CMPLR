@@ -1,23 +1,24 @@
 package com.cmp.cmplr.View.Fragments
 
 import android.graphics.Bitmap
-import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.cmp.cmplr.R
 import com.cmp.cmplr.Adapter.NotesAdapter
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
+import com.cmp.cmplr.Controller.LocalStorage
 import com.cmp.cmplr.Controller.NotesController
 import com.cmp.cmplr.Shared.getImage
 import com.google.gson.JsonObject
@@ -40,13 +41,19 @@ class NotesFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val notesController : NotesController = NotesController()
+        super.onViewCreated(view, savedInstanceState)
+        val localStorage = LocalStorage()
+        val post_id : Int= arguments?.get("post_id") as Int
+        val notesController = NotesController()
         val is_loading : ProgressBar = view.findViewById(R.id.comments_load)
         val likes_count : TextView = view.findViewById(R.id.likes_count)
         val notes_count : TextView = view.findViewById(R.id.notes_count)
         val notes_toolbar : Toolbar = view.findViewById(R.id.notes_bar)
-        lifecycleScope.launchWhenCreated {
-            val response:Triple<ArrayList<JsonObject> , ArrayList<String> ,ArrayList<Int>> =notesController.getNotes("10")
+        val reply_btn : Button = view.findViewById(R.id.replay_btn)
+        val mention_btn : Button = view.findViewById(R.id.mention_btn)
+        val comment_input : TextView = view.findViewById(R.id.comment_input)
+        val job =lifecycleScope.launchWhenCreated {
+            val response:Triple<ArrayList<JsonObject> , ArrayList<String> ,ArrayList<Int>> =notesController.getNotes(post_id=post_id)
             is_loading.visibility  = View.VISIBLE
             val listOfComments : ArrayList<JsonObject> =response.first
             val values : ArrayList<Int> = response.third
@@ -70,23 +77,28 @@ class NotesFragment : Fragment() {
         tool_bar.setOnClickListener {
             it.findNavController().popBackStack()
         }
-        super.onViewCreated(view, savedInstanceState)
-        val mention_btn : Button = view.findViewById(R.id.mention_btn)
-        val replay_btn : Button = view.findViewById(R.id.replay_btn)
-        val comment_input : TextView = view.findViewById(R.id.comment_input)
         mention_btn.setOnClickListener {
             comment_input.append("@")
         }
+        reply_btn.setOnClickListener {
+            lifecycleScope.launchWhenCreated {
+                val status : Int =notesController.addReplyCont("Bearer ${localStorage.getTokenData(requireActivity())!!}",post_id ,comment_input.text.toString() )
+                if(status == 200)
+                {
+                    Toast.makeText(activity?.applicationContext , "Note Added Successfully" , Toast.LENGTH_LONG).show()
+                    requireActivity().recreate()
+                }
+                else
+                {
+                    Toast.makeText(activity?.applicationContext , "Failed to add reply .. try again" , Toast.LENGTH_LONG).show()
+
+                }
+                comment_input.text = ""
+            }
+        }
         rv_showData = requireView().findViewById(R.id.comments_list)
         rv_showData.adapter = notesRecyclerView
-//        replay_btn.setOnClickListener {
-//            if(comment_input.text != "")
-//            {
-//                comments_list.add(comment_input.text.toString())
-//                comment_input.text = ""
-//                notesRecyclerView.setList(comments_list)
-//            }
-//        }
+
 
 
     }
