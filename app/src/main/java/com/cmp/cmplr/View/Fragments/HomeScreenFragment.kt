@@ -1,6 +1,7 @@
 package com.cmp.cmplr.View.Fragments
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -23,6 +24,9 @@ import com.cmp.cmplr.DataClasses.ListBooleanPair
 import com.cmp.cmplr.DataClasses.Post
 import com.cmp.cmplr.Model.UserPost
 import com.cmp.cmplr.R
+import com.cmp.cmplr.View.Activities.LoginActivity
+import com.cmp.cmplr.View.Activities.WritePostActivity
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -61,41 +65,21 @@ class HomeScreenFragment:Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        Log.d("kak2","before super made")
-
         super.onViewCreated(view, savedInstanceState)
-        Log.d("kak2","after super made")
+        val write_btn : FloatingActionButton = view.findViewById(R.id.writePostBtn2)
+        write_btn.setOnClickListener{
+            val intent = Intent(activity?.applicationContext, WritePostActivity::class.java)
+            startActivity(intent)
+        }
         var token:String?=localStorage.getTokenData(requireActivity())
-
-        Log.d("kak2","after array made")
-
-
-        Log.d("kak2","before adapter setting made")
-
         rv_showData=requireView().findViewById<RecyclerView>(R.id.theinfinte)
-
-        Log.d("kak2","line1")
-
         infiniteScrollRecycler.putToken(token) //passing the token to the adapter
         infiniteScrollRecycler.putActivity(activity as Activity)
         rv_showData.adapter=infiniteScrollRecycler
-
-        Log.d("kak2","line2")
-
-
-        Log.d("kak2","after adapter setting made")
-
-        //var progressBar:ProgressBar=requireView().findViewById(R.id.progressBar_home)
-
-
-        //var recyclerView=requireView().findViewById(R.id.theinfinte)
         var backendPair: ListBooleanPair
-
         runBlocking {
 
-            //progressBar.visibility=View.VISIBLE
             backendPair=homeController.GetPostsBackend(token)
-            //progressBar.visibility=View.GONE
 
         }
         if(backendPair.getIsSucess()){
@@ -107,19 +91,10 @@ class HomeScreenFragment:Fragment() {
         var scrollView:ScrollView=requireView().findViewById(R.id.scroll_view_infinite)
         scrollView.setOnScrollChangeListener { _, _, _, _, _ ->
             if (!scrollView.canScrollVertically(1) && !isIn) {
-                //Toast.makeText(activity?.applicationContext, "end ya bro", Toast.LENGTH_SHORT).show()
                     isIn=true
-
-                    Log.d("scroll","at the end there is troll")
-
                 var backendPair: ListBooleanPair
-                    //scrollView.visibility=View.GONE
-                    //scrollView.visibility=View.INVISIBLE
                     runBlocking{
-                        Log.d("blocking","here")
                         backendPair=homeController.GetPostsBackend(token)
-                        Log.d("blocking","after here")
-
                         if(backendPair.getIsSucess()){
 
                             infiniteScrollRecycler.updateList(backendPair.getList())

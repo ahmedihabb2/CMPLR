@@ -57,9 +57,11 @@ class NotesFragment : Fragment() {
             is_loading.visibility  = View.VISIBLE
             val listOfComments : ArrayList<JsonObject> =response.first
             val values : ArrayList<Int> = response.third
-            likes_count.text = values[0].toString()+" Likes"
-            notes_count.text = values[1].toString()+" Reblogs"
-            notes_toolbar.title = (values[0]+values[1]+values[2]).toString() + " Notes"
+            if(values.size > 0) {
+                likes_count.text = values[0].toString() + " Likes"
+                notes_count.text = values[1].toString() + " Reblogs"
+                notes_toolbar.title = (values[0] + values[1] + values[2]).toString() + " Notes"
+            }
             notesRecyclerView.setList(listOfComments)
             GlobalScope.launch {
                 val listOfImages : ArrayList<String> =response.second
