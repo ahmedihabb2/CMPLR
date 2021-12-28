@@ -31,6 +31,7 @@ import com.cmp.cmplr.DataClasses.HomePostData
 import com.cmp.cmplr.DataClasses.ListBooleanPair
 import com.cmp.cmplr.DataClasses.Post
 import com.cmp.cmplr.Model.HomeModel
+import com.cmp.cmplr.View.Activities.HashtagPage
 import com.cmp.cmplr.View.Activities.IntroActivity
 import com.cmp.cmplr.View.Activities.LoginActivity
 import com.cmp.cmplr.View.Activities.WritePostActivity
@@ -85,11 +86,15 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
         var html_post:HtmlTextView=itemView.findViewById(R.id.html_view_instance )
         var first_hashtag:TextView=itemView.findViewById(R.id.first_hashtag)
         var second_hashtag:TextView=itemView.findViewById(R.id.second_hashtag)
+
+
         fun bind(homepost:HomePostData){
             val policy = ThreadPolicy.Builder().permitAll().build()
             StrictMode.setThreadPolicy(policy)
 
+            //var temphtml:String="<h2>Alternative text</h2><p>The alt attribute should reflect the image content, so users who cannot see the image gets an understanding of what the image contains:</p><img src=\"https://www.w3schools.com/html/img_chania.jpg\" alt=\"Flowers in Chania\" width=\"460\" height=\"345\">"
             var html:String=homepost.post.content
+            //html_post.setHtml(html)
             html_post.setHtml(html)
             usr_name.text=(homepost.blog.blog_name).toString()
             comments.text=(homepost.post.notes_count).toString()+" notes"
@@ -154,12 +159,33 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
 //            }
 //        }
         //this place for on click listeners
-        holder.usr_img.setOnClickListener{
-            var temp:String ="pressed on image of postition:"+position.toString()+" ,array size="+postList.size.toString()
-            Log.d("kak",temp)
-            val i = Intent(myActivity.applicationContext,IntroActivity::class.java)
-            //i.putExtra()
-            startActivity(myActivity.applicationContext,i,null)
+        holder.first_hashtag.setOnClickListener{
+            val hashtagtextView = it as TextView
+            if(hashtagtextView.text.toString()!=""){
+                Log.d("lol",hashtagtextView.text.toString())
+                var temp:String ="pressed on image of postition:"+position.toString()+" ,array size="+postList.size.toString()
+                Log.d("kak",temp)
+                var i = Intent(myActivity.applicationContext, HashtagPage::class.java)
+                i.putExtra("hashtag",hashtagtextView.text.toString().replace("#","") )
+                //i.putExtra()
+                startActivity(myActivity.applicationContext,i,null)
+            }
+
+        }
+        holder.second_hashtag.setOnClickListener{
+            //var tempp:TextView=(TextView)it
+            val hashtagtextView = it as TextView
+            if(hashtagtextView.text.toString()!=""){
+                Log.d("lol",hashtagtextView.text.toString())
+                var temp:String ="pressed on image of postition:"+position.toString()+" ,array size="+postList.size.toString()
+                Log.d("kak",temp)
+                var i = Intent(myActivity.applicationContext, HashtagPage::class.java)
+                i.putExtra("hashtag",hashtagtextView.text.toString().replace("#","") )
+                //i.putExtra()
+                //startActivity(i)
+                startActivity(myActivity.applicationContext,i,null)
+            }
+
         }
         Log.d("kak","onbind begin")
     }
