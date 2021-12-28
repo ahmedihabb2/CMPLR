@@ -51,5 +51,5 @@
     <fragment
         android:id="@+id/blogFragment"
         android:name="com.cmp.cmplr.View.Fragments.BlogFragment"
-        android:label="BlogFragment" />
+        android:label="BlogFragment" /><action android:id="@+id/action_global_notesFragment" app:destination="@id/notesFragment"/><action android:id="@+id/action_global_blogFragment" app:destination="@id/blogFragment"/>
 </navigation>

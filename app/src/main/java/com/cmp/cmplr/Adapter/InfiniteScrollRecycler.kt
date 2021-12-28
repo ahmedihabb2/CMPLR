@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Build
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -27,6 +28,7 @@ import android.webkit.WebView
 import android.widget.ProgressBar
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat.startActivity
+import androidx.navigation.findNavController
 import com.cmp.cmplr.Controller.HomeController
 import com.cmp.cmplr.DataClasses.Blog
 import com.cmp.cmplr.DataClasses.HomePostData
@@ -34,18 +36,8 @@ import com.cmp.cmplr.DataClasses.ListBooleanPair
 import com.cmp.cmplr.DataClasses.Post
 import com.cmp.cmplr.Model.HomeModel
 import com.cmp.cmplr.View.Activities.HashtagPage
-import com.cmp.cmplr.View.Activities.IntroActivity
-import com.cmp.cmplr.View.Activities.LoginActivity
-import com.cmp.cmplr.View.Activities.WritePostActivity
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
-import org.sufficientlysecure.htmltextview.HtmlTextView
+
 //import androidx.test.internal.runner.junit4.statement.UiThreadStatement.runOnUiThread
-
-
-
-
 
 
 
@@ -88,7 +80,7 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
         var html_post:WebView=itemView.findViewById(R.id.html_view_instance )
         var first_hashtag:TextView=itemView.findViewById(R.id.first_hashtag)
         var second_hashtag:TextView=itemView.findViewById(R.id.second_hashtag)
-
+        var notes_btn : TextView = itemView.findViewById(R.id.comments_btn)
 
         fun bind(homepost:HomePostData){
             val policy = ThreadPolicy.Builder().permitAll().build()
@@ -151,24 +143,6 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
         var post:HomePostData=postList.get(position)
         holder.bind(post)
 
-//        if (position>=(postList.size-3))
-//        {
-//            wantMorePosts=true
-//            var backendPair: ListBooleanPair
-//
-//            runBlocking {
-//
-//                //progressBar.visibility=View.VISIBLE
-//                backendPair=homeController.GetPostsBackend(token)
-//                //progressBar.visibility=View.GONE
-//            if(backendPair.getIsSucess()){
-//
-//                updateList(backendPair.getList())
-//                //notifydataSet()
-//            }
-//
-//            }
-//        }
         //this place for on click listeners
         holder.first_hashtag.setOnClickListener{
             val hashtagtextView = it as TextView
@@ -197,6 +171,20 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
                 startActivity(myActivity.applicationContext,i,null)
             }
 
+        }
+
+
+        holder.usr_img.setOnClickListener {
+            var blog_data = Bundle()
+            blog_data.putString("blog_name" , post.blog.blog_name)
+            blog_data.putString("blog_avatar" , post.blog.avatar)
+            blog_data.putInt("blog_id" , post.blog.blog_id)
+            it.findNavController().navigate(R.id.action_global_blogFragment , blog_data)
+        }
+        holder.notes_btn.setOnClickListener {
+            var data = Bundle()
+            data.putInt("post_id" , post.post.post_id)
+            it.findNavController().navigate(R.id.action_global_notesFragment, data)
         }
         Log.d("kak","onbind begin")
     }

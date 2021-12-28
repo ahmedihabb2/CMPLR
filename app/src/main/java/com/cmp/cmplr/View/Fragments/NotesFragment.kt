@@ -52,6 +52,8 @@ class NotesFragment : Fragment() {
         val reply_btn : Button = view.findViewById(R.id.replay_btn)
         val mention_btn : Button = view.findViewById(R.id.mention_btn)
         val comment_input : TextView = view.findViewById(R.id.comment_input)
+        rv_showData = requireView().findViewById(R.id.comments_list)
+        rv_showData.adapter = notesRecyclerView
         val job =lifecycleScope.launchWhenCreated {
             val response:Triple<ArrayList<JsonObject> , ArrayList<String> ,ArrayList<Int>> =notesController.getNotes(post_id=post_id)
             is_loading.visibility  = View.VISIBLE
@@ -98,8 +100,6 @@ class NotesFragment : Fragment() {
                 comment_input.text = ""
             }
         }
-        rv_showData = requireView().findViewById(R.id.comments_list)
-        rv_showData.adapter = notesRecyclerView
 
 
 
