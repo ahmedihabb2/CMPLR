@@ -58,16 +58,24 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/theinfinte_hashtag"
+
+    <ScrollView
+        android:id="@+id/scroll_view_infinite_hash"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/tumblr_color"
-
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:paddingBottom="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout_hashtag"
-        tools:listitem="@layout/whole_post_view" />
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout_hashtag">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/theinfinte_hash"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/tumblr_color"
+            android:paddingBottom="30dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/whole_post_view" />
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
