@@ -48,7 +48,6 @@ class HomeScreenFragment:Fragment() {
     var listsize:Int=0;
 
     val infiniteScrollRecycler : InfiniteScrollRecycler by lazy {
-      Log.d("kak2","lazy eval")
        InfiniteScrollRecycler()
     }
 

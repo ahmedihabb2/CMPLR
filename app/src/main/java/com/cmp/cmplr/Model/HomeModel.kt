@@ -18,56 +18,21 @@ import retrofit2.Response
 import org.json.JSONObject
 class HomeModel (){
 
-    private var localStorage = LocalStorage()
-    var remoteRepositoryImp:RemoteRepositoryImp = RemoteRepositoryImp()
+
     var token:String?=""
     fun putToken(tokenPassed:String?){
         token=tokenPassed
     }
 
-    fun testBack(){
-        runBlocking {
-        remoteRepositoryImp.homepost(token)
 
-        }
 
-    }
-
-//    suspend fun listReturn():Pair<ArrayList<HomePostData>,Boolean>
-//    {
-//        //get the data
-//        var requestsuccess:Boolean=false
-//        val response: Response<JsonObject>
-//
-//        var gson : Gson = Gson()
-//        try {
-//            response= Api_Instance.api.homepost(token)
-//
-//            if (!response.isSuccessful) {
-//                return Pair(postList,false)
-//            }
-//            //return Pair(postList,false)
-//        }catch (e: HttpException){
-//            return Pair(postList,false)
-//        }
-//
-//        var thebody: JsonObject? =response.body()
-//
-//        var thejsonlist:List<Char>?=null
-//
-//        thejsonlist=thebody!!.getAsJsonObject("response")["post"].toString().toList()
-//
-//        return Pair(postList,true)
-//    }
 
     suspend fun listReturn():ListBooleanPair
     {
         var postList:ArrayList<HomePostData> =ArrayList()
 
         //get the data
-        var requestsuccess:Boolean=false
         val response: Response<JsonObject>
-        var postList_here:ArrayList<HomePostData> =ArrayList()
 
         var gson : Gson = Gson()
         try {
@@ -110,7 +75,6 @@ class HomeModel (){
             tagsString=tagsString.replace("[","")
             tagsString=tagsString.replace("]","")
             var tags=tagsString.split(",")
-          //  Log.d("back_content",tags[1].toString())
             val notes_count:Int=single_post["notes_count"].toString().toInt()
 
             val post_data: Post = Post(content,date,is_liked,post_id,source_content,state,tags,type,notes_count)
@@ -121,23 +85,10 @@ class HomeModel (){
             var homePostData:HomePostData= HomePostData(blog_data,post_data)
             postList.add(homePostData)
 
-//            single_item["state"]
-//            Log.d("back_content",single_item["state"].toString())
+
 
         }
 
-//        var jsonObject = thebody!!.getAsJsonObject("response")("post")
-//        val jsonArray = jsonObject.optJSONArray("Employee")
-        Log.d("back","sucess")
-
-//        var end:Int=jsonlist.size
-//        Log.d("back","post lenght="+end.toString())
-
-//        for (i in 0..10){
-//
-//            val item = jsonObject[i]
-//            Log.d("back_content","content="+item.toString())
-//        }
 
 
         return ListBooleanPair(postList,true)
