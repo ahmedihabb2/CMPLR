@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Build
-import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -23,16 +22,18 @@ import java.net.URL
 import android.os.StrictMode
 import android.os.StrictMode.ThreadPolicy
 import android.text.Html
+import android.util.Base64
+import android.webkit.WebView
 import android.widget.ProgressBar
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat.startActivity
 import com.cmp.cmplr.Controller.HomeController
-import androidx.navigation.findNavController
 import com.cmp.cmplr.DataClasses.Blog
 import com.cmp.cmplr.DataClasses.HomePostData
 import com.cmp.cmplr.DataClasses.ListBooleanPair
 import com.cmp.cmplr.DataClasses.Post
 import com.cmp.cmplr.Model.HomeModel
+import com.cmp.cmplr.View.Activities.HashtagPage
 import com.cmp.cmplr.View.Activities.IntroActivity
 import com.cmp.cmplr.View.Activities.LoginActivity
 import com.cmp.cmplr.View.Activities.WritePostActivity
@@ -84,16 +85,21 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
         var usr_img: ImageView =itemView.findViewById(R.id.user_pic)
         var usr_name:TextView=itemView.findViewById(R.id.username_home)
         var comments:TextView=itemView.findViewById(R.id.comments_btn)
-        var html_post:HtmlTextView=itemView.findViewById(R.id.html_view_instance )
+        var html_post:WebView=itemView.findViewById(R.id.html_view_instance )
         var first_hashtag:TextView=itemView.findViewById(R.id.first_hashtag)
         var second_hashtag:TextView=itemView.findViewById(R.id.second_hashtag)
-        var notes_btn : TextView = itemView.findViewById(R.id.comments_btn)
+
+
         fun bind(homepost:HomePostData){
             val policy = ThreadPolicy.Builder().permitAll().build()
             StrictMode.setThreadPolicy(policy)
 
+            //var temphtml:String="<h2>Alternative text</h2><p>The alt attribute should reflect the image content, so users who cannot see the image gets an understanding of what the image contains:</p><img src=\"https://www.w3schools.com/html/img_chania.jpg\" alt=\"Flowers in Chania\" width=\"460\" height=\"345\">"
             var html:String=homepost.post.content
-            html_post.setHtml(html)
+            //html_post.setHtml(html)
+            //html_post.setHtml(html)
+            val encodedHtml = Base64.encodeToString(html.toByteArray(), Base64.NO_PADDING)
+            html_post.loadData(encodedHtml, "text/html", "base64")
             usr_name.text=(homepost.blog.blog_name).toString()
             comments.text=(homepost.post.notes_count).toString()+" notes"
             first_hashtag.text=""
@@ -157,15 +163,35 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
 //            }
 //        }
         //this place for on click listeners
-        holder.usr_img.setOnClickListener{
-            it.findNavController().navigate(R.id.action_homeScreenFragment_to_blogFragment)
+        holder.first_hashtag.setOnClickListener{
+            val hashtagtextView = it as TextView
+            if(hashtagtextView.text.toString()!=""){
+                Log.d("lol",hashtagtextView.text.toString())
+                var temp:String ="pressed on image of postition:"+position.toString()+" ,array size="+postList.size.toString()
+                Log.d("kak",temp)
+                var i = Intent(myActivity.applicationContext, HashtagPage::class.java)
+                i.putExtra("hashtag",hashtagtextView.text.toString().replace("#","") )
+                //i.putExtra()
+                startActivity(myActivity.applicationContext,i,null)
+            }
 
         }
-        var data = Bundle()
-        data.putInt("post_id" , post.post.post_id)
-        holder.notes_btn.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeScreenFragment_to_notesFragment , data)
+        holder.second_hashtag.setOnClickListener{
+            //var tempp:TextView=(TextView)it
+            val hashtagtextView = it as TextView
+            if(hashtagtextView.text.toString()!=""){
+                Log.d("lol",hashtagtextView.text.toString())
+                var temp:String ="pressed on image of postition:"+position.toString()+" ,array size="+postList.size.toString()
+                Log.d("kak",temp)
+                var i = Intent(myActivity.applicationContext, HashtagPage::class.java)
+                i.putExtra("hashtag",hashtagtextView.text.toString().replace("#","") )
+                //i.putExtra()
+                //startActivity(i)
+                startActivity(myActivity.applicationContext,i,null)
+            }
+
         }
+        Log.d("kak","onbind begin")
     }
 
     override fun getItemCount(): Int {

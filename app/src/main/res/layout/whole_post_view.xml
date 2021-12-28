@@ -12,7 +12,7 @@
     android:paddingTop="10dp"
     android:paddingBottom="10dp">
 
-    <org.sufficientlysecure.htmltextview.HtmlTextView
+    <WebView
         android:id="@+id/html_view_instance"
 
         android:layout_width="match_parent"
