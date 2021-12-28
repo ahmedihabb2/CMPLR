@@ -16,7 +16,6 @@
             android:scaleType="centerCrop"
             android:src="@drawable/holder"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -83,12 +82,13 @@
             app:layout_constraintHorizontal_bias="0.46"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/another_cover_image" />
+
         <LinearLayout
             android:id="@+id/another_blog_name"
-            android:layout_width="413dp"
-            android:layout_height="596dp"
-            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center_horizontal"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -117,5 +117,18 @@
 
 
         </LinearLayout>
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/another_blog_name">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/blog_posts"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/whole_post_view"/>
+        </androidx.core.widget.NestedScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

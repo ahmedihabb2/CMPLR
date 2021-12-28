@@ -172,12 +172,12 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
             blog_data.putString("blog_name" , post.blog.blog_name)
             blog_data.putString("blog_avatar" , post.blog.avatar)
             blog_data.putInt("blog_id" , post.blog.blog_id)
-            it.findNavController().navigate(R.id.action_homeScreenFragment_to_blogFragment , blog_data)
+            it.findNavController().navigate(R.id.action_global_blogFragment , blog_data)
         }
         holder.notes_btn.setOnClickListener {
             var data = Bundle()
             data.putInt("post_id" , post.post.post_id)
-            it.findNavController().navigate(R.id.action_homeScreenFragment_to_notesFragment, data)
+            it.findNavController().navigate(R.id.action_global_notesFragment, data)
         }
         Log.d("kak","onbind begin")
     }
