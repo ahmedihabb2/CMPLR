@@ -8,6 +8,6 @@ class HashtagController {
 
     suspend fun GetPostsBackend(hashtag:String?):ListBooleanPair{
 
-        return hashtagModel.listReturn()
+        return hashtagModel.listReturn(hashtag)
     }
 }

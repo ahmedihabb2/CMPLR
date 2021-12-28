@@ -61,7 +61,7 @@ interface methods {
 
     @Headers("Content-Type: application/json","Accept: application/json")
     @GET("api/post/tagged")
-    suspend fun hashtagPosts(@Query( "tag" )tag: String) : retrofit2.Response<JsonObject>
+    suspend fun hashtagPosts(@Query( "tag" )tag: String?) : retrofit2.Response<JsonObject>
 
 
     //api/post/tagged?tag=summer
