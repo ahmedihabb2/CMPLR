@@ -158,19 +158,14 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
 //        }
         //this place for on click listeners
         holder.usr_img.setOnClickListener{
-            var temp:String ="pressed on image of postition:"+position.toString()+" ,array size="+postList.size.toString()
-            Log.d("kak",temp)
-            val i = Intent(myActivity.applicationContext,IntroActivity::class.java)
-            //i.putExtra()
-            startActivity(myActivity.applicationContext,i,null)
+            it.findNavController().navigate(R.id.action_homeScreenFragment_to_blogFragment)
+
         }
         var data = Bundle()
         data.putInt("post_id" , post.post.post_id)
         holder.notes_btn.setOnClickListener {
-            Log.i("Notes" , "Pressed")
             it.findNavController().navigate(R.id.action_homeScreenFragment_to_notesFragment , data)
         }
-        Log.d("kak","onbind begin")
     }
 
     override fun getItemCount(): Int {

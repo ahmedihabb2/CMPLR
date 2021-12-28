@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeScreenFragment_to_notesFragment"
             app:destination="@id/notesFragment" />
+        <action
+            android:id="@+id/action_homeScreenFragment_to_blogFragment"
+            app:destination="@id/blogFragment" />
     </fragment>
     <fragment
         android:id="@+id/messagesScreenFragment"
@@ -45,4 +48,8 @@
         android:id="@+id/searchInput"
         android:name="com.cmp.cmplr.View.Fragments.SearchInput"
         android:label="SearchInput" />
+    <fragment
+        android:id="@+id/blogFragment"
+        android:name="com.cmp.cmplr.View.Fragments.BlogFragment"
+        android:label="BlogFragment" />
 </navigation>
