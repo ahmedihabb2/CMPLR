@@ -54,7 +54,7 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
 
     val tag = "kak"
     var token:String?=""
-    var homeModel:HomeModel= HomeModel()
+    //var homeModel:HomeModel= HomeModel()
     var wantMorePosts:Boolean=false
     var postList:ArrayList<HomePostData> =ArrayList()
     var homeController= HomeController()
@@ -67,7 +67,7 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
 
     fun putToken(token_passed:String?){
         token=token_passed
-        homeModel.putToken(token)
+        //homeModel.putToken(token)
         Log.d("tokenhere",token.toString())
     }
     fun notifydataSet(){
@@ -95,11 +95,18 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
             StrictMode.setThreadPolicy(policy)
 
             //var temphtml:String="<h2>Alternative text</h2><p>The alt attribute should reflect the image content, so users who cannot see the image gets an understanding of what the image contains:</p><img src=\"https://www.w3schools.com/html/img_chania.jpg\" alt=\"Flowers in Chania\" width=\"460\" height=\"345\">"
+            //var temphtml:String="this post for <b>test update and edit</b> for ahmed khaled <img src=\"https://cmplrserver.s3.eu-west-2.amazonaws.com/images/1640424925_16_omar.jpg\">"
+
+
+
+
             var html:String=homepost.post.content
             //html_post.setHtml(html)
             //html_post.setHtml(html)
             val encodedHtml = Base64.encodeToString(html.toByteArray(), Base64.NO_PADDING)
-            html_post.loadData(encodedHtml, "text/html", "base64")
+
+            html_post.loadData(html, "text/html", "UTF-8");
+            //html_post.loadData(temphtml, "text/html", "base64")
             usr_name.text=(homepost.blog.blog_name).toString()
             comments.text=(homepost.post.notes_count).toString()+" notes"
             first_hashtag.text=""
