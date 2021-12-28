@@ -11,10 +11,10 @@ import javax.net.ssl.*
 
 
 object Api_Instance {
-    var url:String="http://c389-156-215-230-231.ngrok.io/"    //abdelhamid
+    //var url:String="http://c389-156-215-230-231.ngrok.io/"    //abdelhamid
     //var url:String="http://5717-197-46-249-92.ngrok.io/"    //anwer
     //var url:String="https://www.cmplr.tech/ "                //server
-    //var url:String="https://beta.cmplr.tech/"                //beta_server
+    var url:String="https://beta.cmplr.tech/"                //beta_server
     val api : methods by lazy { //   http://077e-156-223-130-25.ngrok.io/        https://www.cmplr.tech/
 
         //abdelhaimd http://a667-41-44-141-19.ngrok.io/
