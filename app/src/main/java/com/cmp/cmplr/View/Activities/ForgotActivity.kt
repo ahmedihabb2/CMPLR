@@ -30,20 +30,25 @@ class ForgotActivity : AppCompatActivity() {
             closeKeyboard()
             var email: String = binding.emailText.text.toString()
             val job = lifecycleScope.launchWhenCreated {
-                val status : Int = forgotController.forgotPassword(email)
-                Log.i("Forgot" , status.toString())
-                if(status == 422)
-                {
-                    Toast.makeText(this@ForgotActivity , "Invalid email format" , Toast.LENGTH_LONG).show()
-                }else if(status == 404)
-                {
-                    Toast.makeText(this@ForgotActivity , "There is no account associated with this email" , Toast.LENGTH_LONG).show()
-                }else if (status == 500)
-                {
-                    Toast.makeText(this@ForgotActivity , "Server error" , Toast.LENGTH_LONG).show()
-                }else if(status == 200)
-                {
-                    Toast.makeText(this@ForgotActivity , "The email has been sent" , Toast.LENGTH_LONG).show()
+                val status: Int = forgotController.forgotPassword(email)
+                Log.i("Forgot", status.toString())
+                if (status == 422) {
+                    Toast.makeText(this@ForgotActivity, "Invalid email format", Toast.LENGTH_LONG)
+                        .show()
+                } else if (status == 404) {
+                    Toast.makeText(
+                        this@ForgotActivity,
+                        "There is no account associated with this email",
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else if (status == 500) {
+                    Toast.makeText(this@ForgotActivity, "Server error", Toast.LENGTH_LONG).show()
+                } else if (status == 200) {
+                    Toast.makeText(
+                        this@ForgotActivity,
+                        "The email has been sent",
+                        Toast.LENGTH_LONG
+                    ).show()
 
                 }
             }

@@ -28,16 +28,13 @@ class SplashActivity : AppCompatActivity() {
         )
         // we used the postDelayed(Runnable, time) method
         // to send a message with a delayed time.
-        var token : String? =localStorage.getTokenData(this)
+        var token: String? = localStorage.getTokenData(this)
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent : Intent
-            if (token!!.isEmpty())
-            {
+            val intent: Intent
+            if (token!!.isEmpty()) {
                 intent = Intent(this, IntroActivity::class.java)
 
-            }
-            else
-            {
+            } else {
                 intent = Intent(this, MainScreenActivity::class.java)
             }
             startActivity(intent)

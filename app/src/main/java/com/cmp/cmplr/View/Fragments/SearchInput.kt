@@ -20,7 +20,7 @@ class SearchInput : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val back_btn : Button = view.findViewById(R.id.back_btn)
+        val back_btn: Button = view.findViewById(R.id.back_btn)
         back_btn.setOnClickListener {
             view.findNavController().popBackStack()
         }

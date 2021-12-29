@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
-import com.cmp.cmplr.Controller.IntroController
 import com.cmp.cmplr.Adapter.SliderAdapter
+import com.cmp.cmplr.Controller.IntroController
 import com.cmp.cmplr.View.Fragments.*
 import com.cmp.cmplr.databinding.IntroScreenBinding
 

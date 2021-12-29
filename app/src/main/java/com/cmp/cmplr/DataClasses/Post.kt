@@ -9,5 +9,5 @@ data class Post(
     var state: String,
     var tags: List<String>,
     var type: String,
-    var notes_count:Int
+    var notes_count: Int
 )

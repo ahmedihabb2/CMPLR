@@ -8,8 +8,8 @@ import com.cmp.cmplr.Model.UserModel
 object UserModelManager {
     private var userModels = HashMap<String, UserModel>()
 
-    fun getUserModel(ID: String) : UserModel {
-        if(!userModels.containsKey(ID)) {
+    fun getUserModel(ID: String): UserModel {
+        if (!userModels.containsKey(ID)) {
             userModels[ID] = UserModel(ID)
         }
 

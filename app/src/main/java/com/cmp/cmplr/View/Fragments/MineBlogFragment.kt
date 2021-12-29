@@ -13,10 +13,11 @@ import com.cmp.cmplr.Controller.LocalStorage
 import com.cmp.cmplr.R
 
 class MineBlogFragment : Fragment() {
-    lateinit var rv_showData : RecyclerView
-    val postsRecyclerView : InfiniteScrollRecycler by lazy {
+    lateinit var rv_showData: RecyclerView
+    val postsRecyclerView: InfiniteScrollRecycler by lazy {
         InfiniteScrollRecycler()
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,12 +30,15 @@ class MineBlogFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val localStorage = LocalStorage()
         val blogPostsController = BlogPostsController()
-        val token : String = localStorage.getTokenData(requireActivity())!!
+        val token: String = localStorage.getTokenData(requireActivity())!!
         rv_showData = requireView().findViewById(R.id.mine_blog_posts)
         postsRecyclerView.putToken(token)
         rv_showData.adapter = postsRecyclerView
         lifecycleScope.launchWhenCreated {
-            val posts_list = blogPostsController.fetchBlogPostsCont("Bearer $token",localStorage.getBlogName(requireActivity())!!)
+            val posts_list = blogPostsController.fetchBlogPostsCont(
+                "Bearer $token",
+                localStorage.getBlogName(requireActivity())!!
+            )
             postsRecyclerView.updateList(posts_list)
             postsRecyclerView.notifydataSet()
         }

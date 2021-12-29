@@ -37,24 +37,32 @@ class SignupActivity : AppCompatActivity() {
             closeKeyboard()
             //Get input fields data
             signupData = SignupData(
-                binding.emailTextSignup.text.toString().trim() ,
+                binding.emailTextSignup.text.toString().trim(),
                 binding.passwordTextSignup.text.toString(),
                 binding.nameTextSignup.text.toString().trim(),
                 extras!!.getInt("age")
             )
             // Send data to controller
             var signupResp: JsonObject
-            val job = lifecycleScope.launchWhenCreated  {
+            val job = lifecycleScope.launchWhenCreated {
                 binding.signupToolbar.signupButton.visibility = View.GONE
                 binding.signupToolbar.progressBarSignup.visibility = View.VISIBLE
                 signupResp = signupController.validateData(signupData)
-                Log.i("Test" , signupResp.toString())
-                when(signupResp.getAsJsonObject("meta")["status_code"].asInt){
+                Log.i("Test", signupResp.toString())
+                when (signupResp.getAsJsonObject("meta")["status_code"].asInt) {
                     201 -> {
                         binding.errorTextSignup.text = ""
                         // Save user token locally
-                        localStorage.insertTokenData(this@SignupActivity , signupResp.getAsJsonObject("response")["token"].asString,  signupResp.getAsJsonObject("response")["blog_name"].asString)
-                        localStorage.insertBlogID(this@SignupActivity ,signupResp.getAsJsonObject("response").getAsJsonObject("user")["primary_blog_id"].asInt)
+                        localStorage.insertTokenData(
+                            this@SignupActivity,
+                            signupResp.getAsJsonObject("response")["token"].asString,
+                            signupResp.getAsJsonObject("response")["blog_name"].asString
+                        )
+                        localStorage.insertBlogID(
+                            this@SignupActivity,
+                            signupResp.getAsJsonObject("response")
+                                .getAsJsonObject("user")["primary_blog_id"].asInt
+                        )
                         val intent = Intent(this@SignupActivity, MainScreenActivity::class.java)
                         // Make navigation stack empty
                         intent.flags =
@@ -64,24 +72,31 @@ class SignupActivity : AppCompatActivity() {
                     else -> {
                         var gson = Gson()
                         var errors = signupResp.getAsJsonObject("error")
-                        if(errors["password"] != null)
-                        {
-                            var list =gson.fromJson(errors["password"].toString(), Array<String>::class.java).asList()
+                        if (errors["password"] != null) {
+                            var list = gson.fromJson(
+                                errors["password"].toString(),
+                                Array<String>::class.java
+                            ).asList()
                             binding.passwordTextSignup.error = list[0]
                         }
-                        if(errors["email"] != null)
-                        {
-                            var list =gson.fromJson(errors["email"].toString(), Array<String>::class.java).asList()
+                        if (errors["email"] != null) {
+                            var list =
+                                gson.fromJson(errors["email"].toString(), Array<String>::class.java)
+                                    .asList()
                             binding.emailTextSignup.error = list[0]
                         }
-                        if(errors["blog_name"] != null)
-                        {
-                            var list =gson.fromJson(errors["blog_name"].toString(), Array<String>::class.java).asList()
+                        if (errors["blog_name"] != null) {
+                            var list = gson.fromJson(
+                                errors["blog_name"].toString(),
+                                Array<String>::class.java
+                            ).asList()
                             binding.nameTextSignup.error = list[0]
                         }
-                        if(errors["network"] != null)
-                        {
-                            var list =gson.fromJson(errors["network"].toString(), Array<String>::class.java).asList()
+                        if (errors["network"] != null) {
+                            var list = gson.fromJson(
+                                errors["network"].toString(),
+                                Array<String>::class.java
+                            ).asList()
                             binding.errorTextSignup.text = list[0]
                         }
 

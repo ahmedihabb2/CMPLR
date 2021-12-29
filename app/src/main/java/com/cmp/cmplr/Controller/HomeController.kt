@@ -5,7 +5,7 @@ import com.cmp.cmplr.Model.HomeModel
 
 class HomeController {
     var homeModel: HomeModel = HomeModel()
-    suspend fun GetPostsBackend(token:String?): ListBooleanPair {
+    suspend fun GetPostsBackend(token: String?): ListBooleanPair {
         homeModel.putToken(token)
         return homeModel.listReturn()
     }

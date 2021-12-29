@@ -1,8 +1,6 @@
 package com.cmp.cmplr.Controller
 
-import android.app.Activity
 import com.cmp.cmplr.API.LoginData
-import com.cmp.cmplr.API.SignupData
 import com.cmp.cmplr.Model.LoginModel
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -22,8 +20,7 @@ class LoginController {
      * @return boolean   whether the email has a valid mail format
      */
     private fun isEmail(str: String): Boolean {
-        if(str.contains(" ") || !str.contains("@"))
-        {
+        if (str.contains(" ") || !str.contains("@")) {
             return false
         }
         return true
@@ -59,18 +56,16 @@ class LoginController {
             }
             else -> {
 
-                var resp: Pair<JsonObject?,Int> = loginModel.userLogin(signinData)
-                   if(resp.second == 401)
-                   {
-                       jsonResp = gson.fromJson(
-                           """{"meta" :{"status_code" : 401},"error":{"data":["Either your login email or password is incorrect"]}}""",
-                           JsonObject::class.java
-                       )
-                   }else
-                   {
-                       jsonResp =resp.first!!
+                var resp: Pair<JsonObject?, Int> = loginModel.userLogin(signinData)
+                if (resp.second == 401) {
+                    jsonResp = gson.fromJson(
+                        """{"meta" :{"status_code" : 401},"error":{"data":["Either your login email or password is incorrect"]}}""",
+                        JsonObject::class.java
+                    )
+                } else {
+                    jsonResp = resp.first!!
 
-                   }
+                }
 
             }
         }

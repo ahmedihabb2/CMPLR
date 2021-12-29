@@ -8,14 +8,13 @@ import retrofit2.HttpException
 import retrofit2.Response
 
 class SignoutController {
-    suspend fun sign_user_out (activity : Activity ,token : String) : Int
-    {
-        var gson : Gson = Gson()
+    suspend fun sign_user_out(activity: Activity, token: String): Int {
+        var gson: Gson = Gson()
         try {
             val response: Response<JsonObject> = Api_Instance.api.logout(token)
 
             return response.code()
-        }catch (e: HttpException){
+        } catch (e: HttpException) {
             return 400
         }
     }

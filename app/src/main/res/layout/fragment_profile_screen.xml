@@ -1,128 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/cover_image"
-        android:layout_width="406dp"
-        android:layout_height="215dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/intro_3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="46dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="16dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        <ImageView
+            android:id="@+id/cover_image"
+            android:layout_width="406dp"
+            android:layout_height="215dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/intro_3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/search_btn_profile"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:drawableLeft="@drawable/ic_baseline_search_24"
-            tools:ignore="DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="46dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/color_btn"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:drawableLeft="@drawable/ic_baseline_color_lens_24" />
-
-        <Button
-            android:id="@+id/share_btn_profie"
-            android:layout_width="49dp"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:drawableStart="@drawable/ic_baseline_share_24_white" />
-
-        <Button
-            android:id="@+id/settings_btn"
-            android:layout_width="38dp"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:drawableLeft="@drawable/ic_baseline_settings_24" />
-    </LinearLayout>
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile_image"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:layout_marginTop="144dp"
-        android:src="@drawable/kil"
-        app:civ_border_color="@color/white"
-        app:civ_border_width="3dp"
-        app:layout_constraintEnd_toEndOf="@+id/cover_image"
-        app:layout_constraintHorizontal_bias="0.46"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cover_image" />
-
-    <LinearLayout
-        android:id="@+id/blog_name_posts"
-        android:layout_width="0dp"
-        android:layout_height="596dp"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_image">
-
-        <TextView
-            android:id="@+id/blog_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_bold"
-            android:textAlignment="center"
-            android:textColor="#F47F36"
-            android:textSize="34sp" />
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabIndicatorColor="#000000">
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/search_btn_profile"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:text="Posts" />
+                android:background="@android:color/transparent"
+                android:drawableLeft="@drawable/ic_baseline_search_24"
+                tools:ignore="DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck" />
 
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/color_btn"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:text="Likes" />
+                android:background="@android:color/transparent"
+                android:drawableLeft="@drawable/ic_baseline_color_lens_24" />
 
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/share_btn_profie"
+                android:layout_width="49dp"
                 android:layout_height="wrap_content"
-                android:text="Following" />
-        </com.google.android.material.tabs.TabLayout>
+                android:background="@android:color/transparent"
+                android:drawableStart="@drawable/ic_baseline_share_24_white" />
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/vpBlog"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
+            <Button
+                android:id="@+id/settings_btn"
+                android:layout_width="38dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:drawableLeft="@drawable/ic_baseline_settings_24" />
+        </LinearLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginTop="144dp"
+            android:src="@drawable/kil"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="3dp"
+            app:layout_constraintEnd_toEndOf="@+id/cover_image"
+            app:layout_constraintHorizontal_bias="0.46"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/cover_image" />
+
+        <LinearLayout
+            android:id="@+id/blog_name_posts"
+            android:layout_width="0dp"
+            android:layout_height="596dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image">
+
+            <TextView
+                android:id="@+id/blog_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_bold"
+                android:textAlignment="center"
+                android:textColor="#F47F36"
+                android:textSize="34sp" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabIndicatorColor="#000000">
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Posts" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Likes" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Following" />
+            </com.google.android.material.tabs.TabLayout>
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vpBlog"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
 
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -1,18 +1,13 @@
 package com.cmp.cmplr.View.Activities
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.net.Uri
-import android.opengl.ETC1.encodeImage
 import android.os.Bundle
 import android.util.Base64
-import android.util.Log
-import android.util.Log.INFO
-import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -22,18 +17,16 @@ import com.cmp.cmplr.Controller.WritePostController
 import com.cmp.cmplr.R
 import com.cmp.cmplr.databinding.ActivityWritePostBinding
 import java.io.ByteArrayOutputStream
-import java.net.URI
-import java.util.logging.Level.INFO
 
 
 class WritePostActivity : AppCompatActivity(),
-                          WritePostController.WritePostView {
+    WritePostController.WritePostView {
 
     private val control = WritePostController
-    private lateinit var token : String
-    private lateinit var blogName : String
+    private lateinit var token: String
+    private lateinit var blogName: String
     private lateinit var binding: ActivityWritePostBinding
-    private lateinit var imageChooserActivityLauncher : ActivityResultLauncher<Intent>
+    private lateinit var imageChooserActivityLauncher: ActivityResultLauncher<Intent>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,25 +38,28 @@ class WritePostActivity : AppCompatActivity(),
         token = store.getTokenData(this)!!
         blogName = store.getBlogName(this)!!
 
-        imageChooserActivityLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            if (it.resultCode == Activity.RESULT_OK) {
-                val imgUri = it.data?.data
-                if(imgUri != null) {
-                    val img = imgToBase64(imgUri)
+        imageChooserActivityLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+                if (it.resultCode == Activity.RESULT_OK) {
+                    val imgUri = it.data?.data
+                    if (imgUri != null) {
+                        val img = imgToBase64(imgUri)
 
-                    binding.editor.insertImage("data:image/jpeg;base64,$img",
-                                              "image", 150, 200)
+                        binding.editor.insertImage(
+                            "data:image/jpeg;base64,$img",
+                            "image", 150, 200
+                        )
+                    }
                 }
             }
-        }
 
         initEditor()
         setButtonsEventHandlers()
     }
 
-    override fun getBlogName() : String = blogName
-    override fun getPostText() : String = binding.editor.html
-    override fun getUserID()   : String = token
+    override fun getBlogName(): String = blogName
+    override fun getPostText(): String = binding.editor.html
+    override fun getUserID(): String = token
 
     private fun initEditor() {
         binding.editor.setEditorFontColor(Color.WHITE)
@@ -102,7 +98,8 @@ class WritePostActivity : AppCompatActivity(),
             binding.editor.redo()
         }
         binding.colorpickerBtn.setOnClickListener {
-            val colorpicker = ColorPickerDialog.createColorPickerDialog(this, ColorPickerDialog.DARK_THEME)
+            val colorpicker =
+                ColorPickerDialog.createColorPickerDialog(this, ColorPickerDialog.DARK_THEME)
 
             colorpicker.setOnColorPickedListener { color, _ ->
                 binding.editor.setEditorFontColor(color)
@@ -118,13 +115,13 @@ class WritePostActivity : AppCompatActivity(),
 
     }
 
-    fun imgToBase64(Uri : Uri) : String {
+    fun imgToBase64(Uri: Uri): String {
         val stream = contentResolver.openInputStream(Uri)
         val imgAsbitmap = BitmapFactory.decodeStream(stream)
 
         var outstream = ByteArrayOutputStream()
-        imgAsbitmap.compress(Bitmap.CompressFormat.JPEG,100,outstream)
+        imgAsbitmap.compress(Bitmap.CompressFormat.JPEG, 100, outstream)
 
-        return Base64.encodeToString(outstream.toByteArray(),Base64.NO_WRAP)
+        return Base64.encodeToString(outstream.toByteArray(), Base64.NO_WRAP)
     }
 }

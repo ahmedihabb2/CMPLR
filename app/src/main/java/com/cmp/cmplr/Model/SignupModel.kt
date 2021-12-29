@@ -2,13 +2,11 @@ package com.cmp.cmplr.Model
 
 import com.cmp.cmplr.API.Api_Instance
 import com.cmp.cmplr.API.SignupData
-import com.cmp.cmplr.Mockup.DatabaseMock
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import retrofit2.HttpException
 import retrofit2.Response
 import retrofit2.http.Body
-import java.util.*
 
 
 /**

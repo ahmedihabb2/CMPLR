@@ -1,6 +1,5 @@
 package com.cmp.cmplr.Controller
 
-import android.util.Log
 import com.cmp.cmplr.DataClasses.Blog
 import com.cmp.cmplr.DataClasses.HomePostData
 import com.cmp.cmplr.DataClasses.Post
@@ -10,13 +9,11 @@ import com.google.gson.Gson
 class BlogPostsController {
     val blogPostsModel = BlogPostsModel()
 
-    suspend fun  fetchBlogPostsCont(token:String,blog_name : String) : ArrayList<HomePostData>
-    {
-        val blogPosts : ArrayList<HomePostData> = ArrayList()
+    suspend fun fetchBlogPostsCont(token: String, blog_name: String): ArrayList<HomePostData> {
+        val blogPosts: ArrayList<HomePostData> = ArrayList()
         val gson = Gson()
-        val postsArry = blogPostsModel.fetchBlogPostsMod(token,blog_name)
-        if(postsArry != null)
-        {
+        val postsArry = blogPostsModel.fetchBlogPostsMod(token, blog_name)
+        if (postsArry != null) {
             for (item in postsArry) {
                 val post = gson.fromJson(
                     item.asJsonObject.getAsJsonObject("post"),
@@ -30,6 +27,6 @@ class BlogPostsController {
                 blogPosts.add(HomePostData(blog, post))
             }
         }
-        return  blogPosts
+        return blogPosts
     }
 }

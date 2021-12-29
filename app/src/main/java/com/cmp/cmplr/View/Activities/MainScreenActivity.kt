@@ -1,17 +1,13 @@
 package com.cmp.cmplr.View.Activities
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.cmp.cmplr.Controller.WritePostController
 import com.cmp.cmplr.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
-
 
 
 class MainScreenActivity : AppCompatActivity() {
@@ -27,7 +23,9 @@ class MainScreenActivity : AppCompatActivity() {
                 navView.visibility = View.GONE
             }
         }
-        findViewById<BottomNavigationView>(R.id.bottom_navigation_view).setupWithNavController(findNavController(R.id.nav_fragment))
+        findViewById<BottomNavigationView>(R.id.bottom_navigation_view).setupWithNavController(
+            findNavController(R.id.nav_fragment)
+        )
     }
 
 

@@ -4,19 +4,11 @@ import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.cmp.cmplr.R
 import com.google.gson.JsonObject
-import android.graphics.BitmapFactory
-import android.widget.ImageView
-import com.cmp.cmplr.Shared.getImage
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import okhttp3.internal.wait
-import java.io.IOException
-import java.io.InputStream
-import java.net.URL
 
 
 /**
@@ -25,8 +17,8 @@ import java.net.URL
  */
 
 class NotesAdapter : RecyclerView.Adapter<NotesAdapter.NoteViewHolder>() {
-    var comments_list : ArrayList<JsonObject> = ArrayList()
-    var images_list : ArrayList<Bitmap?> = ArrayList()
+    var comments_list: ArrayList<JsonObject> = ArrayList()
+    var images_list: ArrayList<Bitmap?> = ArrayList()
 
 
     /**
@@ -34,15 +26,15 @@ class NotesAdapter : RecyclerView.Adapter<NotesAdapter.NoteViewHolder>() {
      *
      * @param comments_list List of comments and users of this comments
      */
-    fun notifyChanges(){
+    fun notifyChanges() {
         notifyDataSetChanged()
     }
-    fun setImages(images_list : ArrayList<Bitmap?>)
-    {
+
+    fun setImages(images_list: ArrayList<Bitmap?>) {
         this.images_list = images_list
     }
-    fun setList(comments_list : ArrayList<JsonObject>)
-    {
+
+    fun setList(comments_list: ArrayList<JsonObject>) {
         this.comments_list = comments_list
     }
 
@@ -53,11 +45,10 @@ class NotesAdapter : RecyclerView.Adapter<NotesAdapter.NoteViewHolder>() {
      * @param itemView
      */
     class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var commentView : TextView = itemView.findViewById(R.id.user_comment)
-        var user_name : TextView = itemView.findViewById(R.id.notes_user_name)
-        var user_img : ImageView = itemView.findViewById(R.id.comment_user_img)
-        fun bind(comment : JsonObject , img : Bitmap?)
-        {
+        var commentView: TextView = itemView.findViewById(R.id.user_comment)
+        var user_name: TextView = itemView.findViewById(R.id.notes_user_name)
+        var user_img: ImageView = itemView.findViewById(R.id.comment_user_img)
+        fun bind(comment: JsonObject, img: Bitmap?) {
             user_img.setImageBitmap(img)
             commentView.text = comment["content"].asString
             user_name.text = comment["blog_name"].asString
@@ -66,14 +57,15 @@ class NotesAdapter : RecyclerView.Adapter<NotesAdapter.NoteViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
-        var view : View = LayoutInflater.from(parent.context).inflate(R.layout.comment_layout,parent,false)
-        return  NoteViewHolder(view)
+        var view: View =
+            LayoutInflater.from(parent.context).inflate(R.layout.comment_layout, parent, false)
+        return NoteViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
-        var comment : JsonObject = comments_list[position]
-        var img : Bitmap? = images_list[position]
-        holder.bind(comment,img)
+        var comment: JsonObject = comments_list[position]
+        var img: Bitmap? = images_list[position]
+        holder.bind(comment, img)
     }
 
     /**

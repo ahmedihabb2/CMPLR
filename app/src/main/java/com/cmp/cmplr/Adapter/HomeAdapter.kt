@@ -1,4 +1,3 @@
 package com.cmp.cmplr.Adapter
 
-class HomeAdapter {
-}
+class HomeAdapter

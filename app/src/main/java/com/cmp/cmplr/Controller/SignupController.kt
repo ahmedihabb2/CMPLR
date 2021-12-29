@@ -1,6 +1,5 @@
 package com.cmp.cmplr.Controller
 
-import android.util.Log
 import com.cmp.cmplr.API.SignupData
 import com.cmp.cmplr.Model.SignupModel
 import com.google.gson.Gson

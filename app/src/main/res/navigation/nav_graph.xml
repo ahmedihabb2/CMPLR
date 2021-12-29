@@ -9,7 +9,7 @@
         android:id="@+id/homeScreenFragment"
         android:name="com.cmp.cmplr.View.Fragments.HomeScreenFragment"
         android:label="fragment_home_screen"
-        tools:layout="@layout/fragment_home_screen" >
+        tools:layout="@layout/fragment_home_screen">
         <action
             android:id="@+id/action_homeScreenFragment_to_notesFragment"
             app:destination="@id/notesFragment" />
@@ -26,7 +26,7 @@
         android:id="@+id/searchScreenFragment"
         android:name="com.cmp.cmplr.View.Fragments.SearchScreenFragment"
         android:label="fragment_search_screen"
-        tools:layout="@layout/fragment_search_screen" >
+        tools:layout="@layout/fragment_search_screen">
         <action
             android:id="@+id/action_searchScreenFragment_to_searchInput"
             app:destination="@id/searchInput" />
@@ -39,7 +39,7 @@
     <fragment
         android:id="@+id/notesFragment"
         android:name="com.cmp.cmplr.View.Fragments.NotesFragment"
-        android:label="NotesFragment" >
+        android:label="NotesFragment">
         <action
             android:id="@+id/action_notesFragment_self"
             app:destination="@id/notesFragment" />
@@ -51,5 +51,11 @@
     <fragment
         android:id="@+id/blogFragment"
         android:name="com.cmp.cmplr.View.Fragments.BlogFragment"
-        android:label="BlogFragment" /><action android:id="@+id/action_global_notesFragment" app:destination="@id/notesFragment"/><action android:id="@+id/action_global_blogFragment" app:destination="@id/blogFragment"/>
+        android:label="BlogFragment" />
+    <action
+        android:id="@+id/action_global_notesFragment"
+        app:destination="@id/notesFragment" />
+    <action
+        android:id="@+id/action_global_blogFragment"
+        app:destination="@id/blogFragment" />
 </navigation>

@@ -4,13 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.cmp.cmplr.API.LoginData
-import com.cmp.cmplr.API.SignupData
 import com.cmp.cmplr.Controller.LocalStorage
 import com.cmp.cmplr.Controller.LoginController
 import com.cmp.cmplr.databinding.LoginBinding
@@ -33,51 +31,63 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.toolbarLogin.loginBtn.setOnClickListener {
             closeKeyboard()
-            signinata  = LoginData(
-             binding.emailText.text.toString().trim(),
-             binding.passwordText.text.toString()
+            signinata = LoginData(
+                binding.emailText.text.toString().trim(),
+                binding.passwordText.text.toString()
             )
             var signinResp: JsonObject
-            val job = lifecycleScope.launchWhenCreated  {
+            val job = lifecycleScope.launchWhenCreated {
                 binding.toolbarLogin.loginBtn.visibility = View.GONE
                 binding.toolbarLogin.progressBarLogin.visibility = View.VISIBLE
                 signinResp = loginController.validateSignin(signinata)
-                var status_code : Int
-                if(signinResp.getAsJsonObject("meta") != null)
-                {
+                var status_code: Int
+                if (signinResp.getAsJsonObject("meta") != null) {
                     status_code = signinResp.getAsJsonObject("meta")["status_code"].asInt
-                }else
-                {
+                } else {
                     status_code = 201
                 }
-                when(status_code){
+                when (status_code) {
                     401 -> {
                         var gson = Gson()
                         var errors = signinResp.getAsJsonObject("error")
-                        if(errors["password"] != null)
-                        {
-                            var list =gson.fromJson(errors["password"].toString(), Array<String>::class.java).asList()
+                        if (errors["password"] != null) {
+                            var list = gson.fromJson(
+                                errors["password"].toString(),
+                                Array<String>::class.java
+                            ).asList()
                             binding.passwordText.error = list[0]
                         }
-                        if(errors["email"] != null)
-                        {
-                            var list =gson.fromJson(errors["email"].toString(), Array<String>::class.java).asList()
+                        if (errors["email"] != null) {
+                            var list =
+                                gson.fromJson(errors["email"].toString(), Array<String>::class.java)
+                                    .asList()
                             binding.emailText.error = list[0]
                         }
-                        if(errors["data"] != null)
-                        {
-                            var list =gson.fromJson(errors["data"].toString(), Array<String>::class.java).asList()
+                        if (errors["data"] != null) {
+                            var list =
+                                gson.fromJson(errors["data"].toString(), Array<String>::class.java)
+                                    .asList()
                             binding.errorText.text = list[0]
                         }
-                        if(errors["network"] != null)
-                        {
-                            var list =gson.fromJson(errors["network"].toString(), Array<String>::class.java).asList()
+                        if (errors["network"] != null) {
+                            var list = gson.fromJson(
+                                errors["network"].toString(),
+                                Array<String>::class.java
+                            ).asList()
                             binding.errorText.text = list[0]
                         }
                     }
                     else -> {
-                        localStorage.insertTokenData(this@LoginActivity , signinResp.getAsJsonObject("response")["token"].asString,  signinResp.getAsJsonObject("response")["blog_name"].asString)
-                        localStorage.insertBlogID(this@LoginActivity ,signinResp.getAsJsonObject("response").getAsJsonObject("user")["primary_blog_id"].asInt)
+                        localStorage.insertTokenData(
+                            this@LoginActivity,
+                            signinResp.getAsJsonObject("response")["token"].asString,
+                            signinResp.getAsJsonObject("response")["blog_name"].asString
+                        )
+                        localStorage.insertBlogID(
+                            this@LoginActivity,
+                            signinResp.getAsJsonObject("response")
+                                .getAsJsonObject("user")["primary_blog_id"].asInt
+                        )
                         val intent = Intent(this@LoginActivity, MainScreenActivity::class.java)
                         // Make navigation stack empty
                         intent.flags =

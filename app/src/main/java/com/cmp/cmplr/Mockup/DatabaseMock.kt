@@ -40,7 +40,7 @@ class DatabaseMock {
 
         }
 
-        return false;
+        return false
     }
 
 

@@ -56,7 +56,7 @@ class LoginBtnsFragment : Fragment() {
 
     private val launcher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-             var localStorage = LocalStorage()
+            var localStorage = LocalStorage()
             if (result.resultCode == Activity.RESULT_OK) {
                 val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
                 try {
@@ -70,8 +70,9 @@ class LoginBtnsFragment : Fragment() {
                     )
 
 
-                    localStorage.insertTokenData(requireActivity(), account.idToken," ")
-                    val intent = Intent(activity?.applicationContext, MainScreenActivity::class.java)
+                    localStorage.insertTokenData(requireActivity(), account.idToken, " ")
+                    val intent =
+                        Intent(activity?.applicationContext, MainScreenActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                     Toast.makeText(
