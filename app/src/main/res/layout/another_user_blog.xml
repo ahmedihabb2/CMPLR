@@ -99,7 +99,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_bold"
-                android:paddingLeft="15dp"
                 android:textAlignment="center"
                 android:textColor="#F47F36"
                 android:textSize="30sp" />

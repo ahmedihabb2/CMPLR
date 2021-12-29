@@ -77,6 +77,7 @@ class LoginActivity : AppCompatActivity() {
                     }
                     else -> {
                         localStorage.insertTokenData(this@LoginActivity , signinResp.getAsJsonObject("response")["token"].asString,  signinResp.getAsJsonObject("response")["blog_name"].asString)
+                        localStorage.insertBlogID(this@LoginActivity ,signinResp.getAsJsonObject("response").getAsJsonObject("user")["primary_blog_id"].asInt)
                         val intent = Intent(this@LoginActivity, MainScreenActivity::class.java)
                         // Make navigation stack empty
                         intent.flags =

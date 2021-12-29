@@ -166,7 +166,7 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
                 Log.d("kak",temp)
                 var i = Intent(myActivity.applicationContext, HashtagPage::class.java)
                 i.putExtra("hashtag",hashtagtextView.text.toString().replace("#","") )
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(myActivity.applicationContext,i,null)
             }
 
@@ -174,6 +174,13 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
 
 
         holder.usr_img.setOnClickListener {
+            var blog_data = Bundle()
+            blog_data.putString("blog_name" , post.blog.blog_name)
+            blog_data.putString("blog_avatar" , post.blog.avatar)
+            blog_data.putInt("blog_id" , post.blog.blog_id)
+            it.findNavController().navigate(R.id.action_global_blogFragment , blog_data)
+        }
+        holder.usr_name.setOnClickListener {
             var blog_data = Bundle()
             blog_data.putString("blog_name" , post.blog.blog_name)
             blog_data.putString("blog_avatar" , post.blog.avatar)

@@ -14,6 +14,7 @@ class BlogController {
         var blog_data : ArrayList<String> = ArrayList()
         try {
             val response: Response<JsonObject> = Api_Instance.api.fetchBlogData(token, id)
+            Log.i("Blog" , response.toString())
             if(!response.isSuccessful)
             {
                 return blog_data
@@ -22,9 +23,11 @@ class BlogController {
             val header_img : String = jsonObj?.get("header_image")?.asString ?: ""
             val title : String = jsonObj?.get("title")?.asString ?: ""
             val description : String = jsonObj?.get("description")?.asString ?: ""
+            val avatar : String = jsonObj?.get("avatar")?.asString ?: ""
             blog_data.add(header_img)
             blog_data.add(title)
             blog_data.add(description)
+            blog_data.add(avatar)
             return blog_data
         }catch (e : HttpException)
         {
