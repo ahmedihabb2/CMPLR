@@ -59,7 +59,7 @@ class ProfileScreenFragment : Fragment() {
                                 requireActivity(),
                                 "Bearer ${localStorage.getTokenData(requireActivity())!!}"
                             )
-                            if (jsonresp == 200) {
+
                                 localStorage.removeToken(requireActivity())
                                 Toast.makeText(
                                     activity?.applicationContext,
@@ -71,14 +71,8 @@ class ProfileScreenFragment : Fragment() {
                                 intent.flags =
                                     Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                 startActivity(intent)
-                            } else {
-                                Toast.makeText(
-                                    activity?.applicationContext,
-                                    "Unauthorized",
-                                    Toast.LENGTH_LONG
-                                ).show()
 
-                            }
+
                         }
                         true
                     }
@@ -98,14 +92,6 @@ class ProfileScreenFragment : Fragment() {
             cover_img.setImageBitmap(header_img)
             profile_title.text = blog_data[1]
             Log.i("Blog", blog_data[2])
-//            if(blog_data[2].isNotEmpty())
-//            {
-//                description.visibility = View.VISIBLE
-//                description.text = blog_data[2]
-//            }
-//            val posts_list = blogPostsController.fetchBlogPostsCont(blog_name_param)
-//            postsRecyclerView.updateList(posts_list)
-//            postsRecyclerView.notifydataSet()
         }
         viewPager.isUserInputEnabled = false
         tabLayout!!.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
