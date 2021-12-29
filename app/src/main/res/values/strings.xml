@@ -59,4 +59,5 @@
 
     <!--DUMMY DATA -->
     <string name="dummy_big_text">AAAAAAAAAAAAAAAAAA</string>
+    <string name="random">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s</string>
 </resources>
