@@ -22,11 +22,11 @@ class AgeActivity : AppCompatActivity() {
         binding.ageToolbar.nextAgeScreen.setOnClickListener {
             try {
                 if (binding.ageText.text.toString().trim()
-                        .toInt() < 13 || binding.ageText.text.toString().trim().toInt() > 120
+                        .toInt() < 18 || binding.ageText.text.toString().trim().toInt() > 80
                 ) {
                     Toast.makeText(
                         this.applicationContext,
-                        "Age must be between 13 and 120",
+                        "Age must be between 18 and 80",
                         Toast.LENGTH_LONG
                     )
                         .show()
