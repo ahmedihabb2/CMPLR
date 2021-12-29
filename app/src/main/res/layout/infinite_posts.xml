@@ -10,25 +10,38 @@
     tools:layout_editor_absoluteY="124dp"
 
     >
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/home_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:subtitleTextColor="#FFFCFC"
+        app:title="Home"
+        app:titleTextColor="#FFFFFF" />
 
     <ScrollView
         android:id="@+id/scroll_view_infinite"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="30dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/home_bar">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/theinfinte"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/tumblr_color"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/whole_post_view"
             android:paddingBottom="30dp"
-            />
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/whole_post_view" />
     </ScrollView>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/writePostBtn2"
