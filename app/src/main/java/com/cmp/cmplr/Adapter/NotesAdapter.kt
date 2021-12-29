@@ -51,7 +51,12 @@ class NotesAdapter : RecyclerView.Adapter<NotesAdapter.NoteViewHolder>() {
         var user_img: ImageView = itemView.findViewById(R.id.comment_user_img)
         fun bind(comment: JsonObject, img: Bitmap?) {
             user_img.setImageBitmap(img)
-            commentView.text = comment["content"].toString()
+            if(comment["content"].toString() != "null") {
+                commentView.text = comment["content"].asString
+            }else
+            {
+                commentView.text = "empty comment"
+            }
             user_name.text = comment["blog_name"].asString
         }
 
