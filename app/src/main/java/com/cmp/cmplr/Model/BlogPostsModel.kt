@@ -7,9 +7,9 @@ import retrofit2.HttpException
 
 class BlogPostsModel {
 
-    suspend fun fetchBlogPostsMod(blog_name: String) : JsonArray? {
+    suspend fun fetchBlogPostsMod(token : String,blog_name: String) : JsonArray? {
         try{
-            val response = Api_Instance.api.fetchBlogPosts(blog_name)
+            val response = Api_Instance.api.fetchBlogPosts(token,blog_name)
             if(!response.isSuccessful)
             {
                 Log.i("Blog" , response.toString())

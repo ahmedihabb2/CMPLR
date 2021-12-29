@@ -38,7 +38,6 @@ class HomeModel (){
         try {
             response= Api_Instance.api.homepost("Bearer $token")
             //response= Api_Instance.api.homepost_beta()
-
             if (!response.isSuccessful) {
                 Log.d("back","not success")
                 Log.d("back_string",response.toString())

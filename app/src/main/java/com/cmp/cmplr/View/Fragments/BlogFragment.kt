@@ -63,7 +63,7 @@ class BlogFragment : Fragment() {
                 description.visibility = View.VISIBLE
                 description.text = blog_data[2]
             }
-            val posts_list = blogPostsController.fetchBlogPostsCont(blog_name_param)
+            val posts_list = blogPostsController.fetchBlogPostsCont("Bearer $token",blog_name_param)
             postsRecyclerView.updateList(posts_list)
             postsRecyclerView.notifydataSet()
         }

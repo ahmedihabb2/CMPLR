@@ -34,7 +34,7 @@ class MineBlogFragment : Fragment() {
         postsRecyclerView.putToken(token)
         rv_showData.adapter = postsRecyclerView
         lifecycleScope.launchWhenCreated {
-            val posts_list = blogPostsController.fetchBlogPostsCont(localStorage.getBlogName(requireActivity())!!)
+            val posts_list = blogPostsController.fetchBlogPostsCont("Bearer $token",localStorage.getBlogName(requireActivity())!!)
             postsRecyclerView.updateList(posts_list)
             postsRecyclerView.notifydataSet()
         }

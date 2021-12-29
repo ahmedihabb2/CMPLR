@@ -10,11 +10,11 @@ import com.google.gson.Gson
 class BlogPostsController {
     val blogPostsModel = BlogPostsModel()
 
-    suspend fun  fetchBlogPostsCont(blog_name : String) : ArrayList<HomePostData>
+    suspend fun  fetchBlogPostsCont(token:String,blog_name : String) : ArrayList<HomePostData>
     {
         val blogPosts : ArrayList<HomePostData> = ArrayList()
         val gson = Gson()
-        val postsArry = blogPostsModel.fetchBlogPostsMod(blog_name)
+        val postsArry = blogPostsModel.fetchBlogPostsMod(token,blog_name)
         if(postsArry != null)
         {
             for (item in postsArry) {

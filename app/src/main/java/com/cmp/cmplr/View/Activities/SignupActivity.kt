@@ -54,6 +54,7 @@ class SignupActivity : AppCompatActivity() {
                         binding.errorTextSignup.text = ""
                         // Save user token locally
                         localStorage.insertTokenData(this@SignupActivity , signupResp.getAsJsonObject("response")["token"].asString,  signupResp.getAsJsonObject("response")["blog_name"].asString)
+                        localStorage.insertBlogID(this@SignupActivity ,signupResp.getAsJsonObject("response").getAsJsonObject("user")["primary_blog_id"].asInt)
                         val intent = Intent(this@SignupActivity, MainScreenActivity::class.java)
                         // Make navigation stack empty
                         intent.flags =

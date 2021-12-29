@@ -11,7 +11,7 @@ import javax.net.ssl.*
 
 
 object Api_Instance {
-    //var url:String="http://c389-156-215-230-231.ngrok.io/"    //abdelhamid
+    //var url:String="http://c089-156-215-8-141.ngrok.io/"    //abdelhamid
     //var url:String="http://ca24-156-223-170-167.ngrok.io/"    //anwer
     //var url:String="https://www.cmplr.tech/ "                //server
     var url:String="https://beta.cmplr.tech/"                //beta_server

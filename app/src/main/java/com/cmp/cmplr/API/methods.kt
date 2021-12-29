@@ -62,7 +62,7 @@ interface methods {
 
     @Headers("Content-Type: application/json","Accept: application/json")
     @GET("/api/posts/view/{blog_name}")
-    suspend fun fetchBlogPosts(@Path("blog_name") blog_name:String ): retrofit2.Response<JsonObject>
+    suspend fun fetchBlogPosts(@Header("Authorization") token: String?,@Path("blog_name") blog_name:String ): retrofit2.Response<JsonObject>
 
 
     @Headers("Content-Type: application/json","Accept: application/json")
