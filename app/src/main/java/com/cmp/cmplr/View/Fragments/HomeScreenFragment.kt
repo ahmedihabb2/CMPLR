@@ -88,7 +88,7 @@ class HomeScreenFragment : Fragment() {
                         infiniteScrollRecycler.updateList(backendPair.getList())
                         infiniteScrollRecycler.notifydataSet()
                     }
-                    infiniteScrollRecycler.notifydataSet()
+                    //infiniteScrollRecycler.notifydataSet()
                     scrollView.visibility = View.VISIBLE
                     isIn = false
                 }

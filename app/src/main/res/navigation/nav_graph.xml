@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_homeScreenFragment_to_blogFragment"
             app:destination="@id/blogFragment" />
+        <action
+            android:id="@+id/action_homeScreenFragment_to_hashtagPage"
+            app:destination="@id/hashtagPage" />
     </fragment>
     <fragment
         android:id="@+id/messagesScreenFragment"
@@ -58,4 +61,8 @@
     <action
         android:id="@+id/action_global_blogFragment"
         app:destination="@id/blogFragment" />
+    <fragment
+        android:id="@+id/hashtagPage"
+        android:name="com.cmp.cmplr.View.Activities.HashtagPage"
+        android:label="HashtagPage" />
 </navigation>
