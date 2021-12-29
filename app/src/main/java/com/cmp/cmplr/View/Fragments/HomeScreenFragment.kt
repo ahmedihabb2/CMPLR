@@ -92,14 +92,7 @@ class HomeScreenFragment : Fragment() {
                     scrollView.visibility = View.VISIBLE
                     isIn = false
                 }
-//                    if(backendPair.getIsSucess()){
-//
-//                        infiniteScrollRecycler.updateList(backendPair.getList())
-//                        infiniteScrollRecycler.notifydataSet()
-//                    }
-//                    infiniteScrollRecycler.wantMorePosts=false
-//                    infiniteScrollRecycler.notifydataSet()
-//                    scrollView.visibility=View.VISIBLE
+
             }
         }
 
