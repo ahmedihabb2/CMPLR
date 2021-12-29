@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -28,6 +29,7 @@ import android.webkit.WebView
 import android.widget.ProgressBar
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat.startActivity
+import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.findNavController
 import com.cmp.cmplr.Controller.HomeController
 import com.cmp.cmplr.DataClasses.Blog
@@ -81,6 +83,7 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
         var first_hashtag:TextView=itemView.findViewById(R.id.first_hashtag)
         var second_hashtag:TextView=itemView.findViewById(R.id.second_hashtag)
         var notes_btn : TextView = itemView.findViewById(R.id.comments_btn)
+        var love_btn:ImageView=itemView.findViewById(R.id.love_btn)
 
         fun bind(homepost:HomePostData){
             val policy = ThreadPolicy.Builder().permitAll().build()
@@ -103,13 +106,16 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
             comments.text=(homepost.post.notes_count).toString()+" notes"
             first_hashtag.text=""
             second_hashtag.text=""
-            if(homepost.post.tags.size==1){
+            if(homepost.post.tags.size==1 && homepost.post.tags[0]!=""){
+
                 first_hashtag.text="#"+homepost.post.tags[0]
             }else if (homepost.post.tags.size>1){
                 first_hashtag.text="#"+homepost.post.tags[0].replace("\"","")
                 second_hashtag.text="#"+homepost.post.tags[1].replace("\"","")
 
             }
+
+//ResourcesCompat.getColor(getResources(), R.color.white, null)
 
 
 
@@ -124,6 +130,11 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
             } catch (e: IOException) {
                 e.printStackTrace()
                 usr_img.setImageResource(R.drawable.kil)
+            }
+            if(homepost.post.is_liked){
+                love_btn.setImageResource(R.drawable.red_heart)
+            }else{
+                love_btn.setImageResource(R.drawable.heart_vector)
             }
 
 
@@ -143,7 +154,22 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
         var post:HomePostData=postList.get(position)
         holder.bind(post)
 
-        //this place for on click listeners
+        //////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////****ON CLICK LISTENERS****//////////////////////
+        //////////////////////////////////////////////////////////////////////////////
+
+
+        holder.love_btn.setOnClickListener{
+            val lovbtn=it as ImageView
+            if(post.post.is_liked==true){
+                lovbtn.setImageResource(R.drawable.heart_vector)
+                post.post.is_liked=false
+            }else{
+                lovbtn.setImageResource(R.drawable.red_heart)
+                post.post.is_liked=true
+            }
+        }
+
         holder.first_hashtag.setOnClickListener{
             val hashtagtextView = it as TextView
             if(hashtagtextView.text.toString()!=""){

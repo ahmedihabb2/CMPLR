@@ -45,7 +45,7 @@ class HashtagPage:AppCompatActivity() {
         val hashtag_toolbar : Toolbar = findViewById(R.id.toolbar_hashtag)
         //ResourcesCompat.getColor(getResources(), R.color.white, null)
         hashtag_toolbar.title = "#"+hashtag_value
-        hashtag_toolbar.setTitleTextColor(ResourcesCompat.getColor(getResources(), R.color.white, null))
+        hashtag_toolbar.setTitleTextColor(ResourcesCompat.getColor(resources, R.color.white, null))
         rv_showData=findViewById<RecyclerView>(R.id.theinfinte_hash)
         infiniteScrollRecycler.putToken(token) //passing the token to the adapter
         infiniteScrollRecycler.putActivity(this@HashtagPage as Activity)
