@@ -1,28 +1,35 @@
 package com.cmp.cmplr.View.Fragments
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.PopupMenu
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.cmp.cmplr.R
 
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
+import androidx.viewpager2.widget.ViewPager2
+import com.cmp.cmplr.Adapter.SliderAdapter
+import com.cmp.cmplr.Controller.BlogController
 import com.cmp.cmplr.Controller.LocalStorage
 import com.cmp.cmplr.Controller.SignoutController
+import com.cmp.cmplr.Shared.getImage
 import com.cmp.cmplr.View.Activities.IntroActivity
 import com.google.android.material.appbar.CollapsingToolbarLayout
+import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.Job
 
 
 class ProfileScreenFragment : Fragment() {
+    var tabLayout: TabLayout? = null
+    private val fragmentList = ArrayList<Fragment>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,8 +41,18 @@ class ProfileScreenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        tabLayout = view.findViewById<TabLayout>(R.id.tabs)
+        val adapter = SliderAdapter(requireActivity())
+        val viewPager: ViewPager2 = view.findViewById(R.id.vpBlog)
+        viewPager.adapter = adapter
         val localStorage = LocalStorage()
         val settings_btn : Button = view.findViewById(R.id.settings_btn)
+        val profile_img : ImageView = view.findViewById(R.id.profile_image)
+        val cover_img : ImageView = view.findViewById(R.id.cover_image)
+        val profile_title : TextView = view.findViewById(R.id.blog_name)
+        val blog_id : Int = localStorage.getBlogID(requireActivity())!!
+        val token : String = localStorage.getTokenData(requireActivity())!!
+        val blogController = BlogController()
         settings_btn.setOnClickListener {
             val popUpMenu  = PopupMenu(activity?.applicationContext,it)
             popUpMenu.setOnMenuItemClickListener { item->
@@ -68,5 +85,44 @@ class ProfileScreenFragment : Fragment() {
             popUpMenu.inflate(R.menu.settings_menu)
             popUpMenu.show()
             }
+        lifecycleScope.launchWhenCreated {
+            val blog_data : ArrayList<String> = blogController.fetchBlogDataCont("Bearer ${token}" , blog_id)
+            Log.i("Blog" , blog_data.toString())
+            val img : Bitmap = getImage(blog_data[3])!!
+            val header_img : Bitmap = getImage(blog_data[0])!!
+            profile_img.setImageBitmap(img)
+            cover_img.setImageBitmap(header_img)
+            profile_title.text = blog_data[1]
+            Log.i("Blog" ,blog_data[2])
+//            if(blog_data[2].isNotEmpty())
+//            {
+//                description.visibility = View.VISIBLE
+//                description.text = blog_data[2]
+//            }
+//            val posts_list = blogPostsController.fetchBlogPostsCont(blog_name_param)
+//            postsRecyclerView.updateList(posts_list)
+//            postsRecyclerView.notifydataSet()
+        }
+        viewPager.isUserInputEnabled = false
+        tabLayout!!.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                viewPager!!.currentItem = tab.position
+            }
+            override fun onTabUnselected(tab: TabLayout.Tab) {
+
+            }
+            override fun onTabReselected(tab: TabLayout.Tab) {
+
+            }
+        })
+        fragmentList.addAll(
+            listOf(
+                MineBlogFragment(),
+                Intro2Fragment(),
+            )
+        )
+        adapter.setFragmentList(fragmentList)
+
+
     }
 }

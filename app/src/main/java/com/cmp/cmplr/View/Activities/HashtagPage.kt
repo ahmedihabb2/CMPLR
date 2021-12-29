@@ -8,6 +8,7 @@ import android.widget.ScrollView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.res.ResourcesCompat
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.RecyclerView
 import com.cmp.cmplr.Adapter.InfiniteScrollRecycler
 import com.cmp.cmplr.Controller.HashtagController

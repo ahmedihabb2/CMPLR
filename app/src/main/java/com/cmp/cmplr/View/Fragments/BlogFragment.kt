@@ -45,11 +45,13 @@ class BlogFragment : Fragment() {
         val blog_name :  TextView = view.findViewById(R.id.blog_name)
         val description : TextView = view.findViewById(R.id.description)
         val title : TextView = view.findViewById(R.id.blog_name_prof)
+        val token : String = localStorage.getTokenData(requireActivity())!!
         title.text = blog_name_param
         rv_showData = requireView().findViewById(R.id.blog_posts)
+        postsRecyclerView.putToken(token)
         rv_showData.adapter = postsRecyclerView
         lifecycleScope.launchWhenCreated {
-            val blog_data : ArrayList<String> = blogController.fetchBlogDataCont("Bearer ${localStorage.getTokenData(requireActivity())!!}" , blog_id)
+            val blog_data : ArrayList<String> = blogController.fetchBlogDataCont("Bearer ${token}" , blog_id)
             val img : Bitmap=getImage(blog_avatar)!!
             val header_img :Bitmap=getImage(blog_data[0])!!
             blog_img.setImageBitmap(img)

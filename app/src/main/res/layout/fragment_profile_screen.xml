@@ -70,15 +70,16 @@
         app:civ_border_color="@color/white"
         app:civ_border_width="3dp"
         app:layout_constraintEnd_toEndOf="@+id/cover_image"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/cover_image" />
+
     <LinearLayout
         android:id="@+id/blog_name_posts"
-        android:layout_width="413dp"
+        android:layout_width="0dp"
         android:layout_height="596dp"
-        android:orientation="vertical"
         android:gravity="center_horizontal"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -89,12 +90,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_bold"
-            android:text="MangaBlog"
             android:textAlignment="center"
             android:textColor="#F47F36"
             android:textSize="34sp" />
 
         <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabIndicatorColor="#000000">
@@ -115,6 +116,13 @@
                 android:text="Following" />
         </com.google.android.material.tabs.TabLayout>
 
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vpBlog"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </LinearLayout>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
