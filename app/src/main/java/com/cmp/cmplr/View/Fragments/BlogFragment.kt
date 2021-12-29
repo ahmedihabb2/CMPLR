@@ -48,6 +48,8 @@ class BlogFragment : Fragment() {
         val token: String = localStorage.getTokenData(requireActivity())!!
         title.text = blog_name_param
         rv_showData = requireView().findViewById(R.id.blog_posts)
+        var blogName:String?=localStorage.getBlogName(requireActivity())
+        postsRecyclerView.putBlogName(blogName)
         postsRecyclerView.putToken(token)
         rv_showData.adapter = postsRecyclerView
         lifecycleScope.launchWhenCreated {

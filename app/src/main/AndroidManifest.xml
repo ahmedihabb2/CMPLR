@@ -32,7 +32,7 @@
         <activity android:name=".View.Activities.ForgotActivity"></activity>
         <activity android:name=".View.Activities.MainScreenActivity"></activity>
         <activity android:name=".View.Activities.AgeActivity"></activity>
-        <activity android:name=".View.Activities.HashtagPage"></activity>
+        <activity android:name=".View.Fragments.HashtagPage"></activity>
         <activity
             android:name=".View.Activities.IntroActivity"
             android:exported="true"></activity>

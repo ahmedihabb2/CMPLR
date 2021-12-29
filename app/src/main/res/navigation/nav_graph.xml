@@ -63,6 +63,6 @@
         app:destination="@id/blogFragment" />
     <fragment
         android:id="@+id/hashtagPage"
-        android:name="com.cmp.cmplr.View.Activities.HashtagPage"
+        android:name="com.cmp.cmplr.View.Fragments.HashtagPage"
         android:label="HashtagPage" />
 </navigation>

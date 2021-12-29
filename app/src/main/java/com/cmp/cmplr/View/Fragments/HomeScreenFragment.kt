@@ -60,6 +60,8 @@ class HomeScreenFragment : Fragment() {
             startActivity(intent)
         }
         var token: String? = localStorage.getTokenData(requireActivity())
+        var blogName:String?=localStorage.getBlogName(requireActivity())
+        infiniteScrollRecycler.putBlogName(blogName)
         rv_showData = requireView().findViewById<RecyclerView>(R.id.theinfinte)
         infiniteScrollRecycler.putToken(token) //passing the token to the adapter
         infiniteScrollRecycler.putActivity(activity as Activity)

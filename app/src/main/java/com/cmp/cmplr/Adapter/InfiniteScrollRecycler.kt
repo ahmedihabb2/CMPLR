@@ -1,7 +1,6 @@
 package com.cmp.cmplr.Adapter
 
 import android.app.Activity
-import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -16,13 +15,11 @@ import android.view.ViewGroup
 import android.webkit.WebView
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.cmp.cmplr.API.Api_Instance
 import com.cmp.cmplr.DataClasses.HomePostData
 import com.cmp.cmplr.R
-import com.cmp.cmplr.View.Activities.HashtagPage
 import kotlinx.coroutines.runBlocking
 import retrofit2.HttpException
 import java.io.IOException
@@ -36,6 +33,7 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
 
     val tag = "kak"
     var token: String? = ""
+    var blogName:String?=""
     var postList: ArrayList<HomePostData> = ArrayList()
     lateinit var myActivity: Activity
 
@@ -49,6 +47,10 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
         //homeModel.putToken(token)
         Log.d("tokenhere", token.toString())
     }
+    fun putBlogName(blognamePassed:String?){
+        blogName=blognamePassed
+    }
+
 
     fun notifydataSet() {
         notifyDataSetChanged()
