@@ -152,7 +152,7 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
                 Log.d("kak",temp)
                 var i = Intent(myActivity.applicationContext, HashtagPage::class.java)
                 i.putExtra("hashtag",hashtagtextView.text.toString().replace("#","") )
-                //i.putExtra()
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(myActivity.applicationContext,i,null)
             }
 
@@ -166,8 +166,7 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
                 Log.d("kak",temp)
                 var i = Intent(myActivity.applicationContext, HashtagPage::class.java)
                 i.putExtra("hashtag",hashtagtextView.text.toString().replace("#","") )
-                //i.putExtra()
-                //startActivity(i)
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(myActivity.applicationContext,i,null)
             }
 
