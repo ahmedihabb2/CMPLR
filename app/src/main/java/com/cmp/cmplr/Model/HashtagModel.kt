@@ -50,10 +50,8 @@ class HashtagModel {
             var single_blog=item.asJsonObject.getAsJsonObject("blog")
 
             val content: String=single_post["content"].toString().replace("\"","")
-            Log.d("hashtag", content.toString())
             val date: String=single_post["date"].toString()
             val is_liked: Boolean=single_post["is_liked"].toString().toBoolean()
-            Log.d("back_content",is_liked.toString())
             val post_id: Int=single_post["post_id"].toString().toInt()
             val source_content: String=single_post["source_content"].toString()
             val state: String=single_post["state"].toString()
@@ -63,6 +61,7 @@ class HashtagModel {
             var tagsString=single_post["tags"].toString()
             tagsString=tagsString.replace("[","")
             tagsString=tagsString.replace("]","")
+            tagsString=tagsString.replace("\"","")
             var tags=tagsString.split(",")
             val notes_count:Int=single_post["notes_count"].toString().toInt()
 

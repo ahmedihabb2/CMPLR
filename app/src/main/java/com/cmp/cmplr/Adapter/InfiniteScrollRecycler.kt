@@ -112,7 +112,7 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
             first_hashtag.text=""
             second_hashtag.text=""
             if(homepost.post.tags.size==1){
-                first_hashtag.text=homepost.post.tags[0]
+                first_hashtag.text="#"+homepost.post.tags[0]
             }else if (homepost.post.tags.size>1){
                 first_hashtag.text="#"+homepost.post.tags[0].replace("\"","")
                 second_hashtag.text="#"+homepost.post.tags[1].replace("\"","")
