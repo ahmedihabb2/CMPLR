@@ -45,7 +45,7 @@ class HashtagPage:AppCompatActivity() {
         val hashtag_toolbar : Toolbar = findViewById(R.id.toolbar_hashtag)
         //ResourcesCompat.getColor(getResources(), R.color.white, null)
         hashtag_toolbar.title = "#"+hashtag_value
-        hashtag_toolbar.setTitleTextColor(ResourcesCompat.getColor(getResources(), R.color.white, null))
+        hashtag_toolbar.setTitleTextColor(ResourcesCompat.getColor(resources, R.color.white, null))
         rv_showData=findViewById<RecyclerView>(R.id.theinfinte_hash)
         infiniteScrollRecycler.putToken(token) //passing the token to the adapter
         infiniteScrollRecycler.putActivity(this@HashtagPage as Activity)
@@ -56,7 +56,7 @@ class HashtagPage:AppCompatActivity() {
         var backendPair: ListBooleanPair
         runBlocking {
 
-            backendPair=hashtagController.GetPostsBackend(hashtag_value)
+            backendPair=hashtagController.GetPostsBackend(hashtag_value,token)
             Log.d("hashtag","finsihed request")
         }
         if(backendPair.getIsSucess()){
@@ -80,13 +80,12 @@ class HashtagPage:AppCompatActivity() {
                 var backendPair: ListBooleanPair
                 runBlocking{
                     Log.d("hashtag","Getting more postsssssss")
-                    backendPair=hashtagController.GetPostsBackend(hashtag_value)
+                    backendPair=hashtagController.GetPostsBackend(hashtag_value,token)
                     if(backendPair.getIsSucess()){
 
                         infiniteScrollRecycler.updateList(backendPair.getList())
                         infiniteScrollRecycler.notifydataSet()
                     }
-                    infiniteScrollRecycler.wantMorePosts=false
                     infiniteScrollRecycler.notifydataSet()
                     scrollView.visibility= View.VISIBLE
                     isIn=false

@@ -53,7 +53,7 @@ interface methods {
 
     @Headers("Content-Type: application/json","Accept: application/json")
     @GET("api/post/tagged")
-    suspend fun hashtagPosts(@Query( "tag" )tag: String?) : retrofit2.Response<JsonObject>
+    suspend fun hashtagPosts(@Header("Authorization") token: String?,@Query( "tag" )tag: String?) : retrofit2.Response<JsonObject>
 
 
     @Headers("Content-Type: application/json","Accept: application/json")
@@ -63,4 +63,23 @@ interface methods {
     @Headers("Content-Type: application/json","Accept: application/json")
     @GET("/api/posts/view/{blog_name}")
     suspend fun fetchBlogPosts(@Path("blog_name") blog_name:String ): retrofit2.Response<JsonObject>
+
+
+    @Headers("Content-Type: application/json","Accept: application/json")
+    @POST("/api/user/like")
+    suspend fun likePost(@Header("Authorization") token: String?,@Query( "id" )post_id: Int?): retrofit2.Response<JsonObject>
+
+    @Headers("Content-Type: application/json","Accept: application/json")
+    @DELETE("/api/user/unlike")
+    suspend fun unlikePost(@Header("Authorization") token: String?,@Query( "id" )post_id: Int?): retrofit2.Response<JsonObject>
+
+
+    @Headers("Content-Type: application/json","Accept: application/json")
+    @POST("/api/user/follow")
+    suspend fun followBlog(@Header("Authorization") token: String?,@Query( "blogName" )blogName: String): retrofit2.Response<JsonObject>
+
+    @Headers("Content-Type: application/json","Accept: application/json")
+    @DELETE("/api/user/follow")
+    suspend fun unfollowBlog(@Header("Authorization") token: String?,@Query( "blogName" )blogName: String): retrofit2.Response<JsonObject>
+
 }

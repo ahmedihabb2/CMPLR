@@ -13,7 +13,10 @@ import retrofit2.Response
 import kotlin.contracts.contract
 
 class HashtagModel {
-
+    var token:String?=""
+    fun putToken(tokenPassed:String?){
+        token=tokenPassed
+    }
 
     suspend fun listReturn(hashtag:String?): ListBooleanPair{
         var postList:ArrayList<HomePostData> =ArrayList()
@@ -25,7 +28,7 @@ class HashtagModel {
         var gson : Gson = Gson()
         try {
             //response= Api_Instance.api.homepost("Bearer $token")
-            response= Api_Instance.api.hashtagPosts(hashtag)
+            response= Api_Instance.api.hashtagPosts("Bearer $token",hashtag)
 
             if (!response.isSuccessful) {
                 Log.d("back","not success")
