@@ -91,6 +91,8 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
         var notes_btn : TextView = itemView.findViewById(R.id.comments_btn)
         var love_btn:ImageView=itemView.findViewById(R.id.love_btn)
 
+        var follow_text:TextView=itemView.findViewById(R.id.follow_btn)
+
         fun bind(homepost:HomePostData){
             val policy = ThreadPolicy.Builder().permitAll().build()
             StrictMode.setThreadPolicy(policy)
@@ -144,6 +146,14 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
             }
 
 
+            if(homepost.blog.follower==true){
+                follow_text.text="Unfollow"
+            }else{
+                follow_text.text="Follow"
+
+            }
+
+
         }
 
     }
@@ -176,7 +186,8 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
                         if ((response).isSuccessful) {
                             lovbtn.setImageResource(R.drawable.heart_vector)
                             post.post.is_liked=false
-                            Log.d("like","unlike request="+response.toString())
+                            Log.d("like","unlike response="+response.toString())
+                            Log.d("like_body","unlike response="+response.body().toString())
                         }else{}
 
                     }catch (e: HttpException){
@@ -188,10 +199,12 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
                 runBlocking {
                     try {
                         val response= Api_Instance.api.likePost("Bearer $token",post.post.post_id)
+                        Log.d("like_data","Bearer $token"+ "  "+ post.post.post_id)
                         if ((response).isSuccessful) {
                             lovbtn.setImageResource(R.drawable.red_heart)
                             post.post.is_liked=true
-                            Log.d("like","like request="+response.toString())
+                            Log.d("like","like response="+response.toString())
+                            Log.d("like_body","like response="+response.body().toString())
                         }else{}
 
                     }catch (e: HttpException){

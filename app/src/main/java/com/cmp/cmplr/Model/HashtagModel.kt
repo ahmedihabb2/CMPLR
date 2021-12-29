@@ -28,7 +28,7 @@ class HashtagModel {
         var gson : Gson = Gson()
         try {
             //response= Api_Instance.api.homepost("Bearer $token")
-            response= Api_Instance.api.hashtagPosts(hashtag)
+            response= Api_Instance.api.hashtagPosts("Bearer $token",hashtag)
 
             if (!response.isSuccessful) {
                 Log.d("back","not success")

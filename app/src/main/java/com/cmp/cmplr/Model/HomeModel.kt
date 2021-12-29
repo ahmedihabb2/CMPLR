@@ -36,12 +36,12 @@ class HomeModel (){
 
         var gson : Gson = Gson()
         try {
-            //response= Api_Instance.api.homepost("Bearer $token")
-            response= Api_Instance.api.homepost_beta()
+            response= Api_Instance.api.homepost("Bearer $token")
+            //response= Api_Instance.api.homepost_beta()
 
             if (!response.isSuccessful) {
                 Log.d("back","not success")
-                Log.d("back string",response.toString())
+                Log.d("back_string",response.toString())
 
                 return ListBooleanPair(postList,false)
             }
@@ -96,3 +96,4 @@ class HomeModel (){
 
 
 }
+
