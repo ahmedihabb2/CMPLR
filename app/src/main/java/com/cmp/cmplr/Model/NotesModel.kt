@@ -12,7 +12,6 @@ class NotesModel {
         try {
             val response = Api_Instance.api.get_notes(post_id)
             if (!response.isSuccessful) {
-                Log.i("Notes", response.toString())
                 return null
             }
             val jsonObj: JsonObject = response.body()!!

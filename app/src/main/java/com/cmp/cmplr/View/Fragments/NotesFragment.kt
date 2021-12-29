@@ -85,28 +85,33 @@ class NotesFragment : Fragment() {
             comment_input.append("@")
         }
         reply_btn.setOnClickListener {
-            lifecycleScope.launchWhenCreated {
-                val status: Int = notesController.addReplyCont(
-                    "Bearer ${localStorage.getTokenData(requireActivity())!!}",
-                    post_id,
-                    comment_input.text.toString()
-                )
-                if (status == 200) {
-                    Toast.makeText(
-                        activity?.applicationContext,
-                        "Note Added Successfully",
-                        Toast.LENGTH_LONG
-                    ).show()
-                    requireActivity().recreate()
-                } else {
-                    Toast.makeText(
-                        activity?.applicationContext,
-                        "Failed to add reply .. try again",
-                        Toast.LENGTH_LONG
-                    ).show()
+            if(comment_input.text.isNotEmpty()) {
+                lifecycleScope.launchWhenCreated {
+                    val status: Int = notesController.addReplyCont(
+                        "Bearer ${localStorage.getTokenData(requireActivity())!!}",
+                        post_id,
+                        comment_input.text.toString()
+                    )
+                    if (status == 200) {
+                        Toast.makeText(
+                            activity?.applicationContext,
+                            "Note Added Successfully",
+                            Toast.LENGTH_LONG
+                        ).show()
+                        requireActivity().recreate()
+                    } else {
+                        Toast.makeText(
+                            activity?.applicationContext,
+                            "Failed to add reply .. try again",
+                            Toast.LENGTH_LONG
+                        ).show()
 
+                    }
+                    comment_input.text = ""
                 }
-                comment_input.text = ""
+            }else
+            {
+                Toast.makeText(activity?.applicationContext , "Cannot enter empty reply" , Toast.LENGTH_LONG).show()
             }
         }
 

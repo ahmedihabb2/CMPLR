@@ -1,6 +1,7 @@
 package com.cmp.cmplr.Adapter
 
 import android.graphics.Bitmap
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,7 +51,7 @@ class NotesAdapter : RecyclerView.Adapter<NotesAdapter.NoteViewHolder>() {
         var user_img: ImageView = itemView.findViewById(R.id.comment_user_img)
         fun bind(comment: JsonObject, img: Bitmap?) {
             user_img.setImageBitmap(img)
-            commentView.text = comment["content"].asString
+            commentView.text = comment["content"].toString()
             user_name.text = comment["blog_name"].asString
         }
 
