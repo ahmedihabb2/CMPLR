@@ -47,7 +47,7 @@ class WritePostActivity : AppCompatActivity(),
 
                         binding.editor.insertImage(
                             "data:image/jpeg;base64,$img",
-                            "image", 150, 200
+                            "image", 200, 300
                         )
                     }
                 }
