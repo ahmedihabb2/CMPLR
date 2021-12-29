@@ -107,4 +107,10 @@ interface methods {
         @Query("blogName") blogName: String
     ): retrofit2.Response<JsonObject>
 
+    @Headers("Content-Type: application/json", "Accept: application/json")
+    @GET("/api/recommended/blogs")
+    suspend fun fetchrecommendedBlogs(
+        @Header("Authorization") token: String?,
+    ): retrofit2.Response<JsonObject>
+
 }

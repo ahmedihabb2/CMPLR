@@ -3,7 +3,6 @@ package com.cmp.cmplr.Adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.cmp.cmplr.R
 
@@ -16,17 +15,17 @@ class ExploreAdapter : RecyclerView.Adapter<ExploreAdapter.ItemsViewHolder>() {
     }
 
     class ItemsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var image_View: ImageView = itemView.findViewById(R.id.explore_image)
+        //var image_View: ImageView = itemView.findViewById(R.id.explore_image)
 
         fun bind(image: Int) {
-            image_View.setImageResource(image)
+            //image_View.setImageResource(image)
         }
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsViewHolder {
         var view: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.explore_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.check_out_blogs, parent, false)
         return ItemsViewHolder(view)
     }
 

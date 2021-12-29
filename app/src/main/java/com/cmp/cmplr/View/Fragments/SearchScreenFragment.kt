@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.cmp.cmplr.Adapter.ExploreAdapter
+import com.cmp.cmplr.Controller.LocalStorage
+import com.cmp.cmplr.Controller.RecommendedController
 import com.cmp.cmplr.R
 import com.google.android.material.appbar.CollapsingToolbarLayout
 
@@ -48,12 +50,16 @@ class SearchScreenFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val recommendedController = RecommendedController()
+        val localStorage = LocalStorage()
+        val token: String = localStorage.getTokenData(requireActivity())!!
         super.onViewCreated(view, savedInstanceState)
         val coll_toolbar: CollapsingToolbarLayout = view.findViewById(R.id.collapse_toolbar)
         val search_btn: Button = view.findViewById(R.id.search_btn)
         search_btn.setOnClickListener {
             view.findNavController().navigate(R.id.action_searchScreenFragment_to_searchInput)
         }
+
         coll_toolbar.setContentScrimColor(Color.BLACK)
         rv_showData = view.findViewById(R.id.items)
         rv_showData.adapter = exploreItemsRecyclerView

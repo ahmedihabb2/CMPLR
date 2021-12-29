@@ -9,15 +9,14 @@ import java.security.cert.CertificateException
 import java.security.cert.X509Certificate
 import javax.net.ssl.*
 
+/**
+ *  The API Client initialization for whole app
+ */
 
 object Api_Instance {
-    //var url:String="http://c089-156-215-8-141.ngrok.io/"    //abdelhamid
-    //var url:String="http://ca24-156-223-170-167.ngrok.io/"    //anwer
     //var url:String="https://www.cmplr.tech/ "                //server
     var url: String = "https://beta.cmplr.tech/"                //beta_server
-    val api: methods by lazy { //   http://077e-156-223-130-25.ngrok.io/        https://www.cmplr.tech/
-
-        //abdelhaimd http://a667-41-44-141-19.ngrok.io/
+    val api: methods by lazy {
         Retrofit.Builder()
             .baseUrl(url)
             .addConverterFactory(GsonConverterFactory.create())
@@ -26,6 +25,11 @@ object Api_Instance {
             .create(methods::class.java)
     }
 
+    /**
+     * This function is used to ignore SSL certificates check
+     * As the android needs to have local public.cert in order to trust the connection
+     * @return
+     */
     private fun getUnsafeOkHttpClient(): OkHttpClient? {
         return try {
             // Create a trust manager that does not validate certificate chains

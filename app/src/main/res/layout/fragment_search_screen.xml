@@ -74,7 +74,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_medium"
-                android:text="Tags you follow"
+                android:text="Check out this blogs"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp" />
 
@@ -85,7 +85,7 @@
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:ignore="SpeakableTextPresentCheck"
-                tools:listitem="@layout/explore_item" />
+                tools:listitem="@layout/check_out_blogs" />
 
             <TextView
                 android:id="@+id/explore2"
@@ -103,14 +103,14 @@
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:ignore="SpeakableTextPresentCheck"
-                tools:listitem="@layout/explore_item" />
+                tools:listitem="@layout/check_out_blogs" />
 
             <TextView
                 android:id="@+id/explore3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_medium"
-                android:text="Check out these blogs"
+                android:text="Tags you follow"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp" />
 
@@ -121,7 +121,7 @@
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:ignore="SpeakableTextPresentCheck"
-                tools:listitem="@layout/explore_item" />
+                tools:listitem="@layout/check_out_blogs" />
 
             <TextView
                 android:id="@+id/explore4"
@@ -139,7 +139,7 @@
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:ignore="SpeakableTextPresentCheck"
-                tools:listitem="@layout/explore_item" />
+                tools:listitem="@layout/check_out_blogs" />
 
             <TextView
                 android:id="@+id/explore5"
@@ -157,7 +157,7 @@
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:ignore="SpeakableTextPresentCheck"
-                tools:listitem="@layout/explore_item" />
+                tools:listitem="@layout/check_out_blogs" />
 
             <TextView
                 android:id="@+id/explore6"
