@@ -63,7 +63,8 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
 
     }
 
-    class InfiniteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class InfiniteViewHolder(itemView: View,blogName_user:String?) : RecyclerView.ViewHolder(itemView) {
+        var usernameBlog=blogName_user
         //var progressBar:ProgressBar=itemView.findViewById(R.id.progressBar_home)
         var usr_img: ImageView = itemView.findViewById(R.id.user_pic)
         var usr_name: TextView = itemView.findViewById(R.id.username_home)
@@ -80,14 +81,8 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
             val policy = ThreadPolicy.Builder().permitAll().build()
             StrictMode.setThreadPolicy(policy)
 
-            //var temphtml:String="<h2>Alternative text</h2><p>The alt attribute should reflect the image content, so users who cannot see the image gets an understanding of what the image contains:</p><img src=\"https://www.w3schools.com/html/img_chania.jpg\" alt=\"Flowers in Chania\" width=\"460\" height=\"345\">"
-            //var temphtml:String="this post for <b>test update and edit</b> for ahmed khaled <img src=\"https://cmplrserver.s3.eu-west-2.amazonaws.com/images/1640424925_16_omar.jpg\">"
-
-
             var html: String = homepost.post.content
-            //html_post.setHtml(html)
-            //html_post.setHtml(html)
-            val encodedHtml = Base64.encodeToString(html.toByteArray(), Base64.NO_PADDING)
+
 
             html_post.loadData(html, "text/html", "UTF-8");
             //html_post.loadData(temphtml, "text/html", "base64")
@@ -106,7 +101,6 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
                 }
             }
 
-//ResourcesCompat.getColor(getResources(), R.color.white, null)
 
 
             var inputStream: InputStream? = null
@@ -127,14 +121,17 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
                 love_btn.setImageResource(R.drawable.heart_vector)
             }
 
-
-            if (homepost.blog.follower == true) {
+            if(usernameBlog==homepost.blog.blog_name){
+                follow_text.text = ""
+            } else{
+            if (homepost.blog.follower == true ) {
                 follow_text.text = "Unfollow"
                 follow_text.setTextColor(Color.parseColor("#808080"))
             } else {
                 follow_text.text = "Follow"
                 follow_text.setTextColor(Color.parseColor("#00B8FF"))
 
+            }
             }
 
 
@@ -147,7 +144,7 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
         var view: View =
             LayoutInflater.from(parent.context).inflate(R.layout.whole_post_view, parent, false)
         Log.d("kak", "oncreate begin")
-        return InfiniteViewHolder(view)
+        return InfiniteViewHolder(view,blogName)
     }
 
     override fun onBindViewHolder(holder: InfiniteViewHolder, position: Int) {
@@ -160,42 +157,45 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
         //////////////////////////////////////////////////////////////////////////////
         holder.follow_text.setOnClickListener {
             val follow_text = it as TextView
+            var text_inside=follow_text.text.toString()
+            if(text_inside!=""){
+                if (post.blog.follower == true  ) {  //unfollow
+                    runBlocking {
+                        try {
+                            val response =
+                                Api_Instance.api.unfollowBlog("Bearer $token", post.blog.blog_name)
+                            if ((response).isSuccessful) {
+                                follow_text.text = "Follow"
+                                follow_text.setTextColor(Color.parseColor("#00B8FF"))
+                                post.blog.follower = false
+                                Log.d("follow_reposonse", "now unfollow should appear")
 
-            if (post.blog.follower == true) {  //unfollow
-                runBlocking {
-                    try {
-                        val response =
-                            Api_Instance.api.unfollowBlog("Bearer $token", post.blog.blog_name)
-                        if ((response).isSuccessful) {
-                            follow_text.text = "Follow"
-                            follow_text.setTextColor(Color.parseColor("#00B8FF"))
-                            post.blog.follower = false
-                            Log.d("follow_reposonse", "now unfollow should appear")
-
-                        } else {
+                            } else {
+                            }
+                        } catch (e: HttpException) {
                         }
-                    } catch (e: HttpException) {
                     }
-                }
-            } else {         //follow
-                runBlocking {
-                    try {
-                        val response =
-                            Api_Instance.api.followBlog("Bearer $token", post.blog.blog_name)
-                        if ((response).isSuccessful) {
-                            follow_text.text = "UnFollow"
-                            follow_text.setTextColor(Color.parseColor("#808080"))
-                            post.blog.follower = true
-                            Log.d("follow_reposonse", "now follow should appear")
+                } else {         //follow
+                    runBlocking {
+                        try {
+                            val response =
+                                Api_Instance.api.followBlog("Bearer $token", post.blog.blog_name)
+                            if ((response).isSuccessful) {
+                                follow_text.text = "UnFollow"
+                                follow_text.setTextColor(Color.parseColor("#808080"))
+                                post.blog.follower = true
+                                Log.d("follow_reposonse", "now follow should appear")
 
-                        } else {
+                            } else {
+                            }
+                            Log.d("follow_reposonse", response.body().toString())
+                        } catch (e: HttpException) {
                         }
-                        Log.d("follow_reposonse", response.body().toString())
-                    } catch (e: HttpException) {
                     }
-                }
 
+                }
             }
+
         }
 
         holder.love_btn.setOnClickListener {
