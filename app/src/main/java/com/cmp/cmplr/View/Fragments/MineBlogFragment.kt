@@ -32,6 +32,8 @@ class MineBlogFragment : Fragment() {
         val blogPostsController = BlogPostsController()
         val token: String = localStorage.getTokenData(requireActivity())!!
         rv_showData = requireView().findViewById(R.id.mine_blog_posts)
+        var blogName:String?=localStorage.getBlogName(requireActivity())
+        postsRecyclerView.putBlogName(blogName)
         postsRecyclerView.putToken(token)
         rv_showData.adapter = postsRecyclerView
         lifecycleScope.launchWhenCreated {

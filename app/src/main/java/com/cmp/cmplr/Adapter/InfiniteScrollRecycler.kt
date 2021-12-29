@@ -1,7 +1,6 @@
 package com.cmp.cmplr.Adapter
 
 import android.app.Activity
-import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -16,13 +15,11 @@ import android.view.ViewGroup
 import android.webkit.WebView
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.cmp.cmplr.API.Api_Instance
 import com.cmp.cmplr.DataClasses.HomePostData
 import com.cmp.cmplr.R
-import com.cmp.cmplr.View.Activities.HashtagPage
 import kotlinx.coroutines.runBlocking
 import retrofit2.HttpException
 import java.io.IOException
@@ -36,6 +33,7 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
 
     val tag = "kak"
     var token: String? = ""
+    var blogName:String?=""
     var postList: ArrayList<HomePostData> = ArrayList()
     lateinit var myActivity: Activity
 
@@ -49,6 +47,10 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
         //homeModel.putToken(token)
         Log.d("tokenhere", token.toString())
     }
+    fun putBlogName(blognamePassed:String?){
+        blogName=blognamePassed
+    }
+
 
     fun notifydataSet() {
         notifyDataSetChanged()
@@ -61,7 +63,8 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
 
     }
 
-    class InfiniteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class InfiniteViewHolder(itemView: View,blogName_user:String?) : RecyclerView.ViewHolder(itemView) {
+        var usernameBlog=blogName_user
         //var progressBar:ProgressBar=itemView.findViewById(R.id.progressBar_home)
         var usr_img: ImageView = itemView.findViewById(R.id.user_pic)
         var usr_name: TextView = itemView.findViewById(R.id.username_home)
@@ -78,14 +81,8 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
             val policy = ThreadPolicy.Builder().permitAll().build()
             StrictMode.setThreadPolicy(policy)
 
-            //var temphtml:String="<h2>Alternative text</h2><p>The alt attribute should reflect the image content, so users who cannot see the image gets an understanding of what the image contains:</p><img src=\"https://www.w3schools.com/html/img_chania.jpg\" alt=\"Flowers in Chania\" width=\"460\" height=\"345\">"
-            //var temphtml:String="this post for <b>test update and edit</b> for ahmed khaled <img src=\"https://cmplrserver.s3.eu-west-2.amazonaws.com/images/1640424925_16_omar.jpg\">"
-
-
             var html: String = homepost.post.content
-            //html_post.setHtml(html)
-            //html_post.setHtml(html)
-            val encodedHtml = Base64.encodeToString(html.toByteArray(), Base64.NO_PADDING)
+
 
             html_post.loadData(html, "text/html", "UTF-8");
             //html_post.loadData(temphtml, "text/html", "base64")
@@ -93,16 +90,17 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
             comments.text = (homepost.post.notes_count).toString() + " notes"
             first_hashtag.text = ""
             second_hashtag.text = ""
-            if (homepost.post.tags.size == 1 && homepost.post.tags[0] != "") {
+            if(!homepost.post.tags.isNullOrEmpty()) {
+                if (homepost.post.tags.size == 1 && homepost.post.tags[0] != "") {
 
-                first_hashtag.text = "#" + homepost.post.tags[0]
-            } else if (homepost.post.tags.size > 1) {
-                first_hashtag.text = "#" + homepost.post.tags[0].replace("\"", "")
-                second_hashtag.text = "#" + homepost.post.tags[1].replace("\"", "")
+                    first_hashtag.text = "#" + homepost.post.tags[0]
+                } else if (homepost.post.tags.size > 1) {
+                    first_hashtag.text = "#" + homepost.post.tags[0].replace("\"", "")
+                    second_hashtag.text = "#" + homepost.post.tags[1].replace("\"", "")
 
+                }
             }
 
-//ResourcesCompat.getColor(getResources(), R.color.white, null)
 
 
             var inputStream: InputStream? = null
@@ -123,14 +121,17 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
                 love_btn.setImageResource(R.drawable.heart_vector)
             }
 
-
-            if (homepost.blog.follower == true) {
+            if(usernameBlog==homepost.blog.blog_name){
+                follow_text.text = ""
+            } else{
+            if (homepost.blog.follower == true ) {
                 follow_text.text = "Unfollow"
                 follow_text.setTextColor(Color.parseColor("#808080"))
             } else {
                 follow_text.text = "Follow"
                 follow_text.setTextColor(Color.parseColor("#00B8FF"))
 
+            }
             }
 
 
@@ -143,7 +144,7 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
         var view: View =
             LayoutInflater.from(parent.context).inflate(R.layout.whole_post_view, parent, false)
         Log.d("kak", "oncreate begin")
-        return InfiniteViewHolder(view)
+        return InfiniteViewHolder(view,blogName)
     }
 
     override fun onBindViewHolder(holder: InfiniteViewHolder, position: Int) {
@@ -156,42 +157,45 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
         //////////////////////////////////////////////////////////////////////////////
         holder.follow_text.setOnClickListener {
             val follow_text = it as TextView
+            var text_inside=follow_text.text.toString()
+            if(text_inside!=""){
+                if (post.blog.follower == true  ) {  //unfollow
+                    runBlocking {
+                        try {
+                            val response =
+                                Api_Instance.api.unfollowBlog("Bearer $token", post.blog.blog_name)
+                            if ((response).isSuccessful) {
+                                follow_text.text = "Follow"
+                                follow_text.setTextColor(Color.parseColor("#00B8FF"))
+                                post.blog.follower = false
+                                Log.d("follow_reposonse", "now unfollow should appear")
 
-            if (post.blog.follower == true) {  //unfollow
-                runBlocking {
-                    try {
-                        val response =
-                            Api_Instance.api.unfollowBlog("Bearer $token", post.blog.blog_name)
-                        if ((response).isSuccessful) {
-                            follow_text.text = "Follow"
-                            follow_text.setTextColor(Color.parseColor("#00B8FF"))
-                            post.blog.follower = false
-                            Log.d("follow_reposonse", "now unfollow should appear")
-
-                        } else {
+                            } else {
+                            }
+                        } catch (e: HttpException) {
                         }
-                    } catch (e: HttpException) {
                     }
-                }
-            } else {         //follow
-                runBlocking {
-                    try {
-                        val response =
-                            Api_Instance.api.followBlog("Bearer $token", post.blog.blog_name)
-                        if ((response).isSuccessful) {
-                            follow_text.text = "UnFollow"
-                            follow_text.setTextColor(Color.parseColor("#808080"))
-                            post.blog.follower = true
-                            Log.d("follow_reposonse", "now follow should appear")
+                } else {         //follow
+                    runBlocking {
+                        try {
+                            val response =
+                                Api_Instance.api.followBlog("Bearer $token", post.blog.blog_name)
+                            if ((response).isSuccessful) {
+                                follow_text.text = "UnFollow"
+                                follow_text.setTextColor(Color.parseColor("#808080"))
+                                post.blog.follower = true
+                                Log.d("follow_reposonse", "now follow should appear")
 
-                        } else {
+                            } else {
+                            }
+                            Log.d("follow_reposonse", response.body().toString())
+                        } catch (e: HttpException) {
                         }
-                        Log.d("follow_reposonse", response.body().toString())
-                    } catch (e: HttpException) {
                     }
-                }
 
+                }
             }
+
         }
 
         holder.love_btn.setOnClickListener {
@@ -244,10 +248,13 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
                 var temp: String =
                     "pressed on image of postition:" + position.toString() + " ,array size=" + postList.size.toString()
                 Log.d("kak", temp)
-                var i = Intent(myActivity.applicationContext, HashtagPage::class.java)
-                i.putExtra("hashtag", hashtagtextView.text.toString().replace("#", ""))
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                startActivity(myActivity.applicationContext, i, null)
+//                var i = Intent(myActivity.applicationContext, HashtagPage::class.java)
+//                i.putExtra("hashtag", hashtagtextView.text.toString().replace("#", ""))
+//                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+//                startActivity(myActivity.applicationContext, i, null)
+                var data = Bundle()
+                data.putString("hashtag_value", hashtagtextView.text.toString().replace("#", ""))
+                it.findNavController().navigate(R.id.hashtagPage, data)
             }
 
         }
@@ -256,13 +263,16 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
             val hashtagtextView = it as TextView
             if (hashtagtextView.text.toString() != "") {
                 Log.d("lol", hashtagtextView.text.toString())
-                var temp: String =
-                    "pressed on image of postition:" + position.toString() + " ,array size=" + postList.size.toString()
-                Log.d("kak", temp)
-                var i = Intent(myActivity.applicationContext, HashtagPage::class.java)
-                i.putExtra("hashtag", hashtagtextView.text.toString().replace("#", ""))
-                i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                startActivity(myActivity.applicationContext, i, null)
+//                var temp: String =
+//                    "pressed on image of postition:" + position.toString() + " ,array size=" + postList.size.toString()
+//                Log.d("kak", temp)
+//                var i = Intent(myActivity.applicationContext, HashtagPage::class.java)
+//                i.putExtra("hashtag", hashtagtextView.text.toString().replace("#", ""))
+//                i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+//                startActivity(myActivity.applicationContext, i, null)
+                var data = Bundle()
+                data.putString("hashtag_value", hashtagtextView.text.toString().replace("#", ""))
+                it.findNavController().navigate(R.id.hashtagPage, data)
             }
 
         }
