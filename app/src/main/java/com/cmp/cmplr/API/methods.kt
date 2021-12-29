@@ -74,5 +74,12 @@ interface methods {
     suspend fun unlikePost(@Header("Authorization") token: String?,@Query( "id" )post_id: Int?): retrofit2.Response<JsonObject>
 
 
+    @Headers("Content-Type: application/json","Accept: application/json")
+    @POST("/api/user/follow")
+    suspend fun followBlog(@Header("Authorization") token: String?,@Query( "blogName" )blogName: String): retrofit2.Response<JsonObject>
+
+    @Headers("Content-Type: application/json","Accept: application/json")
+    @DELETE("/api/user/follow")
+    suspend fun unfollowBlog(@Header("Authorization") token: String?,@Query( "blogName" )blogName: String): retrofit2.Response<JsonObject>
 
 }

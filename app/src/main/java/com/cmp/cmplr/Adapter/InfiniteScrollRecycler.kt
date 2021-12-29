@@ -54,10 +54,7 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
 
     val tag = "kak"
     var token:String?=""
-    //var homeModel:HomeModel= HomeModel()
-    var wantMorePosts:Boolean=false
     var postList:ArrayList<HomePostData> =ArrayList()
-    var homeController= HomeController()
     lateinit var myActivity:Activity
 
     fun putActivity(activity: Activity){
@@ -148,8 +145,10 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
 
             if(homepost.blog.follower==true){
                 follow_text.text="Unfollow"
+                follow_text.setTextColor(Color.parseColor("#808080"))
             }else{
                 follow_text.text="Follow"
+                follow_text.setTextColor(Color.parseColor("#00B8FF"))
 
             }
 
@@ -173,7 +172,41 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
         //////////////////////////////////////////////////////////////////////////////
         //////////////////////////////****ON CLICK LISTENERS****//////////////////////
         //////////////////////////////////////////////////////////////////////////////
+        holder.follow_text.setOnClickListener {
+            val follow_text=it as TextView
 
+            if(post.blog.follower==true){  //unfollow
+                runBlocking {
+                    try{
+                        val response= Api_Instance.api.unfollowBlog("Bearer $token",post.blog.blog_name)
+                        if ((response).isSuccessful) {
+                            follow_text.text="Follow"
+                            follow_text.setTextColor(Color.parseColor("#00B8FF"))
+                            post.blog.follower=false
+                        Log.d("follow_reposonse","now unfollow should appear")
+
+                        }else{}
+                    }catch (e: HttpException){
+                    }
+                }
+            }else{         //follow
+                runBlocking {
+                    try{
+                        val response= Api_Instance.api.followBlog("Bearer $token",post.blog.blog_name)
+                        if ((response).isSuccessful) {
+                            follow_text.text="UnFollow"
+                            follow_text.setTextColor(Color.parseColor("#808080"))
+                            post.blog.follower=true
+                        Log.d("follow_reposonse","now follow should appear")
+
+                        }else{}
+                        Log.d("follow_reposonse",response.body().toString())
+                    }catch (e: HttpException){
+                    }
+                }
+
+            }
+        }
 
         holder.love_btn.setOnClickListener{
             val lovbtn=it as ImageView

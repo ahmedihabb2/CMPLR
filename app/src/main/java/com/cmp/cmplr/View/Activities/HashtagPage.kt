@@ -86,7 +86,6 @@ class HashtagPage:AppCompatActivity() {
                         infiniteScrollRecycler.updateList(backendPair.getList())
                         infiniteScrollRecycler.notifydataSet()
                     }
-                    infiniteScrollRecycler.wantMorePosts=false
                     infiniteScrollRecycler.notifydataSet()
                     scrollView.visibility= View.VISIBLE
                     isIn=false
