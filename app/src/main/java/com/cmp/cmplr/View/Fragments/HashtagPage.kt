@@ -1,4 +1,4 @@
-package com.cmp.cmplr.View.Activities
+package com.cmp.cmplr.View.Fragments
 
 import android.app.Activity
 import android.os.Build
@@ -65,6 +65,8 @@ class HashtagPage : Fragment() {
         hashtag_toolbar.title = "#" + hashtag_value
         hashtag_toolbar.setTitleTextColor(ResourcesCompat.getColor(resources, R.color.white, null))
         rv_showData = requireView().findViewById<RecyclerView>(R.id.theinfinte_hash)
+        var blogName:String?=localStorage.getBlogName(requireActivity())
+        infiniteScrollRecycler.putBlogName(blogName)
         infiniteScrollRecycler.putToken(token) //passing the token to the adapter
         //infiniteScrollRecycler.putActivity(this@HashtagPage as Activity)
         rv_showData.adapter = infiniteScrollRecycler
