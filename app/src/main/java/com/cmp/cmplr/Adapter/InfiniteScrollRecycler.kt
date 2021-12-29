@@ -167,6 +167,7 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
 
         holder.love_btn.setOnClickListener{
             val lovbtn=it as ImageView
+            Log.d("like","like value before pressing="+post.post.is_liked.toString())
             if(post.post.is_liked==true){  //unlike the post
 
                 runBlocking {
