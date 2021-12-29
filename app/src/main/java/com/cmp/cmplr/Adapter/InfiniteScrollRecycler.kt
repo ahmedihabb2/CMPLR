@@ -31,6 +31,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.findNavController
+import com.cmp.cmplr.API.Api_Instance
 import com.cmp.cmplr.Controller.HomeController
 import com.cmp.cmplr.DataClasses.Blog
 import com.cmp.cmplr.DataClasses.HomePostData
@@ -38,6 +39,11 @@ import com.cmp.cmplr.DataClasses.ListBooleanPair
 import com.cmp.cmplr.DataClasses.Post
 import com.cmp.cmplr.Model.HomeModel
 import com.cmp.cmplr.View.Activities.HashtagPage
+import com.google.gson.Gson
+import com.google.gson.JsonObject
+import kotlinx.coroutines.runBlocking
+import retrofit2.HttpException
+import retrofit2.Response
 
 //import androidx.test.internal.runner.junit4.statement.UiThreadStatement.runOnUiThread
 
@@ -161,12 +167,37 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
 
         holder.love_btn.setOnClickListener{
             val lovbtn=it as ImageView
-            if(post.post.is_liked==true){
-                lovbtn.setImageResource(R.drawable.heart_vector)
-                post.post.is_liked=false
-            }else{
-                lovbtn.setImageResource(R.drawable.red_heart)
-                post.post.is_liked=true
+            if(post.post.is_liked==true){  //unlike the post
+
+                runBlocking {
+                    try {
+                        val response= Api_Instance.api.unlikePost("Bearer $token",post.post.post_id)
+                        if ((response).isSuccessful) {
+                            lovbtn.setImageResource(R.drawable.heart_vector)
+                            post.post.is_liked=false
+                            Log.d("like","unlike request="+response.toString())
+                        }else{}
+
+                    }catch (e: HttpException){
+                    }
+                }
+
+
+            }else{   //like the post
+                runBlocking {
+                    try {
+                        val response= Api_Instance.api.likePost("Bearer $token",post.post.post_id)
+                        if ((response).isSuccessful) {
+                            lovbtn.setImageResource(R.drawable.red_heart)
+                            post.post.is_liked=true
+                            Log.d("like","like request="+response.toString())
+                        }else{}
+
+                    }catch (e: HttpException){
+                            Log.d("like",e.toString())
+                    }
+
+                }
             }
         }
 

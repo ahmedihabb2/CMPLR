@@ -6,8 +6,8 @@ import com.cmp.cmplr.Model.HashtagModel
 class HashtagController {
     var hashtagModel:HashtagModel= HashtagModel()
 
-    suspend fun GetPostsBackend(hashtag:String?):ListBooleanPair{
-
+    suspend fun GetPostsBackend(hashtag:String?,token: String?):ListBooleanPair{
+        hashtagModel.putToken(token)
         return hashtagModel.listReturn(hashtag)
     }
 }

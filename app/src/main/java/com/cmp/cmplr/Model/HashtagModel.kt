@@ -13,7 +13,10 @@ import retrofit2.Response
 import kotlin.contracts.contract
 
 class HashtagModel {
-
+    var token:String?=""
+    fun putToken(tokenPassed:String?){
+        token=tokenPassed
+    }
 
     suspend fun listReturn(hashtag:String?): ListBooleanPair{
         var postList:ArrayList<HomePostData> =ArrayList()
