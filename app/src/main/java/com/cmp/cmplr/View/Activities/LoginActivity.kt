@@ -8,7 +8,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.cmp.cmplr.API.LoginData
+import com.cmp.cmplr.DataClasses.LoginData
 import com.cmp.cmplr.Controller.LocalStorage
 import com.cmp.cmplr.Controller.LoginController
 import com.cmp.cmplr.databinding.LoginBinding

@@ -1,7 +1,7 @@
 package com.cmp.cmplr.Model
 
 import com.cmp.cmplr.API.Api_Instance
-import com.cmp.cmplr.API.LoginData
+import com.cmp.cmplr.DataClasses.LoginData
 import com.cmp.cmplr.Controller.LocalStorage
 import com.cmp.cmplr.Mockup.DatabaseMock
 import com.google.gson.Gson

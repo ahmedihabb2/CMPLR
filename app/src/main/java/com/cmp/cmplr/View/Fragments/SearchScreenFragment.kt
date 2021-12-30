@@ -1,5 +1,6 @@
 package com.cmp.cmplr.View.Fragments
 
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,13 +8,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.cmp.cmplr.Adapter.ExploreAdapter
 import com.cmp.cmplr.Controller.LocalStorage
 import com.cmp.cmplr.Controller.RecommendedController
 import com.cmp.cmplr.R
+import com.cmp.cmplr.Shared.getImage
 import com.google.android.material.appbar.CollapsingToolbarLayout
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class SearchScreenFragment : Fragment() {
@@ -75,11 +80,23 @@ class SearchScreenFragment : Fragment() {
         for (i in 1..9) {
             images_list.add(R.drawable.ourlogo)
         }
-        exploreItemsRecyclerView.setList(images_list)
-        exploreItemsRecyclerView2.setList(images_list)
-        exploreItemsRecyclerView3.setList(images_list)
-        exploreItemsRecyclerView4.setList(images_list)
-        exploreItemsRecyclerView5.setList(images_list)
+        lifecycleScope.launchWhenCreated {
+            var listOfBlogs = recommendedController.fetchRecommendedCont(token)
+            val listOfImgs : ArrayList<Pair<Bitmap, Bitmap>> = ArrayList()
+            exploreItemsRecyclerView.setData(listOfBlogs)
+
+            GlobalScope.launch {
+                for (item in listOfBlogs)
+                {
+                    val header : Bitmap = getImage(item.header_image)!!
+                    val avatar : Bitmap = getImage(item.avatar)!!
+                    listOfImgs.add(Pair(header,avatar))
+                }
+                exploreItemsRecyclerView.setImages(listOfImgs)
+            }.join()
+            exploreItemsRecyclerView.notifyChanges()
+        }
+
     }
 
 }

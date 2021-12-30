@@ -110,7 +110,8 @@ class ProfileScreenFragment : Fragment() {
         fragmentList.addAll(
             listOf(
                 MineBlogFragment(),
-                Intro2Fragment(),
+                LikedPostsFragment(),
+                FollowingFragment(),
             )
         )
         adapter.setFragmentList(fragmentList)

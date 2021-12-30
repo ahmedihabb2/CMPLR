@@ -1,5 +1,7 @@
 package com.cmp.cmplr.API
 
+import com.cmp.cmplr.DataClasses.LoginData
+import com.cmp.cmplr.DataClasses.SignupData
 import com.google.gson.JsonObject
 import retrofit2.http.*
 
@@ -110,6 +112,18 @@ interface methods {
     @Headers("Content-Type: application/json", "Accept: application/json")
     @GET("/api/recommended/blogs")
     suspend fun fetchrecommendedBlogs(
+        @Header("Authorization") token: String?,
+    ): retrofit2.Response<JsonObject>
+
+    @Headers("Content-Type: application/json", "Accept: application/json")
+    @GET("/api/user/likes")
+    suspend fun fetchLikesPosts(
+        @Header("Authorization") token: String?,
+    ): retrofit2.Response<JsonObject>
+
+    @Headers("Content-Type: application/json", "Accept: application/json")
+    @GET("/api/user/followings")
+    suspend fun fetchFollowing(
         @Header("Authorization") token: String?,
     ): retrofit2.Response<JsonObject>
 

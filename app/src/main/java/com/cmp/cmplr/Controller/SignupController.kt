@@ -1,6 +1,6 @@
 package com.cmp.cmplr.Controller
 
-import com.cmp.cmplr.API.SignupData
+import com.cmp.cmplr.DataClasses.SignupData
 import com.cmp.cmplr.Model.SignupModel
 import com.google.gson.Gson
 import com.google.gson.JsonObject

@@ -1,6 +1,6 @@
 package com.cmp.cmplr.Controller
 
-import com.cmp.cmplr.API.LoginData
+import com.cmp.cmplr.DataClasses.LoginData
 import com.cmp.cmplr.Model.LoginModel
 import com.google.gson.Gson
 import com.google.gson.JsonObject

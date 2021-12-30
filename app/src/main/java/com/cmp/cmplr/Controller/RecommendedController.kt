@@ -1,6 +1,6 @@
 package com.cmp.cmplr.Controller
 
-import com.cmp.cmplr.API.RecommendedData
+import com.cmp.cmplr.DataClasses.RecommendedData
 import com.cmp.cmplr.Model.ExploreModel
 import com.google.gson.Gson
 import com.google.gson.JsonArray

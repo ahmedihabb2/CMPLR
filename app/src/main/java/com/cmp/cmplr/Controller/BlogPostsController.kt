@@ -29,4 +29,25 @@ class BlogPostsController {
         }
         return blogPosts
     }
+    suspend fun fetchLikedPostsCont(token: String): ArrayList<HomePostData> {
+        val blogPosts: ArrayList<HomePostData> = ArrayList()
+        val gson = Gson()
+        val postsArry = blogPostsModel.fetchLikedPostsMod(token)
+        if (postsArry != null) {
+            for (item in postsArry) {
+                val post = gson.fromJson(
+                    item.asJsonObject.getAsJsonObject("post"),
+                    Post::class.java
+                )
+                val blog = gson.fromJson(
+                    item.asJsonObject.getAsJsonObject("blog"),
+                    Blog::class.java
+                )
+
+                blogPosts.add(HomePostData(blog, post))
+            }
+        }
+        return blogPosts
+    }
+
 }

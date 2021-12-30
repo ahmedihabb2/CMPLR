@@ -9,7 +9,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.cmp.cmplr.API.SignupData
+import com.cmp.cmplr.DataClasses.SignupData
 import com.cmp.cmplr.Controller.LocalStorage
 import com.cmp.cmplr.Controller.SignupController
 import com.cmp.cmplr.databinding.SignupBinding

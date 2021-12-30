@@ -66,7 +66,7 @@
             android:layout_width="110dp"
             android:layout_height="110dp"
             android:layout_marginTop="144dp"
-            android:src="@drawable/kil"
+            android:src="@drawable/ic_baseline_account_circle_24"
             app:civ_border_color="@color/white"
             app:civ_border_width="3dp"
             app:layout_constraintEnd_toEndOf="@+id/cover_image"

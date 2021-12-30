@@ -20,4 +20,17 @@ class BlogPostsModel {
             return null
         }
     }
+    suspend fun fetchLikedPostsMod(token: String): JsonArray? {
+        try {
+            val response = Api_Instance.api.fetchLikesPosts(token)
+            if (!response.isSuccessful) {
+                Log.i("Blog", response.toString())
+                return null
+            }
+            return response.body()?.getAsJsonObject("response")?.getAsJsonArray("post")
+        } catch (e: HttpException) {
+            Log.i("Blog", e.toString())
+            return null
+        }
+    }
 }

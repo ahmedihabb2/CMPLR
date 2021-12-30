@@ -1,7 +1,7 @@
 package com.cmp.cmplr.Model
 
 import com.cmp.cmplr.API.Api_Instance
-import com.cmp.cmplr.API.SignupData
+import com.cmp.cmplr.DataClasses.SignupData
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import retrofit2.HttpException
