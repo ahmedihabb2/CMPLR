@@ -15,12 +15,12 @@ pipeline {
             post{
                 success{
                     echo "=======fetch executed successfully========"
-                    discordSend description: "Jenkins Pipeline Build", footer: "Fetch executed successfully", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discord.com/api/webhooks/926441648605528114/L_GjAOFAUJGwUt0_N9Wu58T0OTR5OksSXvgiZnnWruTfVmuLJpTjDQvB7bDaaBypUxjE"
+                discordSend description: "Jenkins Pipeline Build", thumbnail: "https://jenkins.io/images/logos/ninja/256.png",footer: "Fetch is successfull", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: WEBHOOK_URL
 
                 }
                 failure{
                     echo "========fetch execution failed========"
-                    discordSend description: "Jenkins Pipeline Build", footer: "Fetch execution failed", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discord.com/api/webhooks/926441648605528114/L_GjAOFAUJGwUt0_N9Wu58T0OTR5OksSXvgiZnnWruTfVmuLJpTjDQvB7bDaaBypUxjE"
+                    discordSend description: "Jenkins Pipeline Build", thumbnail: "https://jenkins.io/images/logos/ninja/256.png" ,footer: "Fetch execution failed", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: WEBHOOK_URL
                     
                 }
             }
