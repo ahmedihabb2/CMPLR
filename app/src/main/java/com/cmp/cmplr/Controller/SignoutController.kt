@@ -7,6 +7,9 @@ import com.google.gson.JsonObject
 import retrofit2.HttpException
 import retrofit2.Response
 
+/**
+ * Responsible for signing out the user out of his\her current account
+ */
 class SignoutController {
     suspend fun sign_user_out(activity: Activity, token: String): Int {
         var gson: Gson = Gson()

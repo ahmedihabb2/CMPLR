@@ -1,5 +1,8 @@
 package com.cmp.cmplr.DataClasses
 
+/**
+ * class for data of the psot
+ */
 data class Post(
     var content: String,
     var date: String,

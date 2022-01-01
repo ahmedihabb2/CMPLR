@@ -62,8 +62,6 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
 
     fun updateList(posttList: ArrayList<HomePostData>) {
         this.postList += posttList
-
-
     }
 
     /**
@@ -262,10 +260,7 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
             if (hashtagtextView.text.toString() != "") {
                 var temp: String =
                     "pressed on image of postition:" + position.toString() + " ,array size=" + postList.size.toString()
-//                var i = Intent(myActivity.applicationContext, HashtagPage::class.java)
-//                i.putExtra("hashtag", hashtagtextView.text.toString().replace("#", ""))
-//                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-//                startActivity(myActivity.applicationContext, i, null)
+
                 var data = Bundle()
                 data.putString("hashtag_value", hashtagtextView.text.toString().replace("#", ""))
                 it.findNavController().navigate(R.id.hashtagPage, data)
@@ -276,12 +271,7 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
             //var tempp:TextView=(TextView)it
             val hashtagtextView = it as TextView
             if (hashtagtextView.text.toString() != "") {
-//                var temp: String =
-//                    "pressed on image of postition:" + position.toString() + " ,array size=" + postList.size.toString()
-//                var i = Intent(myActivity.applicationContext, HashtagPage::class.java)
-//                i.putExtra("hashtag", hashtagtextView.text.toString().replace("#", ""))
-//                i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-//                startActivity(myActivity.applicationContext, i, null)
+
                 var data = Bundle()
                 data.putString("hashtag_value", hashtagtextView.text.toString().replace("#", ""))
                 it.findNavController().navigate(R.id.hashtagPage, data)

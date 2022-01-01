@@ -31,6 +31,15 @@ class ImageEncodingInstrumentedTest {
 
     }
 
+    @Test
+    fun failGracefullyIfGivenNonExistentURI(){
+        write.onActivity {
+            assertEquals(
+                it.imgToBase64(Uri.parse("this/URI/doesnt/exist")),
+                "")
+        }
+    }
+
     @After //every test
     fun finalizeActivity(){
         write.close()
