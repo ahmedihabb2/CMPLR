@@ -1,5 +1,8 @@
 package com.cmp.cmplr.DataClasses
 
+/**
+ *
+ */
 data class FollowingData(
     val avatar: String,
     val avatar_shape: String,
