@@ -14,8 +14,7 @@ import javax.net.ssl.*
  */
 
 object Api_Instance {
-    //var url:String="https://www.cmplr.tech/ "                //server
-    var url: String = "https://beta.cmplr.tech/"                //beta_server
+    var url:String="https://www.cmplr.tech/"
     val api: methods by lazy {
         Retrofit.Builder()
             .baseUrl(url)

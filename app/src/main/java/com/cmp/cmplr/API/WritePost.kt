@@ -1,5 +1,6 @@
 package com.cmp.cmplr.API
 
+
 /**
  *
  * Class that represents post data to be sent to the API]
