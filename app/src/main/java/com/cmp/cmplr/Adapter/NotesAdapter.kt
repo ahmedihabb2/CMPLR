@@ -13,35 +13,43 @@ import com.google.gson.JsonObject
 
 
 /**
- * This Adapter is responsible for rendering the Notes view
- *
+ *  This Class is responsible for rendering the recycler view
+ *   - Set it's content
+ *   - Refresh it when the content is changed
+ *   - Know the number of items to be rendered
  */
 
 class NotesAdapter : RecyclerView.Adapter<NotesAdapter.NoteViewHolder>() {
     var comments_list: ArrayList<JsonObject> = ArrayList()
     var images_list: ArrayList<Bitmap?> = ArrayList()
 
-
     /**
-     * Member function used to set the comments data
+     * Member function used to notify the view that the data is changed
      *
-     * @param comments_list List of comments and users of this comments
      */
     fun notifyChanges() {
         notifyDataSetChanged()
     }
-
+    /**
+     * Member function used to set the view list with data comes from API
+     *
+     * @param list of  Images
+     */
     fun setImages(images_list: ArrayList<Bitmap?>) {
         this.images_list = images_list
     }
-
+    /**
+     * Member function used to set the view list with data comes from API (Comments & users)
+     *
+     * @param list of  recommended blogs
+     */
     fun setList(comments_list: ArrayList<JsonObject>) {
         this.comments_list = comments_list
     }
 
     /**
      * Inner class used to set the view with real API data
-     * Data comming from setList function
+     * Data coming from setList & set Images functions
      *
      * @param itemView
      */
@@ -61,13 +69,25 @@ class NotesAdapter : RecyclerView.Adapter<NotesAdapter.NoteViewHolder>() {
         }
 
     }
-
+    /**
+     * Member function responsible for render each view
+     *
+     * @param parent
+     * @param viewType
+     * @return
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
         var view: View =
             LayoutInflater.from(parent.context).inflate(R.layout.comment_layout, parent, false)
         return NoteViewHolder(view)
     }
-
+    /**
+     * Member function used to access each item separately in order to
+     *  Set click listeners .. etc
+     *
+     * @param holder
+     * @param position
+     */
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         var comment: JsonObject = comments_list[position]
         var img: Bitmap? = images_list[position]

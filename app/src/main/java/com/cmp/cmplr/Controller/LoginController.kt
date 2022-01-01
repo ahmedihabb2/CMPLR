@@ -28,15 +28,11 @@ class LoginController {
 
 
     /**
+     * This function is responsible for validating the login data locally first and then
+     * Passes the data to the backend to check it this user exist or not
      *
-     *
-     * @param email  email wanted to login
-     * @param password  password wanted to login
-     * @return an integer and according to it the view acts
-     *   1-> the email is invalid mail fromat
-     *   2-> password is empty
-     *   3-> right login
-     *   4-> password or mail is invalid
+     * @param signinData class object contain user data
+     * @return JsonObject contain the error is exists
      */
     suspend fun validateSignin(signinData: LoginData): JsonObject {
         val gson = Gson()

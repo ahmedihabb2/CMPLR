@@ -6,8 +6,19 @@ import com.google.gson.JsonObject
 import retrofit2.HttpException
 import retrofit2.Response
 
-class BlogController {
+/**
+ * This Class is responsible for handling the meta data of the blog not the posts
+ *
+ */
 
+class BlogController {
+    /**
+     * Function responsible for fetching the data from API and Parsing it into desired format
+     *
+     * @param token The token of the user
+     * @param id  The ID of the blog that user wants to visit or it's own Blog
+     * @return Array of Stings that contains the URLs of Header and avatar and it's name & title & description
+     */
     suspend fun fetchBlogDataCont(token: String, id: Int): ArrayList<String> {
         var blog_data: ArrayList<String> = ArrayList()
         try {
@@ -17,6 +28,7 @@ class BlogController {
                 return blog_data
             }
             val jsonObj: JsonObject? = response.body()?.getAsJsonObject("response")
+            //Extracting the useful info from the whole json object
             val header_img: String = jsonObj?.get("header_image")?.asString ?: ""
             val title: String = jsonObj?.get("title")?.asString ?: ""
             val description: String = jsonObj?.get("description")?.asString ?: ""

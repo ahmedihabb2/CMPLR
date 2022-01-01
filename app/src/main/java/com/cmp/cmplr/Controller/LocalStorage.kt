@@ -5,8 +5,18 @@ import android.content.Context
 
 val fileName: String = "SharedData"
 
-class LocalStorage() {
-
+/**
+ * This class is responsible for storing and retrieving data to and from LocalStorage
+ *  Using SharedPref
+ */
+class LocalStorage {
+    /**
+     * Member function used to Storing the token and blog name of the user
+     *
+     * @param activity the calling activity
+     * @param data  the token
+     * @param blogName
+     */
     fun insertTokenData(activity: Activity, data: String, blogName: String) {
         val sharedPref = activity?.getSharedPreferences(fileName, Context.MODE_PRIVATE) ?: return
         with(sharedPref.edit()) {
@@ -17,6 +27,12 @@ class LocalStorage() {
 
     }
 
+    /**
+     * Member function used to Storing the BlogID
+     *
+     * @param activity
+     * @param blog_id
+     */
     fun insertBlogID(activity: Activity, blog_id: Int) {
         val sharedPref = activity?.getSharedPreferences(fileName, Context.MODE_PRIVATE) ?: return
         with(sharedPref.edit()) {
@@ -25,21 +41,42 @@ class LocalStorage() {
         }
     }
 
+    /**
+     * Retrieving  Data from local storage
+     *
+     * @param activity
+     * @return
+     */
     fun getTokenData(activity: Activity): String? {
         val sharedPref = activity?.getSharedPreferences(fileName, Context.MODE_PRIVATE)
         return sharedPref.getString("token", "")
     }
-
+    /**
+     * Retrieving  Data from local storage
+     *
+     * @param activity
+     * @return
+     */
     fun getBlogName(activity: Activity): String? {
         val sharedPref = activity?.getSharedPreferences(fileName, Context.MODE_PRIVATE)
         return sharedPref.getString("blog", "")
     }
-
+    /**
+     * Retrieving  Data from local storage
+     *
+     * @param activity
+     * @return
+     */
     fun getBlogID(activity: Activity): Int? {
         val sharedPref = activity?.getSharedPreferences(fileName, Context.MODE_PRIVATE)
         return sharedPref.getInt("blog_id", 0)
     }
-
+    /**
+     * Delete all data from the storage
+     *
+     * @param activity
+     * @return
+     */
     fun removeToken(activity: Activity) {
         val sharedPref = activity?.getSharedPreferences(fileName, Context.MODE_PRIVATE)
         sharedPref.edit().remove("token").apply()

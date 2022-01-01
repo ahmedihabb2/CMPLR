@@ -13,23 +13,51 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cmp.cmplr.DataClasses.FollowingData
 import com.cmp.cmplr.R
 
+/**
+ *  This Class is responsible for rendering the recycler view
+ *   - Set it's content
+ *   - Refresh it when the content is changed
+ *   - Know the number of items to be rendered
+ */
 
 class FollowingAdapter: RecyclerView.Adapter<FollowingAdapter.FollowHolder>()  {
     var listOfFollowing : ArrayList<FollowingData> = ArrayList()
     var listOfImages: ArrayList<Pair<Bitmap , Bitmap>> = ArrayList()
-
+    /**
+     * Member function used to notify the view that the data is changed
+     *
+     */
     fun notifyChanges() {
         notifyDataSetChanged()
     }
+    /**
+     * Member function used to set the view list with data comes from API
+     *
+     * @param list of  recommended blogs
+     */
     fun setData(list : ArrayList<FollowingData>)
     {
         Log.i("Follow" , list.toString())
         this.listOfFollowing = list
     }
+    /**
+     * Member function used to set the view list with data comes from API
+     *
+     * @param list of  Images
+     */
     fun setImages(list : ArrayList<Pair<Bitmap , Bitmap>>)
     {
         this.listOfImages=list
     }
+    /**
+     * Inner class used to access the view items such as buttons / Images ...etc
+     *  And make changes to them
+     *
+     * @constructor
+     * TODO
+     *
+     * @param itemView
+     */
     class FollowHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
         val user_img : ImageView = itemView.findViewById(R.id.following_img)
         val user_blog : TextView = itemView.findViewById(R.id.following_blog)
@@ -43,12 +71,25 @@ class FollowingAdapter: RecyclerView.Adapter<FollowingAdapter.FollowHolder>()  {
             user_title.text = item.title
         }
     }
+    /**
+     * Member function responsible for render each view
+     *
+     * @param parent
+     * @param viewType
+     * @return
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FollowHolder {
         var view: View =
             LayoutInflater.from(parent.context).inflate(R.layout.following, parent, false)
         return FollowHolder(view)
     }
-
+    /**
+     * Member function used to access each item separately in order to
+     *  Set click listeners .. etc
+     *
+     * @param holder
+     * @param position
+     */
     override fun onBindViewHolder(holder: FollowHolder, position: Int) {
         var item : FollowingData= listOfFollowing[position]
         var images : Pair<Bitmap,Bitmap> = listOfImages[position]

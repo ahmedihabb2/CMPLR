@@ -10,7 +10,7 @@ import java.security.cert.X509Certificate
 import javax.net.ssl.*
 
 /**
- *  The API Client initialization for whole app
+ *  The API Client initialization for whole app (Singleton)
  */
 
 object Api_Instance {
