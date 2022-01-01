@@ -7,12 +7,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 /**
- * Mocking user posts using array
+ * Class responsible for sending the post to the API
  *
  * @constructor
  *
  *
- * @param ID
+ * @param ID : The token that the API requires to actually persist the post
  */
 class UserModel(private val token: String) {
 

@@ -1,5 +1,9 @@
 package com.cmp.cmplr.API
 
+/**
+ *
+ * Class that represents post data to be sent to the API]
+ */
 data class PostData(
     val blog_name: String,
     val content: String,
@@ -9,20 +13,30 @@ data class PostData(
     val type: String = "photos"
 )
 
+/**
+ * The response that the API returns after sending a post
+ */
 data class PostResponse(
     val meta: Meta,
     val response: ResponseInfo
 )
 
+/**
+ * Status to represent whether the write succeeded
+ */
 data class Meta(
     val msg: String,
     val status_code: Int
 )
 
+/**
+ * Represents Post and Blog info
+ */
 data class ResponseInfo(
     val blog: Blog,
     val post: PostInfo
 )
+
 
 data class Blog(
     val avatar: String,
