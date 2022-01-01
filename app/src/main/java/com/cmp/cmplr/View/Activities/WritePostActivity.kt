@@ -18,7 +18,9 @@ import com.cmp.cmplr.R
 import com.cmp.cmplr.databinding.ActivityWritePostBinding
 import java.io.ByteArrayOutputStream
 
-
+/**
+ * Activiy responsible for displaying the editor and writing the post to the API
+ */
 class WritePostActivity : AppCompatActivity(),
     WritePostController.WritePostView {
 
@@ -61,11 +63,17 @@ class WritePostActivity : AppCompatActivity(),
     override fun getPostText(): String = binding.editor.html
     override fun getUserID(): String = token
 
+    /**
+     * Initializes the editor, setting placeholder text and font attributes
+     */
     private fun initEditor() {
         binding.editor.setEditorFontColor(Color.WHITE)
         binding.editor.setPlaceholder(getString(R.string.writePostHint))
     }
 
+    /**
+     * Attaches event listeners to all the buttons on the screen
+     */
     private fun setButtonsEventHandlers() {
         binding.postBtn.setOnClickListener {
             val res = control.writePost(this)
@@ -115,6 +123,9 @@ class WritePostActivity : AppCompatActivity(),
 
     }
 
+    /**
+     * Takes a URI of an image and returns the image itself encoded as a base64 string
+     */
     fun imgToBase64(Uri: Uri): String {
         val stream = contentResolver.openInputStream(Uri)
         val imgAsbitmap = BitmapFactory.decodeStream(stream)
