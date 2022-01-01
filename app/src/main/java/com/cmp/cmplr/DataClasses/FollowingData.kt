@@ -1,7 +1,7 @@
 package com.cmp.cmplr.DataClasses
 
 /**
- *
+ * class for the data of people user follow
  */
 data class FollowingData(
     val avatar: String,
