@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.os.StrictMode
 import android.os.StrictMode.ThreadPolicy
 import android.util.Base64
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -51,7 +50,6 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
     fun putToken(token_passed: String?) {
         token = token_passed
         //homeModel.putToken(token)
-        Log.d("tokenhere", token.toString())
     }
     fun putBlogName(blognamePassed:String?){
         blogName=blognamePassed
@@ -65,7 +63,6 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
     fun updateList(posttList: ArrayList<HomePostData>) {
         this.postList += posttList
 
-        Log.d(tag, "setlist end")
 
     }
 
@@ -166,10 +163,8 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
      */
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InfiniteViewHolder {
-        Log.d("kak", "oncreate begin")
         var view: View =
             LayoutInflater.from(parent.context).inflate(R.layout.whole_post_view, parent, false)
-        Log.d("kak", "oncreate begin")
         return InfiniteViewHolder(view,blogName)
     }
 
@@ -180,7 +175,6 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
      *  @param position the position of the post
      */
     override fun onBindViewHolder(holder: InfiniteViewHolder, position: Int) {
-        Log.d("kak", "onbind begin")
         var post: HomePostData = postList.get(position)
         holder.bind(post)
 
@@ -197,11 +191,9 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
                             val response =
                                 Api_Instance.api.unfollowBlog("Bearer $token", post.blog.blog_name)
                             if ((response).isSuccessful) {
-                                Log.d("hashtag",response.body().toString())
                                 follow_text.text = "Follow"
                                 follow_text.setTextColor(Color.parseColor("#00B8FF"))
                                 post.blog.follower = false
-                                Log.d("follow_reposonse", "now unfollow should appear")
 
                             } else {
                             }
@@ -217,11 +209,9 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
                                 follow_text.text = "UnFollow"
                                 follow_text.setTextColor(Color.parseColor("#808080"))
                                 post.blog.follower = true
-                                Log.d("follow_reposonse", "now follow should appear")
 
                             } else {
                             }
-                            Log.d("follow_reposonse", response.body().toString())
                         } catch (e: HttpException) {
                         }
                     }
@@ -233,7 +223,6 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
 
         holder.love_btn.setOnClickListener {
             val lovbtn = it as ImageView
-            Log.d("like", "like value before pressing=" + post.post.is_liked.toString())
             if (post.post.is_liked == true) {  //unlike the post
 
                 runBlocking {
@@ -243,8 +232,6 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
                         if ((response).isSuccessful) {
                             lovbtn.setImageResource(R.drawable.heart_vector)
                             post.post.is_liked = false
-                            Log.d("like", "unlike response=" + response.toString())
-                            Log.d("like_body", "unlike response=" + response.body().toString())
                         } else {
                         }
 
@@ -257,17 +244,13 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
                 runBlocking {
                     try {
                         val response = Api_Instance.api.likePost("Bearer $token", post.post.post_id)
-                        Log.d("like_data", "Bearer $token" + "  " + post.post.post_id)
                         if ((response).isSuccessful) {
                             lovbtn.setImageResource(R.drawable.red_heart)
                             post.post.is_liked = true
-                            Log.d("like", "like response=" + response.toString())
-                            Log.d("like_body", "like response=" + response.body().toString())
                         } else {
                         }
 
                     } catch (e: HttpException) {
-                        Log.d("like", e.toString())
                     }
 
                 }
@@ -277,10 +260,8 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
         holder.first_hashtag.setOnClickListener {
             val hashtagtextView = it as TextView
             if (hashtagtextView.text.toString() != "") {
-                Log.d("lol", hashtagtextView.text.toString())
                 var temp: String =
                     "pressed on image of postition:" + position.toString() + " ,array size=" + postList.size.toString()
-                Log.d("kak", temp)
 //                var i = Intent(myActivity.applicationContext, HashtagPage::class.java)
 //                i.putExtra("hashtag", hashtagtextView.text.toString().replace("#", ""))
 //                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -295,10 +276,8 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
             //var tempp:TextView=(TextView)it
             val hashtagtextView = it as TextView
             if (hashtagtextView.text.toString() != "") {
-                Log.d("lol", hashtagtextView.text.toString())
 //                var temp: String =
 //                    "pressed on image of postition:" + position.toString() + " ,array size=" + postList.size.toString()
-//                Log.d("kak", temp)
 //                var i = Intent(myActivity.applicationContext, HashtagPage::class.java)
 //                i.putExtra("hashtag", hashtagtextView.text.toString().replace("#", ""))
 //                i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
@@ -330,7 +309,6 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
             data.putInt("post_id", post.post.post_id)
             it.findNavController().navigate(R.id.action_global_notesFragment, data)
         }
-        Log.d("kak", "onbind begin")
     }
 
     /**
@@ -339,7 +317,6 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
      */
 
     override fun getItemCount(): Int {
-        //Log.d("kak","bind begin")
         return postList.size
     }
 }
