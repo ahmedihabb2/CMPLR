@@ -6,6 +6,7 @@ import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.matcher.ViewMatchers.assertThat
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.cmp.cmplr.View.Activities.WritePostActivity
+import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
@@ -27,5 +28,11 @@ class ImageEncodingInstrumentedTest {
                 it.imgToBase64(Uri.parse("")),
                 "")
         }
+
+    }
+
+    @After //every test
+    fun finalizeActivity(){
+        write.close()
     }
 }
