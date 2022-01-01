@@ -5,8 +5,19 @@ import com.cmp.cmplr.API.Api_Instance
 import com.google.gson.JsonObject
 import retrofit2.HttpException
 
-class NotesModel {
+/**
+ * Class responsible for fetching the comments of specific post
+ *  And also for adding new comment
+ *
+ */
 
+class NotesModel {
+    /**
+     * Member function to fetch the notes depending on post_id
+     *
+     * @param post_id
+     * @return JsonObect that contains all comments data
+     */
     suspend fun fetch_notes(post_id: Int): JsonObject? {
 
         try {
@@ -23,6 +34,14 @@ class NotesModel {
 
     }
 
+    /**
+     * Member function to add new comment to the post
+     *
+     * @param token   the user who wants to add the comment
+     * @param post_id the post that user wants to add comment to
+     * @param content the content of the comment
+     * @return
+     */
     suspend fun addReply(token: String, post_id: Int, content: String): Int {
         try {
             Log.i("Notes", token)

@@ -2,7 +2,6 @@ package com.cmp.cmplr.Controller
 
 import android.util.Log
 import com.cmp.cmplr.API.Api_Instance
-import com.cmp.cmplr.Model.ForgotModel
 import com.google.gson.JsonObject
 import retrofit2.HttpException
 import retrofit2.Response
@@ -14,10 +13,6 @@ import retrofit2.Response
  *
  */
 class ForgotController {
-
-
-    var forgotModel = ForgotModel()
-
 
     /**
      *

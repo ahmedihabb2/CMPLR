@@ -7,6 +7,12 @@ import java.io.IOException
 import java.io.InputStream
 import java.net.URL
 
+/**
+ * Function to fetch images from network using image URL
+ *
+ * @param url
+ * @return Bitmap of Image
+ */
 
 fun getImage(url: String): Bitmap? {
     var inputStream: InputStream? = null
@@ -16,7 +22,6 @@ fun getImage(url: String): Bitmap? {
         inputStream = URL(URL).openStream()
         bitmap = BitmapFactory.decodeStream(inputStream)
     } catch (e: IOException) {
-        Log.i("Blog", "kYK$e")
     }
     return bitmap
 }

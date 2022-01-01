@@ -19,7 +19,7 @@ class LoginController {
      * @param str  the email of the user
      * @return boolean   whether the email has a valid mail format
      */
-    private fun isEmail(str: String): Boolean {
+    fun isEmail(str: String): Boolean {
         if (str.contains(" ") || !str.contains("@")) {
             return false
         }

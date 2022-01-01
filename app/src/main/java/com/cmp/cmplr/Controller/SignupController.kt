@@ -22,9 +22,11 @@ class SignupController {
      * @param str   the mail of the user
      * @return boolean   true if the mail is a valid format, false else
      */
-    private fun isEmail(str: String): Boolean {
-        return str.contains("@")
-        //return android.util.Patterns.EMAIL_ADDRESS.matcher(str).matches()
+    fun isEmail(str: String): Boolean {
+        if (str.contains(" ") || !str.contains("@")) {
+            return false
+        }
+        return true
     }
 
 

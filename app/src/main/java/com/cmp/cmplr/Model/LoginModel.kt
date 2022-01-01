@@ -12,7 +12,7 @@ import retrofit2.http.Body
 
 
 /**
- * class LoginModel   class to interface with backendapi
+ * class Responsible for signing user in the application
  *
  */
 class LoginModel {
@@ -22,11 +22,10 @@ class LoginModel {
 
 
     /**
+     *  Member function to send the user data to backend and get the response
      *
-     *
-     * @param email   mail of the user
-     * @param password  password of the user
-     * @return boolean, ture if the login is successful , false else
+     * @param signinData Class object that contains the username and password
+     * @return
      */
     suspend fun userLogin(@Body signinData: LoginData): Pair<JsonObject?, Int> {
         var gson: Gson = Gson()
