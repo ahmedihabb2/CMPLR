@@ -5,6 +5,9 @@ import com.cmp.cmplr.API.Api_Instance
 import com.google.gson.JsonObject
 import retrofit2.HttpException
 
+/**
+ * Class responsible for getting the followers of a user
+ */
 class FollowingModel {
     suspend fun fetchFollowingMod(token:String) : JsonObject?
     {
