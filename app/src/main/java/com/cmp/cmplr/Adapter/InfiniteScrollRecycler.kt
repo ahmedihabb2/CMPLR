@@ -28,6 +28,12 @@ import java.net.URL
 
 //import androidx.test.internal.runner.junit4.statement.UiThreadStatement.runOnUiThread
 
+/**
+ * This class is responsible for beign the adapter for any view having infinte posts
+ *  - On click listeners for each post
+ *  - Setting the content of each post
+ *  - Making the backend calls of likes and following
+ */
 
 class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.InfiniteViewHolder>() {
 
@@ -63,6 +69,13 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
 
     }
 
+    /**
+     *  Inner class for setting the content of each post
+     *
+     *  @param itemView
+     *
+     */
+
     class InfiniteViewHolder(itemView: View,blogName_user:String?) : RecyclerView.ViewHolder(itemView) {
         var usernameBlog=blogName_user
         //var progressBar:ProgressBar=itemView.findViewById(R.id.progressBar_home)
@@ -76,6 +89,14 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
         var love_btn: ImageView = itemView.findViewById(R.id.love_btn)
 
         var follow_text: TextView = itemView.findViewById(R.id.follow_btn)
+
+        /**
+         *  function to bind each post
+         *  @param homepost each post content and information
+         *
+         *
+         */
+
 
         fun bind(homepost: HomePostData) {
             val policy = ThreadPolicy.Builder().permitAll().build()
@@ -139,6 +160,11 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
 
     }
 
+
+    /**
+     *  member function to inflate the views
+     */
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InfiniteViewHolder {
         Log.d("kak", "oncreate begin")
         var view: View =
@@ -147,6 +173,12 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
         return InfiniteViewHolder(view,blogName)
     }
 
+    /**
+     *  member function containing the view holder to make its onclick listeners
+     *
+     *  @param holder the view holder of the post
+     *  @param position the position of the post
+     */
     override fun onBindViewHolder(holder: InfiniteViewHolder, position: Int) {
         Log.d("kak", "onbind begin")
         var post: HomePostData = postList.get(position)
@@ -165,6 +197,7 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
                             val response =
                                 Api_Instance.api.unfollowBlog("Bearer $token", post.blog.blog_name)
                             if ((response).isSuccessful) {
+                                Log.d("hashtag",response.body().toString())
                                 follow_text.text = "Follow"
                                 follow_text.setTextColor(Color.parseColor("#00B8FF"))
                                 post.blog.follower = false
@@ -176,7 +209,7 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
                         }
                     }
                 } else {         //follow
-                    runBlocking {
+                   runBlocking {
                         try {
                             val response =
                                 Api_Instance.api.followBlog("Bearer $token", post.blog.blog_name)
@@ -299,6 +332,11 @@ class InfiniteScrollRecycler : RecyclerView.Adapter<InfiniteScrollRecycler.Infin
         }
         Log.d("kak", "onbind begin")
     }
+
+    /**
+     * member to get the item count
+     * @return the list of posts size
+     */
 
     override fun getItemCount(): Int {
         //Log.d("kak","bind begin")

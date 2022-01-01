@@ -5,8 +5,19 @@ import com.cmp.cmplr.DataClasses.RecommendedData
 import com.cmp.cmplr.Model.FollowingModel
 import com.google.gson.Gson
 
+/**
+ * class to control the following fragment
+ *
+ */
 class FollowingController {
     val followingModel = FollowingModel()
+
+    /**
+     *  function to return back the following data
+     *
+     *  @param token user token
+     *  @return listofFollowing
+     */
     suspend fun fetchFollowingCont(token : String) : ArrayList<FollowingData>
     {
         val  gson = Gson()

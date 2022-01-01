@@ -11,15 +11,28 @@ import com.google.gson.JsonObject
 import retrofit2.HttpException
 import retrofit2.Response
 
+
+/**
+ * model of the home
+ */
 class HomeModel {
 
 
     var token: String? = ""
+
+    /**
+     * function to get the token of the user
+     *
+     * @param tokenPassed token of the user
+     */
     fun putToken(tokenPassed: String?) {
         token = tokenPassed
     }
 
-
+    /**
+     * function to call the backend to get the posts in this hashtag
+     * @return returns a pair, boolean to indicate the success of the back request, and list of post data
+     */
     suspend fun listReturn(): ListBooleanPair {
         var postList: ArrayList<HomePostData> = ArrayList()
 
