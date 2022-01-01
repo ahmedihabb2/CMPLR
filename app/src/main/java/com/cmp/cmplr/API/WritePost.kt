@@ -1,5 +1,6 @@
 package com.cmp.cmplr.API
 
+
 data class PostData(
     val blog_name: String,
     val content: String,
